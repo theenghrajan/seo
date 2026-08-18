@@ -1,0 +1,6 @@
+This just a test file.
+
+Standard Website Tracking:
+1. Form Submission
+2. Phone (Click to call)
+3. Newsletter form (If exist)
