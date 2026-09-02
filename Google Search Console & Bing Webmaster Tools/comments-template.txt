@@ -1,0 +1,59 @@
+As per the task descriptions,
+
+We have not been provided with verified owner access under the web@smartsites.com account, and we will need Domain/DNS access to verify ownership and proceed with the next steps.
+Screenshot: https://drive.google.com/file/d/1ceJYCm4HRLRu-lajgHRnMKbhPjMucH89/view?usp=sharing
+
+Alternatively, if this access cannot be provided, the client can add the required DNS TXT record instead.
+https://drive.google.com/file/d/1RNE8o6iGCGgIGR1xjsTsjbj30dmBPjmc/view?usp=sharing
+
+Since the name servers are managed through HostGator, could you please provide delegate access to the web@smartsites.com account?
+Screenshot: https://drive.google.com/file/d/1jHc4qMdirMr7dnpaP1BvM0U1uFjdRn7r/view?usp=sharing
+
+Thanks!
+
+#############################################################
+
+Site: https://centenariusnutrition.com/
+
+1. Setup Google Search Console
+
+  1.1 Verify website
+  ....
+  The website has been verified under the web@smartsites.com GSC account using the Domain name provider verification method.
+  Screenshot: https://drive.google.com/file/d/1Z8z2Uwsc69mnPwvaOH9XVCUkhAaxoLF9/view?usp=sharing
+
+  1.2 Submit Domain Name and Default Site URL
+  ....
+  We have submitted the domain name and the default site URL.
+  Screenshot: https://drive.google.com/file/d/14LgdQXutG2U5xOkMbR4JSIfBrYva0j5-/view?usp=sharing
+
+  1.3 Submit sitemap
+  ....
+  The sitemap has been submitted successfully.
+  Screenshot: https://drive.google.com/file/d/1REvHwipalTc25DlFNg3wWNTJOkT__Pma/view?usp=sharing
+
+  1.4 Link up to analytics account
+  ....
+  The analytics account has been linked up.
+  Screenshot: https://drive.google.com/file/d/1hH4aHz9DM3hzwmQy-AQfZpp6joG3YfkQ/view?usp=sharing
+
+  1.5 Add PM as user on the account.
+  ....
+  We have added kayla@smartsites.com as the user on the account.
+  Screenshot: https://drive.google.com/file/d/1dub63_SUANuo09oXtiWvML3AsgIcsFBL/view?usp=sharing
+
+2. Setup Bing Webmaster Tools
+  
+  2.1 Verify website
+  ....
+  The site has been imported from the Google search console.
+  Screenshot: https://drive.google.com/file/d/1sW3iRpI20C6BemCMf_VUD-5rpyOHpQjq/view?usp=sharing
+
+  2.2 Submit sitemap
+  ....
+  The sitemap has been submitted successfully.
+  Screenshot: https://drive.google.com/file/d/15f6uliNQ_ucm6cf4nHONEPZ85FFs6TN0/view?usp=sharing
+
+Please review.
+
+Thank you!

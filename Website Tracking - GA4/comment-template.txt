@@ -1,0 +1,60 @@
+For the site: https://mastermanagementcorp.com/
+
+1. Create a new GTM Container under “GA4 Configuration” tag. Instructions here.
+....
+We have created the GTM ID (GTM-TWZK3RQQ) and implemented it on the site.
+Screenshot: https://drive.google.com/file/d/1QN-m0IFxtqExCO6v6RPsvEd-OUzvtmEU/view?usp=sharing
+
+2. Install LeadTracker on all contact forms OR Set up “Destination Goals” if unavailable.
+....
+We have implemented LeadTracker on the site and successfully tested the forms.
+Screenshot: https://drive.google.com/file/d/19x16zdeimn4WTqTMj91_zbRqIkSnEF9t/view?usp=sharing
+
+3. Create GA4 Property.  If hosted on a CMS platform use the following link and follow instructions for the specific CMS platform
+....
+The GA4 ID (G-G9733WKP33) has been added to the site.
+Screenshot: https://drive.google.com/file/d/1vWSkgpIv0hxCcEMh1QP38fxGXDl9W5BR/view?usp=sharing
+
+  3.1 Goals
+  ....
+  We have configured the required goals.
+  Screenshot: https://drive.google.com/file/d/1CgWr09LRPZmiqBtEcBHfhBLRzMRvQ7Kr/view?usp=sharing 
+ 
+  3.2 Ensure the dev site, AC, and the client’s website are not being tracked as referral traffic in GA4.
+  ....
+  We have excluded traffic from the dev site, ActiveCollab, and their website.
+  Screenshots: https://drive.google.com/file/d/1Yuc-gpjpyToUoHkd1ArecJivi-gnm9f6/view
+
+  3.3 Exclude bot traffic
+  ....
+  N/A (GA4 automatically filters bot traffic).
+
+  3.4 Enable Demographics and Interest Targeting in Analytics
+  ....
+  We verified that Demographics & Interest Targeting are enabled.
+  Screenshot: https://drive.google.com/file/d/1r_L2WNSoNY7nBpKAS5R4EP7qTBIHk1Rp/view
+
+  3.5 Exclude the IP address of the Project Manager 
+  ....
+  We have excluded the Project Manager's IP address.
+  Screenshot: https://drive.google.com/file/d/144JjUVBZtR7TkJWqCsGNAp7814_O6xZp/view 
+
+4. Turn on “Enhanced Event Measurement”
+....
+We verified that Enhanced Event Measurement is already turned on.
+Screenshot: https://drive.google.com/file/d/1FdSZ-5bCLQIa583INgziZyXhkwfaEcuF/view
+
+5. If eCommerce, please use this Guide to set up eCommerce events
+....
+N/A
+
+6. Setup GA4 Alerts 
+  6.1 By default, create only “Daily Visits - 0 traffic” and disable all other standard alerts.
+  6.2 *O* Custom Alerts: Add additional alerts as indicated by PM
+....
+N/A - The default SS email has been configured for the GA4 alerts.
+Screenshot: https://drive.google.com/file/d/1p9t6KyoGkxH1zQxaln3xN07n9_mqh6hc/view
+
+Please review and let us know.
+
+Thank You!

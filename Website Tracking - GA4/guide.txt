@@ -1,0 +1,7 @@
+Website Tracking - GA4
+######################
+
+#
+If GTM isn't added on the site and no GTM is shared from the client end then create a new GTM container under 'SmartSites v1.0'.https://drive.google.com/file/d/1mq_kCSjfcxLzKWXv3BWgCDMULbNz2f6I/view?usp=sharing
+
+Give domain name and select Web then create.https://drive.google.com/file/d/1NzcVs789uji6ZlT9BC-2_cePLnISgBqB/view?usp=sharing

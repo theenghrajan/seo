@@ -1,0 +1,75 @@
+Imortant Notes: 
+- Do not work under the client's GTM access.
+- If Tag/Triggers need to be modified (created by the clients) please copy and pause it, before working and work on copied version.
+
+
+Squarspace
+===========
+
+# FB Standard Events used GTM Meta Pixel Template.
+
+Event Name: Contact
+Fires when: Click on phone number link (tel:xxxxxxxxxx)
+
+Event Name: Lead
+Fires when: Contact form successful submission
+
+Event Name: SubmitApplication
+Fires when: Booking form successful submission
+
+Event Name: Contact
+Fires when: Click on text-us link (sms:xxxxxxxxxx)
+
+===========
+
+Find the Pixel ID in Facebook
+============================
+
+Business Settings
+
+1. https://business.facebook.com/latest/settings/
+   https://business.facebook.com/latest/settings/events_dataset_and_pixel?business_id=1326626694101882&selected_asset_id=2063652061027880&selected_asset_type=events-dataset-new
+2. Data Sources → Datasets & pixels
+3. Click the pixel — ID shows under the name
+
+images/Meta-Business-Suite-08-19-2026_12_43.jpg
+
+============================
+
+#####################################################
+
+Site: https://www.murrayhilltennis.com/
+
+As per comment #4,
+
+The pixel has been replaced. The old pixel (607952719650567) has been removed, and 799148140186711 is now the only pixel firing via GTM (GTM-W89W4NKV).
+Screenshot: https://drive.google.com/file/d/1j4u7HRpONLR5BL2D9pPH0wjMx5xoRVgB/view?usp=sharing
+
+Re: "Create Event snippet inside Facebook similar to Google Ads for Phone calls, Form fills and Free Tennis Evaluation. Also if we can track the Text message click, please include."
+....
+
+All four events are implemented:
+
+Event Name: Contact
+Fires when: Click on phone number link (tel:9086651141)
+Screenshot: https://drive.google.com/file/d/1-ybDahV3v-zpVpfolPgWmIzYF9ugzcqa/view?usp=sharing
+
+Event Name: Lead
+Fires when: Contact form successful submission
+Screenshot: https://drive.google.com/file/d/1fXmRKoI2Esx7dR2ywZKmwSYOIna6T1mO/view?usp=sharing
+
+Event Name: SubmitApplication
+Fires when: Free Tennis Evaluation booking submit
+Screenshot: https://drive.google.com/file/d/19uRRigcUqhnN6Ufo_exSQKN21HrgKRYu/view?usp=sharing
+
+Event Name: Contact (triggered as the "Contact" event)
+Fires when: Click on text-us link (sms:8667512212)
+Screenshot: https://drive.google.com/file/d/15iYHd0ea8ojlulJ3D8HVAYfkEFeDHarV/view?usp=sharing
+
+Please review.
+
+Thank you!
+
+
+#####################################################
+

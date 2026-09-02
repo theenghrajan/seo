@@ -1,0 +1,52 @@
+As per comment #5 and re-clarification to comment #3,
+
+
+
+
+Social profiles alone are not sufficient to connect them to GSC. We need the client's social media profile login access, as it requires authorization to connect.
+
+
+Reference Screenshots:
+https://drive.google.com/file/d/1259jY87JWX-WsJ2SmkVvZu-pCzr53nDA/view
+
+https://drive.google.com/file/d/1GsCw6TRjXC6arVRQKZP9XSpJzwC1Ziim/view
+
+
+
+
+Below are the steps for the client and us to connect social profiles to GSC.
+
+Steps to Connect Accounts from a personal Google profile.
+
+  - Open Google Search Console and log in.
+  - Click the property drop-down menu in the top-left corner.
+  - Select + Add property.
+  - Choose the desired social network (Instagram, TikTok, X, or YouTube) from the platform property section.
+  - Sign in to the social account via the OAuth pop-up and click Allow to authorize read-only access.
+ 
+Steps to Connect Accounts from agencies.
+
+  - Open separate tabs in the browser.
+  - Log out of any personal accounts on Instagram, TikTok, or X.
+  - Log in to the first specific business or client profile you need to add.
+  - Navigate to the Google Search Console dashboard.
+  - Click the Property Selector drop-down menu in the top-left corner.
+  - Scroll to the bottom and click + Add property.
+  - Choose the platform (Instagram, TikTok, X, or YouTube) under the Platform Property section.
+  - Authorize and Repeat
+  - Click Add next to the platform.
+
+
+
+
+Therefore, we suggest that the client connect their social profiles with GSC, as they don't have to share their profiles. For this, we have to provide GSC access to the client ID, which they don't have. 
+
+
+
+
+Or please request the client to share their Google account profiles where the social accounts exist to proceed further.
+
+
+
+
+Thank you!
