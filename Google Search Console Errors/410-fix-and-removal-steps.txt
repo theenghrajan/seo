@@ -1,0 +1,82 @@
+Site: https://www.parcelmanagement.com/
+
+Spam URLs to 410 + remove from GSC: full list is the "Spam URL - Need to
+set this to 410 and request for removal via GSC" rows in the PMAC - #136
+GSC coverage export. That list is ~900+ URLs, almost all following two
+injected patterns (/dp/<hex-id> and /cate-<n>[-<n>]), plus ~25 one-off
+casino/gambling spam pages. See 410-spam-urls.htaccess in this folder for
+the full pattern + explicit rule set (Apache implementation, covers every
+flagged URL without hand-listing 900+ individual /dp/ and /cate- IDs).
+
+#############################################################
+
+STEP 1 - Return 410 (Gone) for these URLs
+
+Platform: WordPress. Add as a must-use plugin so it can't be disabled from
+wp-admin (upload to wp-content/mu-plugins/410-spam-urls.php):
+
+----------------------------------------------------------------------
+<?php
+/**
+ * Plugin Name: 410 Gone - Spam URLs
+ * Description: Returns HTTP 410 for known spam/injected URLs flagged in GSC.
+ */
+
+add_action( 'template_redirect', function () {
+	$gone_paths = array(
+		'/darwin-casino-gaming-steps-and-methods-registration-bonuses-payments-more',
+		'/die-besten-slots-im-bookofbet-casino-spiele-empfehlungen',
+		'/dp/002520756',
+		'/dp/003240777',
+		'/cate-9-260',
+	);
+
+	$path = rtrim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+
+	if ( in_array( $path, $gone_paths, true ) ) {
+		status_header( 410 );
+		nocache_headers();
+		wp_die( 'This page has been permanently removed.', 'Gone', array( 'response' => 410 ) );
+	}
+}, 1 );
+----------------------------------------------------------------------
+
+Alternative / recommended for this case (Apache, no PHP involved - covers
+the FULL flagged list, not just the 5 sample URLs above): add the contents
+of 410-spam-urls.htaccess (same folder) to the site's .htaccess, above the
+WordPress rewrite block ("# BEGIN WordPress"). It uses two pattern rules
+for the ~900 /dp/<id> and /cate-<n> injected URLs (also covers any new
+ones the same injection creates later), plus explicit RedirectMatch lines
+for the ~25 one-off casino/gambling spam pages and /shop/, /contents/
+paths that don't follow a pattern.
+
+Verify after deploying, spot-check a handful of URLs across each pattern:
+  curl -I "https://www.parcelmanagement.com/dp/002520756"
+  curl -I "https://www.parcelmanagement.com/cate-9-260"
+  curl -I "https://www.parcelmanagement.com/darwin-casino-gaming-steps-and-methods-registration-bonuses-payments-more"
+  ... confirm "HTTP/1.1 410 Gone" on each
+
+#############################################################
+
+STEP 2 - Submit removal in Google Search Console
+
+Once the 410s are confirmed live:
+
+1. Open Google Search Console for the parcelmanagement.com property.
+2. Left sidebar > Indexing > Removals.
+3. Click "New Request".
+4. On the "Temporarily remove URL" tab, choose "Remove this URL only",
+   paste one URL, click Next, then Submit Request.
+5. Repeat per URL (GSC removals are one URL per request). At ~900+ URLs,
+   submitting one-by-one in the UI is impractical - use the Search Console
+   API (urlInspection / Removals endpoints) or a bulk tool to script the
+   submissions once the 410s are confirmed live.
+6. Status will show "Removal approved" (hides the URL from Google Search
+   results for ~6 months). Because the pages now return 410, Google will
+   drop them from the index permanently on next crawl, not just hide them
+   temporarily.
+
+Note: GSC access under web@smartsites.com is required to submit these -
+confirm we have Owner/Full access on this property before submitting
+(see [[Google Search Console & Bing Webmaster Tools/comments-template.txt]]
+pattern for what to request from the client if access is missing).

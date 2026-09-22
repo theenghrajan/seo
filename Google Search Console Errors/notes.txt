@@ -1,0 +1,1 @@
+Our recommendation is to return these spam URLs with a 410 (Gone) status and then submit them for removal via GSC.

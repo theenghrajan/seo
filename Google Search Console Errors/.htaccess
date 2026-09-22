@@ -1,0 +1,373 @@
+
+# BEGIN All In One WP Security
+#AIOWPS_BASIC_HTACCESS_RULES_START
+<Files .htaccess>
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order deny,allow
+Deny from all
+</IfModule>
+</Files>
+ServerSignature Off
+LimitRequestBody 104857600
+<Files wp-config.php>
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order deny,allow
+Deny from all
+</IfModule>
+</Files>
+#AIOWPS_BASIC_HTACCESS_RULES_END
+#AIOWPS_DEBUG_LOG_BLOCK_HTACCESS_RULES_START
+<Files debug.log>
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order deny,allow
+Deny from all
+</IfModule>
+</Files>
+#AIOWPS_DEBUG_LOG_BLOCK_HTACCESS_RULES_END
+#AIOWPS_DISABLE_INDEX_VIEWS_START
+Options -Indexes
+#AIOWPS_DISABLE_INDEX_VIEWS_END
+#AIOWPS_DISABLE_TRACE_TRACK_START
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F]
+</IfModule>
+#AIOWPS_DISABLE_TRACE_TRACK_END
+# END All In One WP Security
+
+# BEGIN WP Rocket
+# Use UTF-8 encoding for anything served text/plain or text/html
+AddDefaultCharset UTF-8
+# Force UTF-8 for a number of file formats
+<IfModule mod_mime.c>
+AddCharset UTF-8 .atom .css .js .json .rss .vtt .xml
+</IfModule>
+
+# FileETag None is not enough for every server.
+<IfModule mod_headers.c>
+Header unset ETag
+</IfModule>
+
+# Since we’re sending far-future expires, we don’t need ETags for static content.
+# developer.yahoo.com/performance/rules.html#etags
+FileETag None
+
+# Send CORS headers if browsers request them; enabled by default for images.
+<IfModule mod_setenvif.c>
+<IfModule mod_headers.c>
+# mod_headers, y u no match by Content-Type?!
+<FilesMatch "\.(avifs?|cur|gif|png|jpe?g|svgz?|ico|webp)$">
+SetEnvIf Origin ":" IS_CORS
+Header set Access-Control-Allow-Origin "*" env=IS_CORS
+</FilesMatch>
+</IfModule>
+</IfModule>
+
+# Allow access to web fonts from all domains.
+<FilesMatch "\.(eot|otf|tt[cf]|woff2?)$">
+<IfModule mod_headers.c>
+Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatch>
+
+<IfModule mod_alias.c>
+<FilesMatch "\.(html|htm|rtf|rtx|txt|xsd|xsl|xml)$">
+<IfModule mod_headers.c>
+Header set X-Powered-By "WP Rocket/3.23.3.3"
+Header unset Pragma
+Header append Cache-Control "public"
+Header unset Last-Modified
+</IfModule>
+</FilesMatch>
+
+<FilesMatch "\.(css|htc|js|asf|asx|wax|wmv|wmx|avi|bmp|class|divx|doc|docx|eot|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|json|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|mpp|otf|odb|odc|odf|odg|odp|ods|odt|ogg|pdf|png|pot|pps|ppt|pptx|ra|ram|svg|svgz|swf|tar|tif|tiff|ttf|ttc|wav|wma|wri|xla|xls|xlsx|xlt|xlw|zip)$">
+<IfModule mod_headers.c>
+Header unset Pragma
+Header append Cache-Control "public"
+</IfModule>
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+	AddType image/avif                                  avif
+    AddType image/avif-sequence                         avifs
+</IfModule>
+# Expires headers (for better cache control)
+<IfModule mod_expires.c>
+	ExpiresActive on
+	ExpiresDefault                              "access plus 1 month"
+	# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
+	ExpiresByType text/cache-manifest           "access plus 0 seconds"
+	# Your document html
+	ExpiresByType text/html                     "access plus 0 seconds"
+	# Data
+	ExpiresByType text/xml                      "access plus 0 seconds"
+	ExpiresByType application/xml               "access plus 0 seconds"
+	ExpiresByType application/json              "access plus 0 seconds"
+	# Feed
+	ExpiresByType application/rss+xml           "access plus 1 hour"
+	ExpiresByType application/atom+xml          "access plus 1 hour"
+	# Favicon (cannot be renamed)
+	ExpiresByType image/x-icon                  "access plus 1 week"
+	# Media: images, video, audio
+	ExpiresByType image/gif                     "access plus 4 months"
+	ExpiresByType image/png                     "access plus 4 months"
+	ExpiresByType image/jpeg                    "access plus 4 months"
+	ExpiresByType image/webp                    "access plus 4 months"
+	ExpiresByType video/ogg                     "access plus 4 months"
+	ExpiresByType audio/ogg                     "access plus 4 months"
+	ExpiresByType video/mp4                     "access plus 4 months"
+	ExpiresByType video/webm                    "access plus 4 months"
+	ExpiresByType image/avif                    "access plus 4 months"
+	ExpiresByType image/avif-sequence           "access plus 4 months"
+	# HTC files  (css3pie)
+	ExpiresByType text/x-component              "access plus 1 month"
+	# Webfonts
+	ExpiresByType font/ttf                      "access plus 4 months"
+	ExpiresByType font/otf                      "access plus 4 months"
+	ExpiresByType font/woff                     "access plus 4 months"
+	ExpiresByType font/woff2                    "access plus 4 months"
+	ExpiresByType image/svg+xml                 "access plus 4 months"
+	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+	# CSS and JavaScript
+	ExpiresByType text/css                      "access plus 1 year"
+	ExpiresByType text/javascript               "access plus 1 year"
+	ExpiresByType application/javascript        "access plus 1 year"
+</IfModule>
+# Gzip compression
+<IfModule mod_deflate.c>
+# Active compression
+SetOutputFilter DEFLATE
+# Force deflate for mangled headers
+<IfModule mod_setenvif.c>
+<IfModule mod_headers.c>
+SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+# Don’t compress images and other uncompressible content
+SetEnvIfNoCase Request_URI \
+\.(?:gif|jpe?g|png|rar|zip|exe|flv|mov|wma|mp3|avi|swf|mp?g|mp4|webm|webp|pdf)$ no-gzip dont-vary
+</IfModule>
+</IfModule>
+
+# Compress all output labeled with one of the following MIME-types
+<IfModule mod_filter.c>
+AddOutputFilterByType DEFLATE application/atom+xml \
+		                          application/javascript \
+		                          application/json \
+		                          application/rss+xml \
+		                          application/vnd.ms-fontobject \
+		                          application/x-font-ttf \
+		                          application/xhtml+xml \
+		                          application/xml \
+		                          font/opentype \
+		                          image/svg+xml \
+		                          image/x-icon \
+		                          text/css \
+		                          text/javascript \
+		                          text/html \
+		                          text/plain \
+		                          text/x-component \
+		                          text/xml
+</IfModule>
+<IfModule mod_headers.c>
+Header append Vary: Accept-Encoding
+</IfModule>
+</IfModule>
+
+
+# END WP Rocket
+
+<IfModule mod_expires.c>
+ExpiresActive on
+ExpiresByType image/jpg "access 2 month"
+ExpiresByType image/gif "access 2 month"
+ExpiresByType image/jpeg "access 2 month"
+ExpiresByType image/png "access 2 month"
+ExpiresByType text/css "access 2 month"
+ExpiresByType text/x-javascript "access 1 month"
+ExpiresByType text/javascript "access plus 2 month"
+ExpiresByType application/javascript "access plus 2 month"
+ExpiresByType image/x-icon "access plus 12 month"
+ExpiresByType image/icon "access plus 12 month"
+ExpiresByType application/x-ico "access plus 12 month"
+ExpiresByType application/ico "access plus 12 month"
+</IfModule>
+## EXPIRES CACHING ##
+
+# END Expire headers
+
+# BEGIN Cache-Control Headers
+<ifModule mod_headers.c>
+<filesMatch "\.(ico|jpe?g|png|gif|swf)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>
+<filesMatch "\.(css)$">
+Header set Cache-Control "max-age=604800, public"
+</filesMatch>
+<filesMatch "\.(js)$">
+Header set Cache-Control "max-age=216000, private"
+</filesMatch>
+<filesMatch "\.(x?html?|php)$">
+Header set Cache-Control "max-age=600, private, must-revalidate"
+</filesMatch>
+</ifModule>
+# END Cache-Control Headers
+
+# BEGIN Compress text files
+<ifModule mod_deflate.c>
+<filesMatch "\.(css|js|x?html?|php)$">
+SetOutputFilter DEFLATE
+</filesMatch>
+</ifModule>
+# END Compress text files
+<ifModule mod_gzip.c>
+mod_gzip_on Yes
+mod_gzip_dechunk Yes
+mod_gzip_item_include file \.(html?|txt|css|js|php|pl|woff)$
+mod_gzip_item_include handler ^cgi-script$
+mod_gzip_item_include mime ^text/.*
+mod_gzip_item_include mime ^application/x-javascript.*
+mod_gzip_item_exclude mime ^image/.*
+mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</ifModule>
+
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddType x-font/otf .otf
+AddType x-font/ttf .ttf
+AddType x-font/eot .eot
+AddType x-font/woff .woff
+AddType image/x-icon .ico
+AddType image/png .png
+
+# Wordfence WAF
+<Files ".user.ini">
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order deny,allow
+Deny from all
+</IfModule>
+</Files>
+
+# END Wordfence WAF
+
+# All RedirectMatch rules below return HTTP 410 Gone
+# --- Pattern-matched spam (bulk of the list) ---
+RedirectMatch 410 ^/dp/[0-9a-f]+/?$
+RedirectMatch 410 ^/cate-{1,2}[0-9]+(-[0-9]+)?/?$
+
+# --- Individually flagged spam pages (casino/gambling injected content) ---
+RedirectMatch 410 ^/1xbat-app-security-guide-for-us-players/?$
+RedirectMatch 410 ^/boomsbet-nederland-bonusgids-welkomstbonus-gratis-spins-en-promoties-uitgelegd/?$
+RedirectMatch 410 ^/boomsbet-promocode-bonusgids-claim-je-welkomstbonus-en-ontdek-extra-promoties/?$
+RedirectMatch 410 ^/boomsbet-promotiecode-volledige-review-en-overzicht/?$
+RedirectMatch 410 ^/hoe-inloggen-boomsbet-wat-je-moet-weten/?$
+RedirectMatch 410 ^/lorem-ipsum-dolor-sit-amet/?$
+RedirectMatch 410 ^/welkomstbonus-boomsbet-app-en-mobiel-gids/?$
+RedirectMatch 410 ^/darwin-casino-gaming-steps-and-methods-registration-bonuses-payments-more/?$
+RedirectMatch 410 ^/die-besten-slots-im-bookofbet-casino-spiele-empfehlungen/?$
+RedirectMatch 410 ^/freshbet-casino-ein-ehrlicher-test-zur-spielergemeinschaft/?$
+RedirectMatch 410 ^/guia-de-seguridad-para-jugar-en-casino-monticello-online/?$
+RedirectMatch 410 ^/liraspin-casino-vincite-rapide-e-slot-ad-alta-intensita-per-gioco-veloce/?$
+RedirectMatch 410 ^/mafia-casino-recenzja-quick-hit-gaming-dla-nowoczesnego-gracza/?$
+RedirectMatch 410 ^/praktische-tipps-fur-die-nutzung-von-turbo-winz-casino/?$
+RedirectMatch 410 ^/tipps-zur-erfolgreichen-einzahlung-im-nv-casino/?$
+RedirectMatch 410 ^/warum-arena-casino-auf-social-media-beliebt-ist/?$
+RedirectMatch 410 ^/wie-konnen-gewinne-im-realz-casino-maximiert-werden/?$
+RedirectMatch 410 ^/winrolla-casino-die-vor-und-nachteile-aus-spielersicht/?$
+
+# --- Individually flagged spam pages (other injected paths) ---
+RedirectMatch 410 ^/contents/event/kansyasai/?$
+RedirectMatch 410 ^/shop/customer/menu/?$
+RedirectMatch 410 ^/shop/e/e009001036001/?$
+RedirectMatch 410 ^/shop/pg/1005024086/?$
+RedirectMatch 410 ^/shop/pg/1005024240/?$
+RedirectMatch 410 ^/shop/pg/1AgreementInfo/?$
+# END 410 Gone - Spam URLs
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+RewriteCond %{HTTP_HOST} ^pmacinc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.pmacinc\.com$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteRule ^/?$ "http\:\/\/www\.parcelmanagement\.com\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^parcelally\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.parcelally\.com$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteRule ^/?$ "http\:\/\/www\.parcelmanagement\.com\/about\/" [R=301,L]
+
+
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php8_module>
+   php_flag display_errors Off
+   php_value max_execution_time 90
+   php_value max_input_time 60
+   php_value max_input_vars 2000
+   php_value memory_limit 128M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php85"
+   php_value upload_max_filesize 32M
+   php_value post_max_size 32M
+   php_flag zlib.output_compression Off
+</IfModule>
+<IfModule lsapi_module>
+   php_flag display_errors Off
+   php_value max_execution_time 90
+   php_value max_input_time 60
+   php_value max_input_vars 2000
+   php_value memory_limit 128M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php85"
+   php_value upload_max_filesize 32M
+   php_value post_max_size 32M
+   php_flag zlib.output_compression Off
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php83” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

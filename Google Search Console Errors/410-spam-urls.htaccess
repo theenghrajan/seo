@@ -1,0 +1,44 @@
+# Spam URLs flagged in GSC coverage report (PMAC - #136) - return 410 Gone.
+# Place near the top of .htaccess, before the WordPress rewrite block.
+#
+# The vast majority of flagged URLs are two injected patterns:
+#   /dp/<hex-id>            e.g. /dp/002520756, /dp/1a2138749
+#   /cate-<n> or /cate-<n>-<n>  (also the odd /cate--<n> double-dash form)
+# Rather than list every one of the 900+ individual IDs (which will keep
+# growing as the injection keeps generating new ones), these two are matched
+# by pattern so any current or future URL in the same format is covered.
+# The remaining flagged URLs don't follow a shared pattern and are listed
+# individually below.
+
+# All RedirectMatch rules below return HTTP 410 Gone
+# --- Pattern-matched spam (bulk of the list) ---
+RedirectMatch 410 ^/dp/[0-9a-f]+/?$
+RedirectMatch 410 ^/cate-{1,2}[0-9]+(-[0-9]+)?/?$
+
+# --- Individually flagged spam pages (casino/gambling injected content) ---
+RedirectMatch 410 ^/1xbat-app-security-guide-for-us-players/?$
+RedirectMatch 410 ^/boomsbet-nederland-bonusgids-welkomstbonus-gratis-spins-en-promoties-uitgelegd/?$
+RedirectMatch 410 ^/boomsbet-promocode-bonusgids-claim-je-welkomstbonus-en-ontdek-extra-promoties/?$
+RedirectMatch 410 ^/boomsbet-promotiecode-volledige-review-en-overzicht/?$
+RedirectMatch 410 ^/hoe-inloggen-boomsbet-wat-je-moet-weten/?$
+RedirectMatch 410 ^/lorem-ipsum-dolor-sit-amet/?$
+RedirectMatch 410 ^/welkomstbonus-boomsbet-app-en-mobiel-gids/?$
+RedirectMatch 410 ^/darwin-casino-gaming-steps-and-methods-registration-bonuses-payments-more/?$
+RedirectMatch 410 ^/die-besten-slots-im-bookofbet-casino-spiele-empfehlungen/?$
+RedirectMatch 410 ^/freshbet-casino-ein-ehrlicher-test-zur-spielergemeinschaft/?$
+RedirectMatch 410 ^/guia-de-seguridad-para-jugar-en-casino-monticello-online/?$
+RedirectMatch 410 ^/liraspin-casino-vincite-rapide-e-slot-ad-alta-intensita-per-gioco-veloce/?$
+RedirectMatch 410 ^/mafia-casino-recenzja-quick-hit-gaming-dla-nowoczesnego-gracza/?$
+RedirectMatch 410 ^/praktische-tipps-fur-die-nutzung-von-turbo-winz-casino/?$
+RedirectMatch 410 ^/tipps-zur-erfolgreichen-einzahlung-im-nv-casino/?$
+RedirectMatch 410 ^/warum-arena-casino-auf-social-media-beliebt-ist/?$
+RedirectMatch 410 ^/wie-konnen-gewinne-im-realz-casino-maximiert-werden/?$
+RedirectMatch 410 ^/winrolla-casino-die-vor-und-nachteile-aus-spielersicht/?$
+
+# --- Individually flagged spam pages (other injected paths) ---
+RedirectMatch 410 ^/contents/event/kansyasai/?$
+RedirectMatch 410 ^/shop/customer/menu/?$
+RedirectMatch 410 ^/shop/e/e009001036001/?$
+RedirectMatch 410 ^/shop/pg/1005024086/?$
+RedirectMatch 410 ^/shop/pg/1005024240/?$
+RedirectMatch 410 ^/shop/pg/1AgreementInfo/?$
