@@ -1,0 +1,121 @@
+Project title: Amish Wholesale Gazebos [SEO]
+Task title: #155: Bot Traffic
+Task link: https://login.smartsites.com/projects/6320/tasks/499161
+For: Comment #2612461 - Block bot traffic at Cloudflare
+Site link: https://amishwholesalegazebos.com/ (WordPress; DNS + hosting at Hostinger, no Cloudflare yet)
+
+----------------------------------------
+Comment for approval (to Christen):
+----------------------------------------
+Christen Bevis As per comment #2612461,
+
+For the site: https://amishwholesalegazebos.com/
+
+We checked the site setup. The site is on WordPress, and both the DNS and hosting are with Hostinger. It is not currently behind Cloudflare, so the Cloudflare blocking mentioned in the previous comment isn't available yet.
+
+There are two ways to block the bot traffic. Please let us know which one the client approves:
+
+Option 1 (Recommended): Add the site to Cloudflare (Free plan)
+- We connect the domain to a free Cloudflare account by changing the nameservers at Hostinger. Hosting stays with Hostinger.
+- We then add rules to challenge traffic from the bot countries (Singapore, Brazil, Pakistan, Bangladesh, Vietnam) and on the paginated gazebo category pages, while keeping Google and Bing crawlers allowed.
+- Bots are stopped before they reach the site, which also reduces server load.
+- Needed from the client: approval to change the nameservers and Hostinger access (or they can create the Cloudflare account and invite web@smartsites.com). We will copy all existing DNS records, including email, before switching. There is no downtime expected.
+- A paid Cloudflare plan is not required for these rules.
+
+Option 2: Block through a WordPress plugin
+- We install a security plugin (e.g., IP2Location Country Blocker or Wordfence) to block the bot countries and rate limit repeated page requests.
+- No DNS changes are needed.
+- Bots still reach the server but get blocked before the page loads, so they won't be counted in GA4. It is less effective than Cloudflare if the bots switch countries or proxies.
+
+Please note: Either option stops new bot sessions from being recorded in GA4 going forward. The bot sessions already recorded (September) can't be removed from GA4. For reporting, we recommend excluding Singapore traffic with a comparison/segment for the affected period.
+
+Once we have the approval (and access for Option 1), we will proceed.
+
+Thanks! ~ Rajan
+
+--------------------------------------------------
+Final Comment for approval (to Christen):
+--------------------------------------------------
+As per comment #6,
+
+For the site: https://amishwholesalegazebos.com/
+
+Since, the site is on WordPress, and both the DNS and hosting are in Hostinger. It is not currently behind Cloudflare, so the Cloudflare blocking mentioned in the previous comment isn't available yet.
+
+There are two ways to block the bot traffic. Please let us know which one the client approves:
+
+Option 1 (Recommended): Add the site to Cloudflare (Free plan)
+- They can create the Cloudflare account and add the site to Cloudflare (Free plan) or if client already have existing Cloudflare setup then provide delegate access invite to web@smartsites.com.
+
+Option 2: Block through a WordPress plugin
+- We install a security plugin (e.g., Wordfence or IP2Location Country Blocker) to block the bot countries and rate limit repeated page requests.
+
+Once we have the access and approval, we will proceed.
+
+Thanks!
+
+Summary (from comments):
+- GA4 Direct sessions jumped to 87,846 in September; 98.5% from Singapore, 2-second avg engagement, GA4 anomaly flagged from Sep 3.
+- Smaller spikes from Brazil, Pakistan, Bangladesh, Vietnam (likely proxies).
+- Bot is crawling paginated pages /product-category/gazebos/page/5/ to /page/13/+ (~3,800-3,990 sessions per page).
+
+Note on plan: Country-based rules are available on the Cloudflare Free plan through WAF Custom Rules (Free includes 5 custom rules). A paid plan isn't required for Steps 3-4. (Country "Block" under the older IP Access Rules is Enterprise-only, so use Custom Rules instead.) Please confirm in the client's dashboard.
+
+----------------------------------------
+Step 1: Get access and confirm the site is proxied
+----------------------------------------
+1. Get Cloudflare access for the client's account (or have the client's developer follow these steps).
+2. Go to DNS > Records and confirm the root domain and www records are "Proxied" (orange cloud). If they are "DNS only" (grey cloud), Cloudflare can't block anything.
+
+----------------------------------------
+Step 2: Confirm the bot traffic reaches Cloudflare
+----------------------------------------
+1. Go to Analytics & Logs > Traffic (or Security > Analytics), last 30 days.
+2. Filter by Country = Singapore and check for a spike starting around Sep 3.
+3. Also filter by Path contains "/product-category/gazebos/page/".
+4. If the spike shows in Cloudflare, continue to Step 3.
+   If Cloudflare shows NO matching spike, the GA4 hits are likely fake/ghost hits sent directly to GA4 (not visiting the site). Cloudflare can't block those. Stop and report back; the fix would be in GA4 instead (segments/comparisons excluding this traffic).
+
+----------------------------------------
+Step 3: Challenge traffic from the bot countries
+----------------------------------------
+1. Go to Security > WAF > Custom rules > Create rule.
+2. Rule name: Challenge bot countries
+3. Click "Edit expression" and paste:
+   (ip.src.country in {"SG" "BR" "PK" "BD" "VN"} and not cf.client.bot)
+   - "not cf.client.bot" keeps Googlebot, Bingbot and other verified bots allowed.
+4. Action: Managed Challenge
+   - Real visitors pass the challenge; bots fail it. Use "Block" instead only if the client confirms they have no customers in these countries.
+5. Click Deploy.
+
+----------------------------------------
+Step 4: Protect the paginated category pages
+----------------------------------------
+1. Security > WAF > Custom rules > Create rule.
+2. Rule name: Challenge gazebo pagination
+3. Expression:
+   (http.request.uri.path contains "/product-category/gazebos/page/" and ip.src.country ne "US" and not cf.client.bot)
+   - Adjust "US" if the client sells to other countries (e.g. {"US" "CA"} with "not ip.src.country in").
+4. Action: Managed Challenge
+5. Click Deploy.
+
+Optional (if bots switch to US proxies):
+- Security > WAF > Rate limiting rules > Create rule (Free plan includes 1 rule).
+- Match: URI Path contains "/product-category/gazebos/page/"
+- When rate exceeds: 20 requests per 10 seconds, per IP.
+- Action: Managed Challenge (or Block) for 10 seconds.
+
+----------------------------------------
+Step 5: Turn on Bot Fight Mode (optional)
+----------------------------------------
+1. Go to Security > Bots.
+2. Free plan: turn on Bot Fight Mode. Paid plans: in Super Bot Fight Mode, set "Definitely automated" to Block or Challenge and keep "Verified bots" set to Allow.
+3. Warning: Bot Fight Mode can't be bypassed with custom rules. If Google Search Console starts showing 403 errors afterwards, turn it off.
+
+----------------------------------------
+Step 6: Verify
+----------------------------------------
+1. Security > Events: filter by the rule names above and confirm Singapore/pagination requests are being challenged.
+2. GA4 > Reports > Acquisition > Traffic acquisition: Singapore/Direct sessions should drop within 24-48 hours.
+3. GSC > URL Inspection > Test Live URL on the homepage and one /product-category/gazebos/page/5/ URL. Page fetch should be "Successful" (confirms Googlebot isn't blocked).
+4. Past September data in GA4 won't be removed. For reports, use a comparison/segment that excludes Country = Singapore.

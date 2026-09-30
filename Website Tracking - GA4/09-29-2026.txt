@@ -1,0 +1,49 @@
+Project title: LYNK Mortgage [SEO]
+Task title: #81: Website Tracking - GA4
+Task link: https://login.smartsites.com/projects/8817/tasks/491058
+Site link: https://www.lynkmortgage.com/
+
+Google Analytics (GA4) access under web@smartsites.com account.
+Screenshot: https://drive.google.com/file/d/1nsgfKbiVcC8v1d6f8IrahWgeELGwzBBo/view?usp=sharing
+
+Regarding Google Tag (GTM), we don't have access under web@smartsites.com. Please provide access respectively and we will proceed with the task.
+
+For the site: https://www.lynkmortgage.com/
+
+We have accepted the GA4 invite and confirmed that web@smartsites.com now has access to the GA4 property.
+Screenshot: https://drive.google.com/file/d/1nsgfKbiVcC8v1d6f8IrahWgeELGwzBBo/view?usp=sharing
+
+The site is a custom Vue.js/Nuxt.js build, which isn't a platform we work on, so the tracking code will need to be installed by the client's developer. From our end, we'll
+ handle the GTM and GA4 configuration and share the GTM snippet with install instructions for their developer.
+
+We don't have access to Google Tag Manager (GTM) under web@smartsites.com. Could you please check with the client:
+- If they already have a GTM container for the site, please have them add web@smartsites.com as an Admin.
+- If they don't have one, please let us know and we'll create a new GTM container and share the code for their developer to add to the site.
+
+To finish the setup, please also share:
+1. Which events/conversions should be tracked (per the WB or as confirmed with the client).
+2. Your IP address, so we can exclude it from GA4.
+3. Whether the client wants any custom GA4 alerts, plus your SmartSites email address for the alerts.
+
+Once we have these, we'll proceed with the task.
+
+Thanks! ~ Rajan
+
+----------------------------------------
+Final comment:
+----------------------------------------
+As per comments #5 - #6,
+
+For the site: https://www.lynkmortgage.com/
+
+We have verified and confirmed that web@smartsites.com now has access to the GA4 property.
+Screenshot: https://drive.google.com/file/d/1nsgfKbiVcC8v1d6f8IrahWgeELGwzBBo/view?usp=sharing
+
+However, we don't have access to Google Tag Manager (GTM-PN6CZP5) under web@smartsites.com. Could you please check with the client and have them add web@smartsites.com as an Admin.
+Screenshot: https://drive.google.com/file/d/1RNR9M2yIQspBHTAO-zDvyy1s6GXosoM9/view?usp=sharing
+
+Notes:
+If we need to create a new GTM, then we will share the code for their developer to add to the site. Since, the site is a custom Vue.js/Nuxt.js build, this need to be implemented from the client's end.
+
+Thanks!
+

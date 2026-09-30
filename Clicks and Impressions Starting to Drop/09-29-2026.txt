@@ -1,0 +1,76 @@
+Project ID: 7755
+Task title: #107: Clicks and Impressions Starting to Drop
+Task link: https://login.smartsites.com/projects/7755/tasks/499100
+Site link: https://www.puetzgolf.com/
+For: Comment #4 (2613324) - Fix 403 returned to Googlebot
+
+Finding:
+The 403 responses are most likely coming from Cloudflare, not Magento. The example product URLs from comment #3, the homepage and robots.txt all returned 403 with "Server: cloudflare" and "Cf-Mitigated: challenge", so Cloudflare's bot challenge answers before Magento does. (Tested from our machine with a browser and a fake Googlebot user agent, so this doesn't prove real Googlebot is challenged.) Magento normally returns 404 for disabled products, not 403, so Cloudflare is the first place to check.
+
+----------------------------------------
+Step 1: Confirm where the 403 comes from (SEO/PM, in GSC)
+----------------------------------------
+1. In GSC, paste one of the 403 URLs into the "Inspect any URL" bar at the top, e.g. https://www.puetzgolf.com/clicgear-model-4-push-cart
+2. Click TEST LIVE URL and wait for the result.
+3. Expand the "Page availability" section and check "Page fetch" under Crawl. It shows "Failed: Blocked due to access forbidden (403)". This confirms Google is still getting the 403.
+   Note: VIEW TESTED PAGE is greyed out when the fetch fails, so GSC can't show the response headers or tell us what is sending the 403.
+   Confirmed on Sep 29, 2026 (2:39 PM): https://www.puetzgolf.com/clicgear-model-4-push-cart - Crawled as: Google Inspection Tool smartphone - Page fetch: Failed: Blocked due to access forbidden (403).
+4. To find the source, go to Step 2 (Cloudflare Security > Events). If Cloudflare shows no blocked/challenged Googlebot requests, the block is on the server or in Magento. Go to Step 4.
+
+----------------------------------------
+Step 2: Find the Cloudflare rule (client's developer or BED, needs Cloudflare access)
+----------------------------------------
+1. Log in to Cloudflare, select puetzgolf.com, and go to Security > Events.
+2. Filter by User Agent contains "Googlebot" or by Verified bot category = Search Engine Crawler, over the widest date range available (the spike started around Sep 5).
+3. Note the Service and Rule on the blocked/challenged events. Common causes:
+   - a WAF custom rule
+   - managed rules
+   - Bot Fight Mode or Super Bot Fight Mode
+   - rate limiting
+   - Security Level set to "I'm Under Attack"
+   - an IP or country access rule
+   - Browser Integrity Check
+
+----------------------------------------
+Step 3: Let verified search bots through in Cloudflare
+----------------------------------------
+1. Go to Security > WAF > Custom rules > Create rule.
+2. Name it "Allow verified search bots" and use the expression: (cf.client.bot)
+   For a narrower rule, use: (cf.verified_bot_category eq "Search Engine Crawler")
+3. Set the action to Skip, and tick all remaining custom rules, rate limiting rules, managed rules, and Super Bot Fight Mode.
+4. Move this rule to the top of the list and deploy it.
+5. If the culprit is Bot Fight Mode (free plan), it can't be skipped. Turn it off under Security > Bots.
+6. If Security Level is on "I'm Under Attack", change it back to Medium.
+7. Don't allowlist by user agent alone, because anyone can fake it. cf.client.bot checks that the request really comes from Google.
+
+----------------------------------------
+Step 4: If the block isn't in Cloudflare, check the server and Magento (BED or host)
+----------------------------------------
+1. Search the server access logs for Googlebot requests that got a 403, and note which rule or module caused each one.
+2. Check the server firewall/WAF: ModSecurity, Imunify360, fail2ban, and the host's own bot protection.
+3. Check .htaccess or the nginx config for deny, user agent, or IP blocks.
+4. Check Magento extensions for security, bot blocking, geo-IP, or anti-scraping modules.
+5. Allowlist Googlebot using Google's published IP ranges (googlebot.json) or a reverse DNS check, not the user agent.
+
+----------------------------------------
+Step 5: Return the right status for each product (Magento admin)
+----------------------------------------
+1. Active products should return 200.
+   Make sure they are Enabled, Visibility is "Catalog, Search", and they're assigned to the website.
+   To keep out-of-stock products live: Stores > Configuration > Catalog > Inventory > Display Out of Stock Products = Yes.
+2. Discontinued products with a replacement should 301 redirect.
+   Marketing > SEO & Search > URL Rewrites > Add URL Rewrite > Custom:
+   - Request Path: the old URL
+   - Target Path: the current model or closest category
+   - Redirect Type: Permanent (301)
+3. Discontinued products with no match should return 410.
+   Magento has no built-in 410 option, so add it in the server config (e.g. "Redirect gone /old-url" in .htaccess, or "return 410;" in nginx) or with an SEO extension.
+
+----------------------------------------
+Step 6: Verify and hand back to SEO
+----------------------------------------
+1. Run the GSC Test Live URL again on 5-10 of the previously blocked URLs. Each should return 200, or 301/410 where set up.
+2. Check Cloudflare Security > Events over the next few days to confirm Googlebot is no longer being challenged.
+3. Comment on the task so the Inbound Marketing Team can run Validate Fix on the "Blocked due to access forbidden (403)" report.
+
+Note: This needs Cloudflare access. The task doesn't say who manages the site's Cloudflare account, so that may be the first thing to ask Laura.
