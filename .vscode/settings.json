@@ -31,5 +31,6 @@
     "titleBar.inactiveForeground": "#e7e7e799",
     "statusBar.inactiveBackground": "#007fff"
   },
-  "peacock.color": "#007fff"
+  "peacock.color": "#007fff",
+  "files.autoSave": "afterDelay"
 }

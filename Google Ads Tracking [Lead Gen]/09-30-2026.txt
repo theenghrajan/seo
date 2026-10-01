@@ -1,0 +1,57 @@
+Project: Method3 Fitness [PPC]
+Task title: #7: Google Ads Tracking [Lead Gen]
+Task link: https://login.smartsites.com/projects/8898/tasks/496890
+Site link: https://method3fitness.com/
+Replying to: comment #8 (2614532), Tanner Orner, 2026-09-29
+  "We do have access to there godaddy, I attached a screenshot here. Does that give us the access we need?"
+
+Findings (checked 09-30-2026)
+=============================
+- Screenshot = GoDaddy Pro "Clients" dashboard. Client "John P. Heringer" has WEBSITES: "Assign website",
+  so no website/hosting is linked to that account.
+- The site isn't hosted on GoDaddy:
+    www.method3fitness.com -> CNAME karateaquafit1.azurewebsites.net (Microsoft Azure App Service, IIS/ASP.NET)
+    Nameservers: dns1/dns2.stabletransit.com (Rackspace DNS, not GoDaddy)
+    Platform: Display97 / TOA ("Powered by TOA", assets on res.cloudinary.com/display97, /Resources/Ultimate/ theme)
+  -> At most, GoDaddy may be the domain registrar. That doesn't give access to the site's pages/code.
+- GTM-PDGTNLPR status:
+    https://method3fitness.com/             -> GTM present
+    https://method3fitness.com/thankyou     -> GTM present (returnUrl of the popup form /Home/SendLead)
+    https://method3fitness.com/m3-thank-you -> NO GTM; only a hard-coded gtag.js with AW-802517834 + old UA-168903818-1 (UA is dead)
+- Access needed: Display97/TOA site admin login (or have the client/Display97 support add the GTM snippet to /m3-thank-you).
+
+Options
+=======
+1. Client shares a Display97/TOA website admin login -> we add GTM head/body snippet to /m3-thank-you ourselves.
+2. Client/Display97 support adds GTM-PDGTNLPR to /m3-thank-you (ideally the site-wide header/footer so all pages match).
+3. Fallback (no page access): Tanner can see if the AW tag already on /m3-thank-you can count the conversion
+   (URL-based "page load" conversion in Google Ads). Less ideal, since we can't manage it in GTM.
+Careers iframe form (https://method3fitness.com/classes/Careers) still needs a redirect to a thank-you page (comment #4).
+
+----------------------------------------
+Draft comment (paste into AC):
+----------------------------------------
+Tanner Orner
+
+As per comment #8,
+
+For the website: https://method3fitness.com/
+
+Re: "We do have access to there godaddy... Does that give us the access we need?"
+....
+Unfortunately, no. GoDaddy only has the domain, not the hosting. The website itself is built and hosted on a different platform (Third-party tools is showing Microsoft Azure), so the GoDaddy account doesn't let us make changes to the website's pages.
+Screenshot: https://drive.google.com/file/d/1i7TypyuMgsqcr9aQ2AVbX5YfElU1yL-K/view?usp=sharing
+Screenshot: https://drive.google.com/file/d/1TI1q_L80BLLlerR3X5hyE6YYfJ6tLnfX/view?usp=sharing
+
+What's missing:
+Tracking code (GTM) is on most of the site, but it's missing from the thank-you page users land on after filling out the form: https://method3fitness.com/m3-thank-you
+We need the tracking code on that page to count form submissions as Google Ads conversions.
+
+Could you please ask the client (or their website developer/provider) to add the GTM code/snippet on overall pages (including thank-you page)? Please find the code below, if needed.
+https://drive.google.com/file/d/1s8RH-uJHFCD0XD4LdawOoTO8q19VQkB1/view?usp=sharing
+
+Also, as mentioned in comment #4, the form on the Careers page (https://method3fitness.com/classes/Careers) needs to send users to a thank-you page after they submit it, so we can track it.
+
+Please review and do let us know.
+
+Thanks!

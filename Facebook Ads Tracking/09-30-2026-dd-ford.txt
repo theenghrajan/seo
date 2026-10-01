@@ -1,0 +1,236 @@
+Project: D&D Ford [PPC] (8886)
+Task title: #12: Facebook Ads Tracking
+Task link: https://login.smartsites.com/projects/8886/tasks/495956
+Site link: https://www.ddmotors.com/ (DealerOn CMS)
+Replying to: comment #4 (2615170), Emily Rivard, 2026-09-29
+  "GTM has been installed. Along with the Meta code and lead actions, can we also install the code listed below?
+   It is so we can verify their merchant center.
+   <meta name="google-site-verification" content="DnoOkTZrZvZb0NCkFP-vb-fN4A7r90AiI1zXfZfpvFM" />"
+
+Findings (checked 09-30-2026)
+=============================
+- Site loads many GTM containers (DealerOn injects them via JS; none are in the raw HTML).
+  Ours = GTM-K39MXFMK (created in comment #2; confirmed in Tag Assistant 09-30). Confirm it loads: DevTools > Network > filter "gtm.js?id=".
+- Meta Pixel 1833249634335944 (Emily's) is NOT on the site yet.
+  Another pixel 1421756561307668 is already firing (not ours, likely DealerOn/another vendor). Leave it alone.
+- Sales phone: 864-877-0711. Only clickable link = mobile header Call button (tel:8648770711, id="clickToCallHeaderEvent",
+  label "mobile-contact-row"). Desktop header/footer show it as plain text (no link) -> call tracking = mobile only.
+  Others on page: 864-877-9646, 864-877-8121, 864-662-1209.
+- DealerOn forms submit via AJAX (no thank-you page). On success DealerOn pushes to dataLayer:
+    { event: "do.lead_submitted", do: { submission_id: ..., ...page data } }
+  (seen in /resources/leadbaa/js/dealerOnLeadsBundle.js + /resources/taggbaa/dotagging.js)
+  Not verified yet: which field (if any) names the form. Check in GTM Preview after a test submit.
+- Google site verification: DealerOn already outputs 4 google-site-verification meta tags server-side in <head>
+  (data-bzl-id="google-webmasters-meta-tag"). The new tag (DnoOkTZr...) is not there yet.
+
+Using the "Facebook Pixel" tag template (GTM Community Template Gallery, by facebookarchive) instead of Custom HTML.
+The template loads the pixel base code itself, so no Custom HTML base tag and no tag sequencing needed.
+Add it once: Templates > Tag Templates > Search Gallery > "Facebook Pixel" > Add to workspace.
+Optional: Variables > New > Constant, Name: SS - Const - FB Pixel ID, Value: 1833249634335944
+(use it in the Pixel ID field of every tag below).
+
+Solution 1: Meta Pixel - Base / PageView (GTM)
+=======================================
+1. Tags > New > Facebook Pixel (template)
+   Name: SS - FB - Meta Pixel - Base (1833249634335944)
+   Facebook Pixel ID(s): {{SS - Const - FB Pixel ID}} (or 1833249634335944)
+   Event Name: Standard > PageView
+   Trigger: All Pages
+2. Save.
+
+Solution 2: Contact - Click to call (sales number)
+==================================================
+Using Meta standard event Contact (not Lead) for phone clicks; Lead is for form submissions.
+1. Variables > Configure > enable built-in Click URL (Clicks section).
+2. Triggers > New > Click - Just Links
+   Name: SS - Click - tel sales
+   Some Link Clicks: Click URL contains tel:8648770711
+   (Check "Wait for tags" off; Check validation off)
+3. Tags > New > Facebook Pixel (template)
+   Name: SS - FB - Contact - Click to call (sales)
+   Facebook Pixel ID(s): {{SS - Const - FB Pixel ID}}
+   Event Name: Standard > Contact
+   Object Properties: content_name = click to call (sales phone number)
+   Trigger: SS - Click - tel sales
+4. If the tel link is added by JS / inside a widget and Just Links doesn't catch it,
+   switch to Click - All Elements with Click URL contains tel:8648770711.
+
+Solution 3: Lead - Form submits (7 forms)
+=========================================
+Forms (all Event Code "Lead"): best price, calculate payment, pre qualify, track price,
+upfront price, value your trade, pre approved.
+
+A. Find where each form lives (VDP/SRP buttons, header menu, finance pages). Note the page + button text.
+B. GTM Preview (Tag Assistant) on https://www.ddmotors.com/ > submit ONE test form (use "TEST" in name/comments).
+   In the Tag Assistant event list, look for "do.lead_submitted".
+   CONFIRMED 09-30 (Tag Assistant, container GTM-K39MXFMK, Contact Us TEST submit):
+     event: "do.lead_submitted", do.form_name: "Website - Contact Us", do.form_type: "consumer_contact",
+     do.product_name: "Website|Contact Us", do.page_type: "contact", do.submission_id: 58010003 (= lid in thankyou.aspx URL).
+   -> do.form_name tells the forms apart. Submit a TEST on each of the other 6 forms and note their form_name values.
+C. Variables > New > Data Layer Variable
+   Name: SS - DLV - do.form_name            Data Layer Variable Name: do.form_name
+   Also: SS - DLV - do.submission_id         Data Layer Variable Name: do.submission_id
+D. Triggers > New > Custom Event
+   Name: SS - CE - do.lead_submitted         Event name: do.lead_submitted
+E. Tags > New > Facebook Pixel (template)
+   Name: SS - FB - Lead - Form submit
+   Facebook Pixel ID(s): {{SS - Const - FB Pixel ID}}
+   Event Name: Standard > Lead
+   Object Properties: content_name = {{SS - DLV - do.form_name}}
+   Event ID: {{SS - DLV - do.submission_id}}  (optional; stops duplicates if a server-side/CAPI Lead is added later)
+   Trigger: SS - CE - do.lead_submitted
+   (One tag covers all 7 forms; content_name shows which form in Meta Events Manager.)
+F. If Emily needs 7 separate tags instead: make 7 triggers = Custom Event do.lead_submitted AND SS - DLV - do.form_name equals <form_name value> (name: SS - CE - Lead - <Form>, e.g. SS - CE - Lead - Best Price),
+   one template tag per trigger with content_name set to her event name. Same Lead event either way.
+   Tag names: SS - FB - Lead - Best Price, SS - FB - Lead - Calculate Payment, SS - FB - Lead - Pre Qualify,
+   SS - FB - Lead - Track Price, SS - FB - Lead - Upfront Price, SS - FB - Lead - Value Your Trade,
+   SS - FB - Lead - Pre Approved
+G. If "do.lead_submitted" doesn't show in Preview: fallback per form = Element Visibility trigger (name: SS - EV - <form> success) on the
+   DealerOn success message (CSS selector of the thank-you text), one per form.
+
+Solution 3a: "form submit best price" = Contact Us form (/contactus.aspx) -> /thankyou.aspx
+==========================================================================================
+Findings (user-tested 09-30): the "Get Today's Best Price" button (SRP/PriceStack) links to /contactus.aspx.
+That form is DealerOn's own (not an iframe) and redirects to https://www.ddmotors.com/thankyou.aspx?&lid=<lead id>.
+Hidden fields: leadType=9, leadSource="" (empty) -> the form itself doesn't say it came from "Best Price".
+
+Option 1 (recommended, CONFIRMED 09-30): use the do.lead_submitted setup from Solution 3.
+   do.lead_submitted fired for the Contact Us TEST submit (form_name "Website - Contact Us"), so the same
+   SS - CE - do.lead_submitted trigger + SS - FB - Lead - Form submit tag covers it. No extra setup needed.
+Option 2: thank-you page trigger (only if do.lead_submitted doesn't show up)
+   Triggers > New > Page View
+   Name: SS - PV - Thank You page
+   Some Page Views: Page Path equals /thankyou.aspx
+   Tag: SS - FB - Lead - Form submit (or SS - FB - Lead - Best Price), Event Name: Standard > Lead
+Do NOT use both options for the same form, or each lead is counted twice.
+Note: other DealerOn forms may also redirect to /thankyou.aspx, so this counts ALL of them, not only Best Price.
+
+To label it "best price" specifically (optional, only if Emily needs it split out):
+   Best Price and a normal Contact Us visit use the same form, so we need to remember the button click:
+   1. Trigger: Click - All Elements, Name: SS - Click - Best Price button
+      Click Text contains Get Today's Best Price  (or Click URL contains /contactus.aspx AND Click Classes contains stat-button-link)
+   2. Tag: Custom HTML, Name: SS - Flag - Best Price click, Trigger: SS - Click - Best Price button
+        <script>try { sessionStorage.setItem('ss_best_price', '1'); } catch (e) {}</script>
+   3. Variable: Custom JavaScript, Name: SS - JS - Best Price flag
+        function () { var n = {{SS - DLV - do.form_name}}; try { if (sessionStorage.getItem('ss_best_price') === '1' && n === 'Website - Contact Us') return 'form submit best price'; } catch (e) {} return n; }
+   4. In the Lead tag: Object Properties content_name = {{SS - JS - Best Price flag}}
+   5. Tag: Custom HTML, Name: SS - Flag - Best Price clear, fires after the Lead tag (Tag Sequencing: cleanup) on thankyou.aspx:
+        <script>try { sessionStorage.removeItem('ss_best_price'); } catch (e) {}</script>
+
+Solution 3b: Any third-party IFRAME form with no thank-you page (only if one is found; Best Price turned out NOT to be one)
+=================================================================================
+Why it's different: GTM on ddmotors.com can't see clicks/submits inside an iframe from another domain
+(browser security). The do.lead_submitted event above won't fire for it either (that's DealerOn's own forms only).
+Only ways to track completion: the iframe tells the parent page (postMessage), or the vendor fires our pixel itself.
+
+Step 1: Identify the vendor
+   On the page with the form: DevTools > Elements > Ctrl+F "iframe" > note the iframe src domain
+   (e.g. autofi.com / gubagoo / autoleadstar / other). Note the page URL + button text.
+
+Step 2: Check if the iframe sends a message on submit
+   DevTools > Console, paste and press Enter:
+     window.addEventListener('message', function (e) { console.log('MSG from', e.origin, e.data); });
+   Open the form, submit a TEST lead. Look for a new "MSG from <vendor domain>" line right after
+   submit (e.g. data with "submit", "lead", "success", "complete"). Screenshot it.
+   Ignore messages that also show on page load / typing; we want one that shows only on successful submit.
+
+Step 3a: If a success message shows -> listen for it in GTM
+   Tags > New > Custom HTML
+   Name: SS - Listener - Best Price iframe submit
+   HTML (replace VENDOR-DOMAIN and SUCCESS-TEXT with what Step 2 showed):
+     <script>
+       window.addEventListener('message', function (e) {
+         if (e.origin.indexOf('VENDOR-DOMAIN') === -1) return;
+         var d = typeof e.data === 'string' ? e.data : JSON.stringify(e.data);
+         if (d.indexOf('SUCCESS-TEXT') === -1) return;
+         window.dataLayer = window.dataLayer || [];
+         window.dataLayer.push({ event: 'ss_best_price_submit' });
+       });
+     </script>
+   Trigger: All Pages (or only the pages that have the form)
+   Triggers > New > Custom Event
+   Name: SS - CE - ss_best_price_submit        Event name: ss_best_price_submit
+   Tags > New > Facebook Pixel (template)
+   Name: SS - FB - Lead - Best Price
+   Event Name: Standard > Lead
+   Object Properties: content_name = form submit best price
+   Trigger: SS - CE - ss_best_price_submit
+   Check in GTM Preview: submit TEST lead -> ss_best_price_submit -> Lead tag fires once.
+
+Step 3b: If NO message shows on submit
+   We can't track completion from our side. Options for Emily (PM/client side, plain language in draft):
+   - Ask the vendor (or DealerOn, if they manage it) to add Meta Pixel 1833249634335944 in the vendor's
+     settings and fire a Lead on submit. Many auto-dealer tools have a built-in Facebook Pixel setting.
+   - Or ask the vendor to show a thank-you page / send a "submitted" message to the website.
+   - Stop-gap (only if Emily agrees): track clicks on the "Get Today's Best Price" button.
+     That's "opened the form", not a completed lead, so name it clearly (e.g. SS - FB - Custom - Best Price Click)
+     and don't use Lead for it.
+
+Note: in headless tests the SRP "Get Today's Best Price" button linked to /contactus.aspx (DealerOn form).
+The iframe version may come from a vendor script that takes over the button in a real browser. Confirm in Step 1.
+
+Solution 4: Google site verification (Merchant Center)
+======================================================
+Don't add this via GTM. Google's HTML-tag method needs the meta tag in the page's <head> source;
+GTM injects it with JavaScript after load.
+Steps:
+1. Ask the client/DealerOn to add it the same way the existing verification tags were added
+   (DealerOn admin: the Google webmaster/site verification meta tag setting; or DealerOn support).
+   Tag: <meta name="google-site-verification" content="DnoOkTZrZvZb0NCkFP-vb-fN4A7r90AiI1zXfZfpvFM" />
+2. Check: view-source:https://www.ddmotors.com/ > Ctrl+F "DnoOkTZr" (must be before </head>).
+3. Emily clicks "Verify your online store" in Merchant Center.
+Alternative (not tested): Merchant Center also offers a "Google Tag Manager" verification method.
+It needs the GTM container on the homepage and the Merchant Center user to have Publish access on the container.
+Might not work here because DealerOn loads GTM with JS instead of the standard snippet.
+
+Test / publish
+==============
+1. GTM Preview: page load -> SS - FB - Meta Pixel - Base fires once (PageView). Click sales phone -> Contact (call) fires.
+   Submit a test form -> do.lead_submitted -> Lead (form) fires.
+2. Meta Pixel Helper (Chrome ext): pixel 1833249634335944 shows PageView + Contact + Lead.
+   Or Meta Events Manager > Test Events.
+3. Submit + Publish the container (version name: "SS - FB Pixel + Contact + Lead events").
+4. Screenshots for each deliverable (checklist).
+
+----------------------------------------
+Draft comment (paste into AC):
+----------------------------------------
+Emily Rivard
+
+As per comment #4,
+
+For the site: https://www.ddmotors.com/
+
+We have verified that the GTM is installed on the site.
+Screenshot: https://drive.google.com/file/d/1lGbGK58eacVE0KOSiFCnfdzAnOCJQfQN/view?usp=sharing
+
+Re: Event Name: click to call (sales phone number) | Event Code: Lead
+....
+You've mentioned Event as Lead but as per SmartSites workflow and Facebook's standard event for phone calls is "Contact".
+
+Re: Facebook Ads Conversion Tracking
+....
+We have implemented Pixel code as provided in comment #2.
+Screenshot: https://drive.google.com/file/d/1lqDSk-j4Z5BWGkolEMcLnm0vDc4JjR1O/view?usp=sharing
+
+Form Tracking:
+The site is built on DealerOn platform that automatically triggers/fires an event: do.lead_submitted for form submission on the site. Based on the event, we configured Lead for overall form submission for the site.
+Screenshot: https://drive.google.com/file/d/1x9AHCYC5BRpJj7NI3OYPLFvqZK4czYPN/view?usp=sharing 
+Screenshot: https://drive.google.com/file/d/1mitL9AnguQso_MjlQxUpazPFE2jWxbbs/view?usp=sharing
+
+For the iframe embedded forms, no events were triggered/fired during our test. So we are unable to configure leads for such forms
+
+Re: "can we also install the code listed below? It is so we can verify their merchant center."
+....
+Please create separate task for this, since this is related to Merchant Center.
+
+Notes: This code needs to be added directly to the website itself, not through GTM, otherwise Google may not be able to verify it.
+The client's website provider (DealerOn) has already added similar Google codes to the site before. So could you please ask the client (or DealerOn support) to add this code the same way:
+<meta name="google-site-verification" content="DnoOkTZrZvZb0NCkFP-vb-fN4A7r90AiI1zXfZfpvFM" />
+
+Once added, let us know and we'll confirm it's on the site, so you can click "Verify" in Merchant Center in separate task. 
+
+Please review and do let us know.
+
+Thanks!
+

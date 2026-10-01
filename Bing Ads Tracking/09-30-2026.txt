@@ -1,0 +1,91 @@
+Project: 7490
+Task title: #49: Bing Tracking
+Task link: https://login.smartsites.com/projects/7490/tasks/500090
+Site link: https://la-decks.com/ (+ /la-deck-builder/, /decks-builders/)
+Replying to: comment #3 (2614789), Connor O'Hanlon, 2026-09-29
+  "Can you guys confirm that the Bing phone number set in callrail is showing here? 323-433-5744"
+
+Setup (checked 09-30-2026)
+==========================
+- GTM: GTM-M4VDZBF8 (all 3 pages)
+- UET tag ID: 25001474 (per task description)
+- CallRail swap.js: cdn.callrail.com/companies/323739083/4403fc7ab6ea5d9bf853/12/swap.js (all 3 pages)
+- Site's default number (swap target): (323) 510-7228 / tel:3235107228
+
+Test: how to simulate a Bing ad visitor
+=======================================
+Open in incognito (fresh session, CallRail remembers the source per visitor):
+  https://la-decks.com/?utm_source=bing&utm_medium=cpc&msclkid=test123
+  https://la-decks.com/la-deck-builder/?utm_source=bing&utm_medium=cpc&msclkid=test123
+  https://la-decks.com/decks-builders/?utm_source=bing&utm_medium=cpc&msclkid=test123
+Direct visit = same URLs without the ?... part, in a separate private browser.
+CallRail marks the visit as "bing_paid" when it sees msclkid (or utm_source=bing plus a paid medium).
+Gotchas: all incognito windows share one session (close all between tests); Firefox private
+Enhanced Tracking Protection blocks CallRail (shield icon -> off, resets when private windows close),
+or the number stays (323) 510-7228.
+
+Manual retest 09-30 (Chrome incognito = Bing | Firefox private = direct, fresh sessions)
+Page               | Bing ad visit    | Direct visit
+/                  | (323) 673-2043   | (323) 767-0575
+/la-deck-builder/  | (323) 991-8491   | (323) 443-1858
+/decks-builders/   | (323) 693-8260   | (323) 604-1292
+All pool numbers, no 323-433-5744.
+
+Results (headless Chrome, fresh profile each time)
+===================================================
+Page               | Bing ad visit    | Direct visit
+/                  | (323) 604-1292   | (323) 745-8796
+/la-deck-builder/  | (323) 417-0500   | (323) 487-7126
+/decks-builders/   | (323) 968-6916   | (323) 676-1200
+
+- CallRail is working (the default number gets replaced).
+- 323-433-5744 never showed, for Bing or direct visits.
+- Every visit gets a different number, including direct visits. That means a number pool
+  (visitor-level / "website pool" tracker) is swapping for ALL traffic, including Bing.
+- In CallRail a pool tracker takes priority over a single-number source tracker for the same source,
+  so the Bing number (323-433-5744) never gets a chance to show.
+
+Possible fix (UNVERIFIED guess, internal only; CallRail done from the PM/client end)
+===================================================================================
+1. Open the tracker for 323-433-5744:
+   - Type: Source tracking (website), Source: "Bing Ads / Microsoft Ads" (paid)
+   - Number to swap (swap target): (323) 510-7228
+   - Status: active
+2. Open the pool tracker (the one swapping all visitors) and check its sources.
+   If it's "All visitors", either take Bing/Microsoft Ads off it or narrow it to the sources it's meant for,
+   so Bing visitors fall through to the 323-433-5744 tracker.
+   (Or, if Bing should be tracked per visitor anyway, a Bing-only pool is the other route.)
+3. Retest with the incognito URL above.
+We can't see CallRail settings from our side; CallRail changes are done from the PM/client end (we only retest).
+
+Side note: (323) 510-7228 = default number hard-coded in the site (tel:3235107228), CallRail swap target.
+It still shows after swapping only inside the schema (JSON-LD "telephone", next to ladecks@gmail.com).
+CallRail doesn't swap schema, which is expected/correct. Not an issue.
+Separate CallRail tracker: landing page /refinishing-restoration-services/ swaps it to (323) 987-6083.
+
+----------------------------------------
+Draft comment (paste into AC):
+----------------------------------------
+Connor O'Hanlon
+
+As per comment #3,
+
+For the website: https://la-decks.com/
+
+Re: "Can you guys confirm that the Bing phone number set in callrail is showing here? 323-433-5744"
+....
+We tested by visiting the site as if we came from a Bing ad (e.g. https://la-decks.com/?utm_source=bing&utm_medium=cpc&msclkid=test123) and also by visiting the site directly. The number 323-433-5744 does not show on the website or the landing pages.
+
+Based on the CallRail settings, the number is set for 'No dynamic number swapping'.
+Screenshot: https://drive.google.com/file/d/18_mAkRBcXFu4i4IvNQuD2Tx-CrJs0hZb/view?usp=sharing
+
+Since we are unaware of CallRail Configuration, could you please review the CallRail setup (if any additional settings need to be done for the trackable number)
+Sample Screenshot: https://drive.google.com/file/d/1cFsr41YAmv1TwF-xxq4pbaBaw5nScMf7/view?usp=sharing
+
+Note:
+We couldn't find any phone call records for Bing Trackable Number
+Screenshot: https://drive.google.com/file/d/1ZAGNQXtnkdKqMcz_HxVKT-Lzap7r5CIG/view?usp=sharing
+
+Please review and do let us know.
+
+Thanks!

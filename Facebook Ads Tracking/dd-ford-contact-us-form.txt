@@ -1,0 +1,116 @@
+Project: D&D Ford [PPC] (8886) - Task #12: Facebook Ads Tracking
+Task link: https://login.smartsites.com/projects/8886/tasks/495956
+Form: DealerOn Contact Us form (also used by the "Get Today's Best Price" button)
+  Form page:      https://www.ddmotors.com/contactus.aspx
+  After submit:   https://www.ddmotors.com/thankyou.aspx?&lid=58010003   (lid = lead id)
+GTM container:    GTM-K39MXFMK
+Meta Pixel ID:    1833249634335944
+Meta event:       Lead (content_name = form submit best price / Website - Contact Us)
+
+How the form reports a submit (confirmed 09-30 in Tag Assistant)
+=================================================================
+On the thank-you page load DealerOn pushes (right after do.init):
+  dataLayer.push({
+    event: "do.lead_submitted",
+    do: {
+      form_name: "Website - Contact Us",
+      form_type: "consumer_contact",
+      product_name: "Website|Contact Us",
+      page_type: "contact",
+      submission_id: 58010003,      <- same as lid= in the URL
+      ...
+    }
+  })
+DealerOn stores the lead in sessionStorage on submit and pushes it on thankyou.aspx,
+so the pixel fires on a normal page load (not lost during the redirect).
+
+----------------------------------------------------------------
+STEP 1: Add the Facebook Pixel tag template (skip if already added)
+----------------------------------------------------------------
+GTM-K39MXFMK > Templates > Tag Templates > Search Gallery > "Facebook Pixel" (by facebookarchive) > Add to workspace > Add.
+
+----------------------------------------------------------------
+STEP 2: Variables
+----------------------------------------------------------------
+2.1 Variables > User-Defined Variables > New > Constant
+    Name:  SS - Const - FB Pixel ID
+    Value: 1833249634335944
+
+2.2 Variables > New > Data Layer Variable
+    Name:                     SS - DLV - do.form_name
+    Data Layer Variable Name: do.form_name
+    Data Layer Version:       Version 2
+
+2.3 Variables > New > Data Layer Variable
+    Name:                     SS - DLV - do.submission_id
+    Data Layer Variable Name: do.submission_id
+    Data Layer Version:       Version 2
+
+----------------------------------------------------------------
+STEP 3: Pixel base tag (skip if SS - FB - Meta Pixel - Base already exists)
+----------------------------------------------------------------
+Tags > New > Tag Configuration: Facebook Pixel
+  Name:                  SS - FB - Meta Pixel - Base (1833249634335944)
+  Facebook Pixel ID(s):  {{SS - Const - FB Pixel ID}}
+  Event Name:            Standard > PageView
+  Triggering:            All Pages
+
+----------------------------------------------------------------
+STEP 4: Trigger - Contact Us submit
+----------------------------------------------------------------
+Triggers > New > Trigger Configuration: Custom Event
+  Name:         SS - CE - Lead - Contact Us
+  Event name:   do.lead_submitted
+  This trigger fires on: Some Custom Events
+    SS - DLV - do.form_name   equals   Website - Contact Us
+
+----------------------------------------------------------------
+STEP 5: Lead tag - Contact Us
+----------------------------------------------------------------
+Tags > New > Tag Configuration: Facebook Pixel
+  Name:                  SS - FB - Lead - Contact Us
+  Facebook Pixel ID(s):  {{SS - Const - FB Pixel ID}}
+  Event Name:            Standard > Lead
+  Object Properties:     content_name = form submit best price
+                         (or {{SS - DLV - do.form_name}} to send "Website - Contact Us")
+  Event ID:              {{SS - DLV - do.submission_id}}
+  Triggering:            SS - CE - Lead - Contact Us
+
+IMPORTANT - avoid double counting:
+  If the all-forms tag "SS - FB - Lead - Form submit" (trigger SS - CE - do.lead_submitted, no filter) also exists,
+  Contact Us would fire Lead twice. Pick ONE:
+  a) Keep only the all-forms tag (content_name = {{SS - DLV - do.form_name}}), and skip Steps 4-5, OR
+  b) Use per-form tags like this one for every form, and delete/pause the all-forms tag.
+  Also don't add a thankyou.aspx Page View Lead tag on top of this.
+
+----------------------------------------------------------------
+STEP 6: Test (GTM Preview)
+----------------------------------------------------------------
+1. Preview > https://www.ddmotors.com/contactus.aspx (ad blockers off).
+2. Page load: SS - FB - Meta Pixel - Base = Fired.
+3. Submit the form with TEST data (e.g. Name: TEST SmartSites, Comments: TEST - please ignore).
+4. Redirects to thankyou.aspx?&lid=... -> left panel: do.lead_submitted
+   Tags Fired: SS - FB - Lead - Contact Us (fires once).
+   Variables tab: SS - DLV - do.form_name = Website - Contact Us, SS - DLV - do.submission_id = the lid value.
+5. Meta check (any one):
+   - Meta Pixel Helper: pixel 1833249634335944 shows PageView + Lead.
+   - DevTools > Network > filter facebook.com/tr -> request with id=1833249634335944&ev=Lead.
+   - Meta Events Manager > pixel > Test Events (enter the site URL, submit again, Lead shows).
+6. Make sure the other pixel (1421756561307668) does NOT get our Lead (template sends to our ID only).
+7. Screenshots: GTM Preview (tag fired on do.lead_submitted) + Pixel Helper/Test Events showing Lead.
+
+----------------------------------------------------------------
+STEP 7: Publish
+----------------------------------------------------------------
+Submit > Version name: SS - FB Lead - Contact Us form
+Version description: Meta Pixel Lead on DealerOn Contact Us submit (do.lead_submitted, form_name = Website - Contact Us)
+Publish. Re-test once live (Pixel Helper, no Preview).
+
+----------------------------------------------------------------
+Fallback (only if do.lead_submitted ever stops showing)
+----------------------------------------------------------------
+Triggers > New > Page View
+  Name: SS - PV - Thank You page
+  Some Page Views: Page Path equals /thankyou.aspx
+Use it on the Lead tag instead of SS - CE - Lead - Contact Us. Downside: other DealerOn forms that also
+redirect to /thankyou.aspx get counted as Contact Us too, and a refresh of the thank-you page counts again.
