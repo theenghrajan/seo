@@ -1,0 +1,21 @@
+Connor O'Hanlon
+
+As per comments #5 and #6,
+
+For the website: https://la-decks.com/
+
+Re: "Can you guys try to figure it out. I just tried to adjust the settings for dyanmic swapping"
+....
+Your CallRail change worked. We retested on the landing pages as if we came from a Bing ad, and the Bing number 323-433-5744 is now showing:
+
+https://la-decks.com/decks-builders/?utm_source=bing&utm_medium=cpc&msclkid=test123
+Screenshot: https://drive.google.com/file/d/1NN0AQvLjC5mfXzDE2H_xqWE6cqRBbAq2/view?usp=sharing
+
+https://la-decks.com/la-deck-builder/?utm_source=bing&utm_medium=cpc&msclkid=test123
+Screenshot: https://drive.google.com/file/d/1nUhSsHbGpSvy84xT0X7P8ardhG6TBslF/view?usp=sharing
+
+No further changes are needed on our end.
+
+Please review and do let us know.
+
+Thanks!

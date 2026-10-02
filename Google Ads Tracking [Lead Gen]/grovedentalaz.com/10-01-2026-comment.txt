@@ -1,0 +1,18 @@
+
+As per comment #62,
+
+For the website: https://grovedentalaz.com/
+
+Re: "Can you check the submission forms to make sure they are tracking. I havent seen any come in this month."
+....
+We submitted a test form and the "SS - Contact Form" conversion is tracking properly
+Conversion ID = 17513636784
+conversion Label = k3FlCJuAt5AbELDHk59B
+Screenshot: https://drive.google.com/file/d/1FsRUMeqYgdzCh2fown3LbUzfqa5u5UZs/view?usp=sharing
+Screenshot: https://drive.google.com/file/d/1jnG6PRH9cKzr_noJ7EWnvuktv8NtdIwZ/view?usp=sharing
+
+Also, as mentioned in comment #57, the "Comprehensive Dental Form" is no longer on the home page, so the "SS - Comprehensive Dental Form" conversion can't record anything. Can we remove it from tracking? If yes, you can set that conversion action to "Removed" (or Secondary) in Google Ads on your side.
+
+Please review and do let us know.
+
+Thanks!
