@@ -1,0 +1,25 @@
+Laura Noble
+
+As per comment #7,
+
+Our Backend team found why Google gets the 403 error. Live product pages are not being blocked. When a page no longer exists (a removed product, or a product whose web address changed), the site sends visitors to its search page. Google is not allowed to view the search page, so it sees an error and marks the original page as blocked.
+
+Most of these pages (around 86%) are old products that were removed. Around 12% are current products whose web address changed without a redirect from the old address. That traffic can be recovered. For example:
+https://www.puetzgolf.com/qi35-driver-qi35-driver now lives at https://www.puetzgolf.com/taylormade-qi35-driver
+https://www.puetzgolf.com/melin-compass-hydro-hat now lives at https://www.puetzgolf.com/melin-hydro-compass-melin-hydro-compass
+
+Here is what we recommend:
+
+1. Current products with a changed address: we add redirects from the old address to the new one. We can add the examples above as soon as the client approves. For the full list, we need the Inbound Marketing Team to export the 403 pages from Google Search Console.
+
+2. Removed products: redirect them to the new model or the main category. Either the client or the Inbound Marketing Team sends us a list of replacements, or our Backend team builds a small add-on that does this automatically. The client's developer would need to install that add-on, as we don't have server access.
+
+3. Change one setting on the site so that pages that no longer exist show a normal "page not found" instead of sending visitors to the search page. Google will then drop these pages. The downside is that visitors from old links will see a "page not found" page instead of search results. We can do this once approved.
+
+4. The client's developer needs to update the robots.txt file. This is the change from task #94, which is still not live.
+
+5. Could you also ask the client what is changing their product web addresses (for example, a product import or an integration)? Otherwise, this will keep happening.
+
+Please confirm the client's approval for items 1 and 3, and let us know which option they prefer for item 2. Once items 1 to 3 are done, the Inbound Marketing Team can run Validate Fix in Google Search Console.
+
+Thanks!
