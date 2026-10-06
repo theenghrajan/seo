@@ -1,0 +1,17 @@
+For the website: https://utopiacancercenter.com
+
+As per comment #1,
+
+1. Implemented Bing UET Tag ID: 187277970
+Screenshot: https://drive.google.com/file/d/1BtR3jySMBgTVhi2ChKXgBqekh-IJRbPb/view?usp=sharing
+
+2. id=bppc: N/A
+
+3. Bing Conversion
+Book Free Consult | Contact Form - UCC - Contact Form -> Tracks contact/Book Free consult form for main site
+Screenshot: https://drive.google.com/file/d/1iBUsnaFOJT98Fm3PcHemNn_Tiut_jXEK/view?usp=sharing
+
+SS - Click To Call -> Tracks phone call link clicks
+Screenshot: https://drive.google.com/file/d/1nqPWD0nXcBrkz_iQL0mC3ztDcdk-ILOy/view?usp=sharing
+
+Thank You!

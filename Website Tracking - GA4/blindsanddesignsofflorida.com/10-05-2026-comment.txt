@@ -1,0 +1,51 @@
+Christen Bevis
+
+As per comment #4,
+
+Site: https://blindsanddesignsofflorida.com/
+
+Re: can you give me instructions for their developer so they can add this using their hosting access?
+Sure. Our WordPress user (username: Smartsites, email: web@smartsites.com) can log in, but it is not an Administrator. Please share the steps below with the client's developer. They only need to follow one option.
+
+Option 1: From the WordPress dashboard (if they have an Administrator login)
+1. Log in at https://blindsanddesignsofflorida.com/wp-admin/
+2. Go to Users > All Users and find the user "Smartsites" (web@smartsites.com).
+3. Click Edit, change "Role" to "Administrator", then click "Update User" at the bottom of the page.
+
+Option 2: Using hosting access (if they don't have an Administrator login)
+- With SSH / WP-CLI, run this command in the website folder:
+wp user set-role web@smartsites.com administrator
+
+- Or in phpMyAdmin, open the website database and, for the user with email web@smartsites.com, update the wp_usermeta table:
+wp_capabilities = a:1:{s:13:"administrator";b:1;}
+wp_user_level = 10
+(If the table prefix is not "wp_", use the site's prefix instead.)
+
+Once it is done, please let us know and we will check the access and continue with the tracking setup.
+
+Thanks!
+
+
+############################################################
+
+As per comment #4,
+
+Site: https://blindsanddesignsofflorida.com/
+
+Re: can you give me instructions for their developer so they can add this using their hosting access?
+....
+Sure. Our WordPress user (username: Smartsites, email: web@smartsites.com) can log in, but it doesn't have Administrator access. Please share the steps below with the client's developer so they can upgrade it.
+
+# Steps (from the WordPress dashboard, using an Administrator login)
+1. Log in at https://blindsanddesignsofflorida.com/wp-admin/
+2. Go to Users > All Users and find the user "Smartsites" (web@smartsites.com).
+3. Click "Edit", change the "Role" to "Administrator", and click "Update User" at the bottom of the page.
+Screenshot: https://drive.google.com/file/d/1rRf3X6bOViWe4LBoBFduve8vQ5sTvI6k/view?usp=sharing
+
+Once this is done, please let us know. Could you also confirm the following:
+1. Should we create a new GTM and a new Google Analytics (GA4) account from our end?
+2. Additionally, can the client share hosting access (if possible)?
+
+Thanks!
+
+Assigned, as per BED request in chat.

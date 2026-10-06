@@ -8,3 +8,7 @@
   - `MM-DD-YYYY-solutions.md` — fixes in order; links to the comment file instead of repeating the draft.
   - `MM-DD-YYYY-comment.txt` — the final AC comment, plain text, pasted as-is (the only `.txt` exception).
 - Draft AC comments: plain language for non-technical PMs, start with "As per comment #N,", end with "Thanks!" only. Never post to AC — the user pastes them.
+
+## Guides
+- Reusable how-tos (not tied to one site) go in `guides/<topic>/<verb-noun>.md` and get a row in `guides/README.md`. Follow the format in that README.
+- When a task produces instructions worth reusing, add or extend a guide and link it from the task log instead of repeating the steps.

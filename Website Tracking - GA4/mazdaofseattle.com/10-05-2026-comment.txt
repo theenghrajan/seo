@@ -1,0 +1,16 @@
+Site: https://www.mazdaofseattle.com/
+
+As per the task description, we checked the site and found multiple GTM containers and GA4 properties installed on it.
+
+We have access to the GA4 property 3131281267 (Measurement ID: G-3DD0T45GWJ). However, we don't have access to any of the GTM containers on the site.
+Screenshot: https://drive.google.com/file/d/1Lz4zXMJ8owIiohzxkpkMnJnzAuzQb2Uv/view?usp=sharing
+
+Note:
+We have only limited access to the GA4.
+Screenshot: https://drive.google.com/file/d/1b-becALPOcOmRt0oK3iICoG3VtW0LQWh/view?usp=sharing
+
+To proceed, could you please ask the client to:
+1. Upgrade our access (web@smartsites.com) on the GA4 to Admin, so we can complete all the steps in the task description.
+2. Give web@smartsites.com Admin access to the existing GTM container, or confirm that we should create a new one. If we create a new one, we will send you the GTM code to add to the site.
+
+Thanks!

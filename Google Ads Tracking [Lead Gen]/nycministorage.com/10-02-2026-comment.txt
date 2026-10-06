@@ -1,0 +1,17 @@
+Joel Eisenschmidt
+
+As per comment #1,
+
+Site: https://nycministorage.com/
+
+We have started reviewing the site and will share our findings, along with the call and form tracking checks, once the review is complete.
+
+From our first look:
+- The site already has a Google Tag Manager container, but it is not ours. It only tracks reservations/purchases. We will need access to it, or we can create our own.
+- The site has more than one Google Analytics tag, plus some old ones that no longer work. We will confirm which one belongs to the current GA4 property.
+- The contact form is the only lead form on the site. The other forms are the "Enter your ZIP, State or City" unit search.
+- Two pages show a phone number, (718) 742-2222, that is not set up to swap with the Google forwarding number.
+
+We are still waiting on the CMS, hosting and GTM access from the client to complete the setup.
+
+Thanks!

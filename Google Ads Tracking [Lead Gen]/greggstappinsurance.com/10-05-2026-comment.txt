@@ -1,0 +1,15 @@
+As per comment #6, removing the fake template testimonials is outside the scope of this task. This task covers Google Ads tracking setup only (GTM, GA4, LeadTracker and conversion tracking).
+
+Could you please open a separate task for the testimonials request? We'll take care of it there.
+
+Thanks!
+
+#####################################
+
+As per comment #6, 
+
+Removing the fake template testimonials is outside the scope of this task.
+
+Could you please open a separate task for the testimonials request? FED will take care of it there.
+
+Thanks!

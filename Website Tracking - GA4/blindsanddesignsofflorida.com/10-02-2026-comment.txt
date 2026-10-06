@@ -1,0 +1,24 @@
+Christen Bevis
+
+As per comment #2,
+
+Site: https://blindsanddesignsofflorida.com/
+
+We checked the site and found that it only has a Google tag, which is connected to Google Analytics. We did not find any Google Tag Manager (GTM) on the site.
+Screenshot: https://drive.google.com/file/d/1BPUVROLQM_czY-CAmtGGdBPJK5mNGkiH/view
+
+Re: can you confirm if we have access?
+...
+We have access to the WordPress dashboard, but not at admin level. We also don't have hosting or domain access. To install the GTM code on the site, we will need admin-level WordPress access, or hosting access.
+Screenshot: https://drive.google.com/file/d/1Dqy4qefuwUyoXp1A628UWXQtzlwb2VIb/view?usp=sharing
+Screenshot: https://drive.google.com/file/d/13r2CbBAgYM-xM57JU5IthcWqmk7CqT0j/view?usp=sharing
+
+Could you please confirm the following:
+
+1. Should we create a new GTM and a new Google Analytics (GA4) account from our end?
+
+2. Can the client provide admin-level WordPress access, or hosting access?
+
+Please review and do let us know.
+
+Thanks!
