@@ -5,3 +5,26 @@ Website Tracking - GA4
 If GTM isn't added on the site and no GTM is shared from the client end then create a new GTM container under 'SmartSites v1.0'.https://drive.google.com/file/d/1mq_kCSjfcxLzKWXv3BWgCDMULbNz2f6I/view?usp=sharing
 
 Give domain name and select Web then create.https://drive.google.com/file/d/1NzcVs789uji6ZlT9BC-2_cePLnISgBqB/view?usp=sharing
+
+
+add_filter('gform_confirmation', function ($confirmation, $form) {
+    $isRedirect = isset($confirmation['redirect']) && $confirmation['redirect'];
+
+    $trackingCode = "<script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: 'FormSubmission',
+        formId: 'gf_{$form['id']}',
+        formName: '{$form['title']}'"
+        . ($isRedirect ? ",\neventCallback: function(){window.location.href = '" . esc_url_raw($confirmation['redirect']) . "';}" : "") . "
+    });
+</script>";
+
+    if ($isRedirect) {
+        $confirmation = $trackingCode;
+    } else {
+        $confirmation .= $trackingCode;
+    }
+
+    return $confirmation;
+}, 10, 2);
