@@ -1,0 +1,25 @@
+As per comments #2 and #3,
+
+For the site: https://mountainviewgaragedoorrepairs.com/
+
+Thank you for the details and for creating the new PPC call conversion.
+
+We have checked the access and found the following:
+
+1. Google Tag Manager (GTM-WMMRM3TC)
+We don't have access to the GTM container on the site under web@smartsites.com.
+Screenshot: https://drive.google.com/file/d/1uzp007IsZurPGf9lEsS3hPWKP5WEnxLi/view?usp=sharing
+Screenshot: https://drive.google.com/file/d/1P28hVsnGVPUIwC0Dn5HhULGLmbLl-cYf/view?usp=sharing
+
+2. GA4
+We have access to the GA4 property.
+Screenshot: https://drive.google.com/file/d/1pVkeR-Z6hRRie_HK6OwcE8Ce69SqSA8g/view?usp=sharing
+
+3. Google Ads
+We can see the new conversion action "SS: Calls From Website PPC #720-719-9268".
+
+Could you please ask the client to add web@smartsites.com as an Admin on the GTM container (GTM-WMMRM3TC)?
+
+Once we have access, we'll check and proceed with the next steps.
+
+Thanks!

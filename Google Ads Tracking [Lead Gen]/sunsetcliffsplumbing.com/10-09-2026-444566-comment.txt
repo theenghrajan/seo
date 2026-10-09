@@ -1,0 +1,53 @@
+Dafne Nazar Antonelli
+
+As per comments #74 and #75,
+
+For the site: https://www.sunsetcliffsplumbing.com/
+
+We did a full review of the tracking setup on all 79 pages of the website. GTM (GTM-5QCBD62B), GA4 (G-R5GK7EV9M6) and the Google tag (AW-11295225464) are installed on every page. Below are the issues we found that can affect conversions.
+
+Re: The id=ppc parameter should swap all numbers to the PPC trackable number
+....
+1. Visitors coming from a Google Ads click do not see the PPC number on the page they land on. Our number-swap script also checks where the visitor came from, and because an ad click comes from google.com, the script shows the SEO number (619) 786-2031 instead of the PPC number (619) 786-2032. The PPC number only shows from the second page they visit. When we test by opening the ?id=ppc link directly, the PPC number shows correctly, which is why this was not caught in our earlier checks. This also explains the "31" number you saw in July.
+
+2. Some phone numbers on the site are not included in the number swap, so PPC visitors still see the original numbers:
+- "Text us" (SMS) links showing 858-299-2878, on most service, location and blog pages.
+- Phone numbers written inside paragraph text, e.g. "Call (619) 416-7071 for same-day service" on the location pages (Del Mar, Point Loma, Rancho Santa Fe, Coronado), and "contact us at 858-299-2878" on the service pages.
+- 619-874-7900 shown as plain text on the homepage.
+
+3. Some buttons dial a fixed number that never changes:
+- Services page (https://www.sunsetcliffsplumbing.com/services/), "REQUEST A QUOTE" button dials (619) 786-2031 (SEO number) for all visitors, including PPC.
+- Homepage, "Call Now" button dials (619) 555-0123, which looks like a placeholder number. It is only replaced for PPC/SEO visitors; anyone else who taps it calls a number that does not exist.
+
+Re: I can still see we are getting conversions from this number (SS: Calls From Website # (858) 299-2878)
+....
+This conversion action is still active in GTM and loads on every page. For ad visitors, Google replaces the (858) 299-2878 number with its own forwarding number wherever it still shows on the page (see point 2 above), and calls to it are counted under this action. Because both Google's number replacement and our PPC number swap act on the same numbers when the page loads, whichever runs first wins. So some PPC calls can be counted under the (858) 299-2878 or (619) 416-7071 action instead of "SS: Calls From Website #(619-786-2032)". This is the most likely reason the PPC call action shows 0.
+
+Re: Clicks to call / Call Button Click are counting calls but they are not showing under calls
+....
+These two actions count clicks on a phone number, not actual phone calls, so they are grouped under Contacts and not under Phone call leads. A click does not always become a call. "Calls From Website" actions only count completed calls made to the Google forwarding number, so the numbers will not match.
+
+Re: SS: Contact Us Form and SS: Claim Offer Forms (HomePage) showing Misconfigured
+....
+- SS: Contact Us Form is counted when the visitor reaches the /thank-you page. The GA4 conversion "form_submission_HouseCallPro" uses the same /thank-you page, and its last record was on Aug 11. We no longer see HouseCallPro anywhere on the website (it looks like it was replaced by the ServiceTitan scheduler), so visitors may no longer reach the /thank-you page. This would explain why the Contact Us Form has not recorded since Sep 16.
+- SS: Claim Offer Forms (HomePage) is counted for the offer form (form ID 11). The last record was on Aug 24.
+- SS: Email Contact (also Misconfigured, not highlighted) is counted on clicks on the email links. The email links (support@ and John@sunsetcliffsplumbing.com) are on every page, and the tag is still in GTM. The last record was on Aug 25.
+- SS: HP - Plumbing Problems Form shows "Needs attention". It is still recording conversions (last on Oct 4), so this is most likely a Google Ads recommendation (e.g. enhanced conversions) and not a tracking break.
+We will check the status details of each action in Google Ads, review the setup in GTM, and run test submissions.
+
+Re: Any issues within the website that could cause tracking issues (plugins, external third parties)
+....
+1. The ServiceTitan online scheduler has been added to every page (and embedded on the Why Us page). Bookings made through the ServiceTitan scheduler are not tracked by any conversion action. If visitors are now booking through it instead of the website forms, this could explain part of the drop in form conversions since September.
+2. GA4 is installed twice: once directly in the website code and once through GTM. This can double count page views and events in GA4.
+3. The Why Us page (https://www.sunsetcliffsplumbing.com/why-us/) has 4 links pointing to the old development site (sunsetcliffs.smartwebsitedesign.com) instead of the live site.
+4. The website uses WP Rocket (caching plugin). After any phone number fix, the cache needs to be cleared so visitors see the updated numbers.
+
+Questions
+....
+1. Can you confirm which numbers are the current original numbers on the site? We see (858) 299-2878, (619) 416-7071 and 619-874-7900. Is 619-874-7900 still in use?
+2. Should we keep the "SS: Calls From Website" conversion actions for (858) 299-2878 and (619) 416-7071 active, or should PPC calls be tracked only through the PPC number (619) 786-2032?
+3. Do you want bookings made through the ServiceTitan scheduler tracked as a conversion? If yes, we will check what tracking options the ServiceTitan scheduler supports and whether a new conversion action is needed.
+
+Once you confirm, we will fix the number swap so the PPC number shows on the landing page for ad clicks, include the missing numbers, correct the fixed numbers on the buttons, and re-test all call and form conversions.
+
+Thanks!

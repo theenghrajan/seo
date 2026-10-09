@@ -1,0 +1,29 @@
+Dafne Nazar Antonelli
+
+As per comment #13,
+
+For the website: https://jivamedspa.com/boca-raton-service-morpheus/
+
+Re: Can you make sure the submission forms are tracking correctly in the Morpheus page?
+....
+We checked the GTM setup for the Morpheus landing page. Form submissions are set to trigger the conversion action "SS: Book Your Consultation - LP #Boca Raton" (Conversion ID 16856730562, Label D0cDCJXPzb0cEMKX9eU-). We will run a test submission to confirm it is firing and share screenshots.
+
+Re: Clarify if both pop up + bottom of the page form are both tracking under the same conversion action
+....
+Yes, both the pop-up form ("Book Consultation" button) and the form at the bottom of the page are tracked under the same conversion action "SS: Book Your Consultation - LP #Boca Raton". The trigger fires on any form submission on the Boca Raton landing pages, so the two forms are not counted separately. If you would like them split (e.g. a separate conversion action for the pop-up), please create one and share the label, and we will set it up.
+
+Re: The pop up form doesn't have a title
+....
+Noted. We will add the following title to the pop-up form:
+Start Your Glow Journey Today
+Send Us a Message
+
+The pop-ups on https://jivamedspa.com/boca-raton/ and https://jivamedspa.com/boca-raton-service-hair-reduction/ also do not have a title. Please let us know if we should add the same title there too.
+
+Re: Additional issue found
+....
+Two phone links on the Morpheus page (next to the "Book Your Consultation" button) show 561-867-0205 but dial 561-876-0205 (digits swapped). Calls from those links reach the wrong number and may not be tracked under "SS: Calls From LP # Boca Raton (561-867-0205)". We will correct them to dial 561-867-0205.
+
+We will update here once the changes are done.
+
+Thanks!

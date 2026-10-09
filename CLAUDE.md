@@ -9,6 +9,10 @@
   - `MM-DD-YYYY-comment.txt` — the final AC comment, plain text, pasted as-is (the only `.txt` exception).
 - Draft AC comments: plain language for non-technical PMs, start with "As per comment #N,", end with "Thanks!" only. Never post to AC — the user pastes them.
 
+## Sessions
+- `SESSIONS.md` lists Claude Code session IDs per AC task. Resume with `cd D:\work` then `claude --resume <session-id>`.
+- When starting work on a new AC task, add a row: date, site, task, topic, session ID, link to the task's `-log.md`.
+
 ## Guides
 - Reusable how-tos (not tied to one site) go in `guides/<topic>/<verb-noun>.md` and get a row in `guides/README.md`. Follow the format in that README.
 - When a task produces instructions worth reusing, add or extend a guide and link it from the task log instead of repeating the steps.

@@ -1,0 +1,25 @@
+Dafne Nazar Antonelli
+
+As per comment #18,
+
+For the website: https://jivamedspa.com/wesley-chapel-service-hair-reduction/
+
+Re: Can we make sure the "SS: Calls From LP" conversion action is firing and tracking correctly?
+....
+We checked the setup. The "SS: Calls From LP #Wesley Chapel (813-603-1561)" conversion (Conversion ID 17915954984, Label svRmCPfx0bAcEKiO_95C) is loading on the hair reduction page, the same way as on the other 2 Wesley Chapel landing pages. All 3 call buttons on the page dial 813-603-1561.
+
+Please note how this conversion counts calls: it is a "Calls from website" conversion. When a visitor comes to the page from a Google Ads click, the phone number on the page is replaced with a Google forwarding number, and a conversion is counted only when that visitor actually calls the forwarding number (and the call meets the minimum call length set in the conversion action). Clicking the call button alone is not counted, and visitors who did not come from an ad are not counted.
+
+So if the hair reduction campaign is getting few ad clicks to this page, or visitors are not calling from the page, no call conversions will show even though the tracking is in place.
+
+We will test the number replacement on all 3 call buttons, including the new "Call (813) 603-1561" button that is already live, check the call click data in GA4 for this page, and share screenshots.
+
+Re: I'm going to add new buttons for calling in the dev task
+....
+Noted. Any new call buttons on the Wesley Chapel landing pages will be covered automatically, as long as they use the number 813-603-1561. We will re-check once the buttons are added.
+
+Also, as a reminder, we are still waiting for your reply on comment #12 regarding which Zapier account to use for the Google lead form assets.
+
+We will update here once the testing is done.
+
+Thanks!

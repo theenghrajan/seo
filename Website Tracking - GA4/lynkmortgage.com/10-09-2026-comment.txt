@@ -1,0 +1,14 @@
+As per comment #9,
+
+For the site: https://www.lynkmortgage.com/
+
+Thank you for following up with the client on the GTM access.
+
+We checked, and the Google Tag Manager container (GTM-PN6CZP5) has been shared with web@smartsites.com. Unfortunately, it only has Read access. We can view the container, but we can't create tags or triggers or publish changes.
+Screenshot: https://drive.google.com/file/d/1HpkVew_v9A1wleePquJuBbSPn3pGOvDQ/view?usp=sharing
+
+We're sorry for the extra back-and-forth. We had set today (Friday, 9th October) as the due date and were hoping to finish by then, but all of the remaining steps depend on being able to edit the GTM container.
+
+Could you please ask the client to upgrade web@smartsites.com to Admin on the GTM container (or at least give it Publish permission)? Once that's done, we'll start right away and share an updated due date. We really appreciate your patience and support.
+
+Thanks!
