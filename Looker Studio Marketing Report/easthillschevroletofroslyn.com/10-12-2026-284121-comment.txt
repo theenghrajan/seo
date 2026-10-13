@@ -1,0 +1,21 @@
+As per comment #53,
+
+For the site: https://www.easthillschevroletofroslyn.com/
+
+We checked the GA4 access under web@smartsites.com.
+
+1. We still have access to the GA4 property 453113790 (Measurement ID: G-720FD1YKW2) that was originally used in the report. However, this tag is no longer on the website, so this property has not been receiving data since around February 2026.
+Screenshot: https://drive.google.com/file/d/1yPYfGwkbjdDUuGfwVNg3dc0sIakv7dDu/view?usp=sharing
+
+Could you please ask the client
+
+2. The report was then switched to the GA4 property 518559252, which is the one currently collecting the website data (Measurement ID on the site: [G-XXXXXXX]). We no longer have access to this property, which is why the report slides are broken.
+Screenshot: [screenshot link]
+
+Since Dealer.com cannot provide access, could you please ask the dealer for one of the following:
+- Add web@smartsites.com as an Administrator (or at least Viewer) on the GA4 property 518559252. This is our preferred option, as the report would reconnect without any data gap.
+- Or, approve Dealer.com to add our GA4 tag (G-720FD1YKW2) back to the website. Please note that the data in the report would only start from the date the tag is added.
+
+Once we have the access, the Inbound team can reconnect the report.
+
+Thanks!

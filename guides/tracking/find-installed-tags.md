@@ -39,8 +39,10 @@ Use this to check which tracking IDs a site loads and where they were added.
 - **Magento:** Stores > Configuration > Sales > Google API, or Content > Design > Configuration > HTML Head > Scripts and Style Sheets.
 - **DealerOn:** GTM is added with JS, so it's not in the raw HTML. Use DevTools. The site loads many containers (vendors + ours).
 - **Lovable:** the project's `index.html`. Ask in the Lovable chat, or check the code view.
+- **Justia** (law firm sites, `justia.run` / `justia.js` in source): `GTM-MWX4VFL` loaded via `justia.run/gtm.js` is Justia's own platform container, not the client's. The site's own GA4 ID is in the inline config `"analytics":{"ga4":[{"measurementId":"G-..."}]}`. No code access for us; tags go in through the Justia client dashboard or a Justia support ticket. Justia already pushes `phone_contact` and form submission dataLayer events.
 - **Cloudflare Zaraz:** tags can be added at the CDN, under Cloudflare > Zaraz.
 
 ## Seen on
 - ddmotors.com (DealerOn): `GTM-K39MXFMK` is ours, and it's only visible through DevTools or Tag Assistant. See [09-30-2026-dd-ford.txt](../../Facebook%20Ads%20Tracking/09-30-2026-dd-ford.txt).
 - blindsanddesignsofflorida.com (WordPress + Site Kit): no GTM. Site Kit's Google tag `GT-TQT95LDD` sends to two GA4 IDs. To list a `GT-` tag's destinations, open `https://www.googletagmanager.com/gtag/js?id=GT-XXXX` and search for `"G-`. See [10-02-2026-log.md](../../Website%20Tracking%20-%20GA4/blindsanddesignsofflorida.com/10-02-2026-log.md).
+- mjwlawfirm.com (Justia): `GTM-MWX4VFL` is Justia's container; site GA4 `G-WT5FP30LVY` set in Justia config. See [10-12-2026-500844-log.md](../../Website%20Tracking%20-%20GA4/mjwlawfirm.com/10-12-2026-500844-log.md).

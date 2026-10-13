@@ -1,0 +1,14 @@
+As per comment #2,
+
+For the site: https://www.mjwlawfirm.com/
+
+Thank you for the update. We checked the site, and it already has Google Tag Manager and Google Analytics 4 installed:
+- Google Tag Manager: GTM-MWX4VFL
+- Google Analytics 4: G-88542VVRLQ
+Reference screenshot: https://drive.google.com/file/d/1U5ANTtmCjAz7jasuCvLesKM2kTtYKOmk/view?usp=sharing
+
+To proceed with the task, could you please ask the client to add web@smartsites.com as an Administrator on the Google Tag Manager container and Google Analytics 4 properties?
+
+Once we have the access, we will proceed with the setup.
+
+Thanks!

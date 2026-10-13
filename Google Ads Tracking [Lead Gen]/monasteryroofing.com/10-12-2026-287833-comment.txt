@@ -1,0 +1,17 @@
+As per comment #7,
+
+For the website: https://www.monasteryroofing.com/
+
+We checked the tracking, and both conversion actions are firing properly.
+
+Google Ads Conversion Tracking: SS - Contact Us
+Conversion ID: 16468890289, Conversion Label: CWlbCM3H8NoZELGl_aw9
+Screenshot: https://drive.google.com/file/d/1E92L8zq9fg1AZqP3W2L0eg9vZOXnM7XL/view?usp=sharing
+
+Google Ads Conversion Tracking: SS - Phone Calls
+Conversion ID: 16468890289, Conversion Label: FqlOCI7N9doZELGl_aw9
+Screenshot: https://drive.google.com/file/d/1Tke7Ig1hnnTh9qFrE-JF8GgrGHThZKQr/view?usp=sharing
+
+Please review and let us know.
+
+Thanks!

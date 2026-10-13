@@ -1,0 +1,26 @@
+Dafne Nazar Antonelli
+
+As per comment #13,
+
+For the page: https://jivamedspa.com/boca-raton-service-morpheus/
+
+Re: Can you make sure the submission forms are tracking correctly in the Morpheus8 page? 
+Also, clarify if both pop up + bottom of the page form are both tracking under the same conversion action. 
+....
+We tested both forms on the Morpheus page, and the form submissions are tracking correctly under the conversion action "SS: Book Your Consultation - LP #Boca Raton" 
+(Conversion ID 16856730562, Label D0cDCJXPzb0cEMKX9eU-).
+Pop-up form: https://drive.google.com/file/d/1xvrh0v1d5ilMHwwIg62-CbNE5jVU4Ot_/view?usp=sharing
+Bottom of the page form: https://drive.google.com/file/d/1IEOAE2xEvkGdarQ-gTneAE2n4pqyV6jL/view?usp=sharing
+
+Yes, both the pop-up form and the form at the bottom of the page are tracked under the same conversion action "SS: Book Your Consultation - LP #Boca Raton". See screenshots above for your reference.
+
+Re: Lastly, I noticed that the pop up form doesnt have a title. Please adjust with the following: 
+Start Your Glow Journey Today
+Send Us a Message
+....
+We have added the title "Start Your Glow Journey Today" to the pop-up form. We understood "Send Us a Message" as the button text, so we have updated the pop-up form's button to "Send Us a Message". Please review and let us know if this is correct.
+Screenshot: https://drive.google.com/file/d/1zCG8X64R_QVl7tMdJyAP6koDkZrf2a9_/view?usp=sharing
+
+Please review and let us know.
+
+Thanks!

@@ -1,0 +1,18 @@
+Dafne Nazar Antonelli
+
+As per comment #18,
+
+For the page: https://jivamedspa.com/wesley-chapel-service-hair-reduction/
+
+Re: Can we make sure in this landing page the "SS: Calls From LP" conversion action is firing and tracking correctly?
+....
+We checked the hair reduction landing page, and the "SS: Calls From LP" conversion action (Conversion ID 17915954984, Label svRmCPfx0bAcEKiO_95C) is firing correctly. All call buttons on the page use the number 813-603-1561.
+Screenshot: https://drive.google.com/file/d/1Y8POAI4641L0PcoazPXriYsW4qYw1Ar1/view?usp=sharing
+
+Re: I'm going to add new buttons for calling in the dev task.
+....
+Noted. Any new call buttons will be tracked automatically as long as they use the number 813-603-1561.
+
+Please review and let us know.
+
+Thanks!
