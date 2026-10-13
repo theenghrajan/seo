@@ -1,0 +1,47 @@
+As per comment #2,
+
+For the site: https://senior-lending.com/
+
+Re: 1. Add Google Tag Manager (GTM)
+...
+The site already has the GTM container (GTM-N5ZH64X) installed, so we used that container for all of the tracking below.
+Reference screenshot: https://drive.google.com/file/d/15wHxA3JQFQ7MLq-Sj7MUa3dFfittHLRq/view?usp=sharing
+
+Re: 2. Implement LeadTracker
+...
+LeadTracker has been added through GTM.
+Reference screenshot:
+
+Re: 3. Implement Google Analytics with Goals
+...
+Screenshot:
+Screenshot:
+
+Re: 4. Enable Demographics and Interest Targeting in Analytics
+...
+Screenshot:
+
+Re: 5. For Ecommerce, implement via Google Analytics
+...
+N/A
+
+Re: 6. If id=ppc is needed, implement accordingly. 407-768-3411 invoca number
+<Done: when a visitor arrives with ?id=ppc, the site number 800-822-1190 is replaced with 407-768-3411. / OR: why it isn't needed>
+Screenshot: https://drive.google.com/file/d/1yoIb2OGXDD4u2ChsEbtNGUC7spcI-fiX/view?usp=sharing
+
+Re: 7. Facebook Ads Event Tracking
+...
+The following events have been set up through GTM:
+- Event name: Lead
+Reference screenshot:
+
+- Event name: Contact
+Reference screenshot:
+
+Re: If we need a pixel we can create it. the client does not have access
+...
+We found that the site already has a Facebook Pixel (ID: <id>), and the events above use that pixel. We do have access to this pixel. Please let us know if we should keep using it or if you would like to create a new pixel. If you create a new one, please share the pixel ID and we will switch the tracking over to it.
+
+Please review and let us know.
+
+Thanks!
