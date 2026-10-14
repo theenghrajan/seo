@@ -1,0 +1,41 @@
+As per comment #28,
+
+For the site: https://www.jcrocklandpaving.com/
+
+1. GA4 drop (Aug 7 - Sep 30)
+...
+Our GTM container was on the site the whole time. Form submission events kept reaching GA4 during the gap.
+
+One thing we found: the site has a Termly cookie consent banner (added on the agency's side). For visitors from some states, including New Jersey, Termly blocks GA4, Google Ads and Lead Tracker until the visitor clicks Accept. This would explain the drop if those settings applied more widely in Aug/Sep. NJ sessions in GA4 are still very low (81 in July, 3 in September, 6 so far in October).
+Reference screenshot: https://drive.google.com/file/d/1JAmx8NxMB7XwXVrIWsIfuRsVyD1kjULw/view?usp=sharing
+
+2. GA4 base tag
+...
+GTM-MJXJK4QR already has the GA4 base tag ("Google Tag" G-BJT4HT1S7F), firing on all pages.
+Reference screenshot: https://drive.google.com/file/d/1zp2OzWu2j7YoJIPbnsghBSFw1zTViRXJ/view?usp=sharing
+
+3. Website call tracking
+...
+SS: Calls From Website # 845-243-7342 (Conversion ID: 17997800037, Conversion Label: ZHaBCN_d-YUcEOXEgoZD) is Active in Google Ads with 8 conversions from Sep 16 to Oct 13. 
+Reference Screenshot: https://drive.google.com/file/d/1Bstpi0F1mmKfloSi3z_W1dMbxpka9L57/view?usp=sharing
+Reference Screenshot (Google Ads): https://drive.google.com/file/d/1GJB67de-Ka3PKDT14xTiio5KSbbMw1Gs/view?usp=sharing
+
+4. "SS - Google Ads Conversion (Request An Estimate-Service PGs)" (tag 29)
+...
+We tested the form on https://www.jcrocklandpaving.com/asphalt-driveway-repair/ and the tag fires on form submission. So the tracking on the site side is working for service page form.
+SS: Request An Estimate (Service PGs) - Conversion ID: 17997800037, Conversion Label: RnDRCK2-7vkcEOXEgoZD
+Reference Screenshot: https://drive.google.com/file/d/1x1XKpm69CdSvsVYw8n1M88fOsnQ-P0bg/view?usp=sharing
+
+5. Phone numbers on the site
+...
+The header and footer on every page show (845) 251-2301. For PPC visitors it swaps to 845-243-7342. (845) 321-7206 appears only on the Contact page. So the "Original Number" call tag (tag 11, 251-2301) matches what non-PPC visitors see.
+Reference screenshot (Contact page): https://drive.google.com/file/d/1CX3Lg0kSmNBnyDbLw9Jely-2KRt-W-2x/view?usp=sharing
+
+The conversion action "SS: Calls From Website # (845) 321-7206) - Alternate (Conversion ID: 17997800037, Conversion Label: fjWaCO3x99ccEOXEgoZD)" from comment #14 is not in GTM yet. We can add it for the Contact page number. Please confirm.
+
+Please review and let us know.
+
+Thanks!
+
+
+
