@@ -31,7 +31,7 @@ Reference Screenshot: https://drive.google.com/file/d/1x1XKpm69CdSvsVYw8n1M88fOs
 The header and footer on every page show (845) 251-2301. For PPC visitors it swaps to 845-243-7342. (845) 321-7206 appears only on the Contact page. So the "Original Number" call tag (tag 11, 251-2301) matches what non-PPC visitors see.
 Reference screenshot (Contact page): https://drive.google.com/file/d/1CX3Lg0kSmNBnyDbLw9Jely-2KRt-W-2x/view?usp=sharing
 
-The conversion action "SS: Calls From Website # (845) 321-7206) - Alternate (Conversion ID: 17997800037, Conversion Label: fjWaCO3x99ccEOXEgoZD)" from comment #14 is not in GTM yet. We can add it for the Contact page number. Please confirm.
+The conversion action "SS: Calls From Website # (845) 321-7206) - Alternate (Conversion ID: 17997800037, Conversion Label: fjWaCO3x99ccEOXEgoZD)" from comment #13 is not in GTM yet. We can add it for the Contact page number. Please confirm.
 
 Please review and let us know.
 

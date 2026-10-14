@@ -1,0 +1,26 @@
+Dafne Nazar Antonelli
+
+As per comment #16,
+
+For the page: https://jivamedspa.com/boca-raton-service-mens-sexual-health/
+
+Re: Please set up the following conversion actions for tracking
+....
+We have implemented the conversion tracking for the new Sexual Health landing page and verified it.
+
+1. SS: Book Consultation (SXH) - all form submissions
+Conversion ID: 16856730562, Conversion Label: ZeC7CPvG8ZsdEMKX9eU-
+Screenshot: https://drive.google.com/file/d/1uXA-EGnVh05pTW8KT6s9_1YVDIjDt0iN/view?usp=sharing
+Screenshot: https://drive.google.com/file/d/1vw7aO0ce4Hk_L3km1bzKYtBqFo7gS2z2/view?usp=sharing
+
+2. SS: Calls From LP (SXH) - all calls from the landing page
+Conversion ID: 16856730562, Conversion Label: YBL7CODj6ZsdEMKX9eU-
+Screenshot: https://drive.google.com/file/d/1MPaOPDT1nyKmdcm6WVspb-zzH-oF_he6/view?usp=sharing
+
+3. SS: Contact Email (SXH) - all email clicks
+Conversion ID: 16856730562, Conversion Label: lXDvCM7i85sdEMKX9eU-
+Screenshot: https://drive.google.com/file/d/1Od-P7Wc95fK8yoT3LlDr_8VSQx_YbW3U/view?usp=sharing
+
+Please review and let us know.
+
+Thanks!

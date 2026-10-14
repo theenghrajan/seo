@@ -1,0 +1,39 @@
+Dafne Nazar Antonelli
+
+As per comments #74 and #75,
+
+For the site: https://www.sunsetcliffsplumbing.com/
+
+We reviewed the tracking on all pages of the website. GTM, GA4 and the Google tag are installed on every page, but we found the following issues.
+
+Re: The id=ppc parameter should swap all numbers to the PPC trackable number
+....
+1. When a visitor comes from a Google ad, the page they land on shows the SEO number (619) 786-2031 instead of the PPC number (619) 786-2032. The PPC number only shows from the second page. This is why PPC calls are not being counted correctly.
+2. Some numbers on the site are not being swapped at all (text message links, phone numbers inside paragraphs, and 619-874-7900 on the homepage).
+3. Two buttons dial a wrong fixed number: "REQUEST A QUOTE" on the Services page and "Call Now" on the homepage.
+
+Re: What is SS: Calls From Website # (858) 299-2878 counting
+....
+This action counts calls to the (858) 299-2878 number. This number still shows in some places on the site for PPC visitors (see point 2), so some PPC calls are being counted here instead of under the PPC number action.
+
+Re: Clicks to call / Call Button Click
+....
+These count clicks on a phone number, not actual calls, so they show under Contacts instead of Calls.
+
+Re: Misconfigured forms
+....
+SS: Contact Us Form counts visits to the /thank-you page. It looks like the old booking tool (HouseCallPro) that sent visitors there was replaced by ServiceTitan, so this page may no longer be reached. We will also check SS: Claim Offer Forms and SS: Email Contact.
+
+Re: Website issues that could affect tracking
+....
+1. The ServiceTitan booking tool was added to every page, and bookings made through it are not tracked. This could explain part of the drop in conversions.
+2. GA4 is installed twice, which can double count data in GA4.
+
+Questions:
+1. Is 619-874-7900 still a valid number for the client?
+2. Should we keep the call actions for (858) 299-2878 and (619) 416-7071, or track PPC calls only through (619) 786-2032?
+3. Do you want ServiceTitan bookings tracked as a conversion?
+
+Once you confirm, we will fix the above and re-test all call and form conversions.
+
+Thanks!
