@@ -1,0 +1,21 @@
+As per comment #5,
+
+For the site: https://mountainviewgaragedoorrepairs.com/
+
+Thank you for the update. We have checked the access again and found the following:
+
+1. Google Tag Manager (GTM-WMMRM3TC)
+The GTM container is still not showing under web@smartsites.com. It looks like the access may have been given to the PM's own email rather than to web@smartsites.com.
+Reference screenshot: https://drive.google.com/file/d/14mRJnzNxoZpqOAeO7rcu4-kUazSU6eMG/view?usp=sharing
+
+2. GA4
+We can see the GA4 property under web@smartsites.com, but we don't have Admin access to it. We need Admin access to enable Demographics and Interest Targeting and to set up the conversions.
+Reference screenshot: https://drive.google.com/file/d/1zjw0_gjSLHT5sRGiSIPab_iAnpy5RG--/view?usp=sharing
+
+Could you please ask the main PM or the client to add web@smartsites.com as:
+- an Admin user (with Publish permission on the container) for GTM-WMMRM3TC
+- an Admin on the GA4 property
+
+Once the access is in place, we'll review the current setup and proceed with the call tracking, LeadTracker and form conversions.
+
+Thanks!

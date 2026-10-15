@@ -1,0 +1,17 @@
+As per comment #31,
+
+For the website: https://www.jcrocklandpaving.com/
+
+1. Call tracking for (845) 321-7206
+...
+We have added "SS: Calls From Website # (845) 321-7206) - Alternate" in GTM and published it. It tracks calls to (845) 321-7206 on the Contact page.
+Conversion ID: 17997800037, Conversion Label: fjWaCO3x99ccEOXEgoZD
+Reference screenshot: https://drive.google.com/file/d/1kjY7gCdBkjybW2cpvO4Cud1RwTt5RvmF/view?usp=sharing
+
+2. Termly
+...
+We can't see when Termly was first added. We don't have access to the Termly or website account, and there are no archived copies of the site to compare. What we can see publicly is that the Termly cookie policy and settings were last updated on October 5, 2026 (3rd published version).
+
+Please review and let us know.
+
+Thanks!

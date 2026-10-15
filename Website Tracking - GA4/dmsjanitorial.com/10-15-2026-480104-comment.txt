@@ -1,0 +1,10 @@
+As per comment #10,
+
+We checked the site and it currently has no GTM or GA4 tracking installed. We will create a new GTM container from our end and implement it on the site.
+
+For Google Analytics, we found that the GA4 property (ID 463424895) does not currently give web@smartsites.com Admin access. Could you please ask the client to add web@smartsites.com as an Administrator on this property? Steps:
+Reference screenshot: https://drive.google.com/file/d/1IvpWbTqnM_8l2fTHbgvRCd8d40fC0leG/view?usp=sharing
+
+Once access is granted, we will connect GA4 with the new GTM container and complete the remaining setup.
+
+Thanks!

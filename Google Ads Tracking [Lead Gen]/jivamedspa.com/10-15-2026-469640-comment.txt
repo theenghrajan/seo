@@ -1,0 +1,28 @@
+Dafne Nazar Antonelli
+
+As per comments #18 and #19,
+
+Re: Please hardcode the PPC TRACKABLE PHONE NUMBER TO THE LANDING PAGE: 561-867-0205 (everywhere on the lp)
+....
+We have hardcoded the PPC number 561-867-0205 everywhere on the following landing pages:
+https://jivamedspa.com/boca-raton/
+https://jivamedspa.com/boca-raton-service-morpheus/
+https://jivamedspa.com/boca-raton-service-hair-reduction/
+https://jivamedspa.com/boca-raton-service-mens-sexual-health/
+Reference Screenshot: https://drive.google.com/file/d/135JbOzPZnGZl7zSzs-JMwOmccMJvRLX5/view?usp=sharing
+
+Re: Please implement captcha on all the form submissions
+....
+reCAPTCHA (invisible) is active on all the forms on the above landing pages, so spam submissions are blocked without adding an extra step for visitors.
+Screenshot: https://drive.google.com/file/d/1Wn0ZBJiPoEcrtLDaLVU0I_bpWrob0ML-/view?usp=sharing
+Screenshot: https://drive.google.com/file/d/1RmTPcchZWf_mt_1spuh9ATtwdOtqun9V/view?usp=sharing
+Screeenshot: https://drive.google.com/file/d/1C8rgW4kLjCtnIw5Hld3gD20tRPTMLJNS/view?usp=sharing
+
+Re: Enhanced conversions
+....
+We have verified that Enhanced Conversions are active for the form submissions on the landing pages.
+Screenshot: https://drive.google.com/file/d/1ss2NgsS9e2uxU07Sjvw2xRm23nJEhtd1/view?usp=sharing
+
+Please review and let us know.
+
+Thanks!

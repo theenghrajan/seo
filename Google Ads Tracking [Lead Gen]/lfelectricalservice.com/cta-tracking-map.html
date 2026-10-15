@@ -1,0 +1,256 @@
+<title>L&amp;F CTA Tracking Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a wiring schedule. Each CTA type is a circuit row (source → trigger → conversion), then inventory, findings, coverage. */
+:root {
+  --bg: #f3f5f7; --panel: #ffffff; --ink: #18222e; --muted: #5a6776; --line: #d5dce3;
+  --wire: #b77900; --wire-soft: #fbefd4;
+  --ok: #1f7a4d; --ok-soft: #e1f2e8; --warn: #9a6200; --warn-soft: #fbf0d9; --bad: #b42828; --bad-soft: #fbe3e3;
+  --display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11171e; --panel: #19212a; --ink: #e4e9ee; --muted: #9aa7b4; --line: #2c3743;
+  --wire: #e8a92a; --wire-soft: #33280f;
+  --ok: #5cc28d; --ok-soft: #15301f; --warn: #e3ae4a; --warn-soft: #33270f; --bad: #f07777; --bad-soft: #3a1818; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11171e; --panel: #19212a; --ink: #e4e9ee; --muted: #9aa7b4; --line: #2c3743;
+  --wire: #e8a92a; --wire-soft: #33280f;
+  --ok: #5cc28d; --ok-soft: #15301f; --warn: #e3ae4a; --warn-soft: #33270f; --bad: #f07777; --bad-soft: #3a1818; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font: 16px/1.55 var(--body); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 48px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 700; }
+h2 { font-size: 1.6rem; font-weight: 600; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+code, .mono { font-family: var(--mono); font-size: .86em; }
+.eyebrow { font: 600 .78rem/1 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--wire); }
+section { display: grid; gap: 18px; min-width: 0; }
+.muted { color: var(--muted); }
+
+header { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 24px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: .92rem; color: var(--muted); }
+.meta b { color: var(--ink); font-weight: 600; }
+.ids { display: flex; flex-wrap: wrap; gap: 8px; }
+.id { font: 500 .8rem var(--mono); border: 1px solid var(--line); background: var(--panel); padding: 3px 8px; border-radius: 4px; }
+
+/* circuits */
+.circuits { display: grid; gap: 12px; }
+.circuit { display: grid; grid-template-columns: minmax(0,1.15fr) 28px minmax(0,1.1fr) 28px minmax(0,1.1fr) auto;
+  align-items: stretch; background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--state); border-radius: 6px; padding: 14px 16px; gap: 0 4px; }
+.circuit.ok { --state: var(--ok); } .circuit.warn { --state: var(--warn); } .circuit.bad { --state: var(--bad); }
+.node { display: grid; gap: 3px; align-content: start; min-width: 0; }
+.node .lbl { font: 600 .7rem/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.node .v { font-weight: 600; overflow-wrap: anywhere; }
+.node .s { font-size: .86rem; color: var(--muted); overflow-wrap: anywhere; }
+.arrow { align-self: center; height: 2px; background: var(--wire); position: relative; }
+.arrow::after { content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 7px solid var(--wire); border-right: 0; }
+.circuit.bad .arrow.cut { background: repeating-linear-gradient(90deg, var(--bad) 0 4px, transparent 4px 8px); }
+.circuit.bad .arrow.cut::after { border-left-color: var(--bad); }
+.pill { align-self: start; justify-self: end; font: 600 .74rem/1 var(--display); letter-spacing: .06em; text-transform: uppercase;
+  padding: 6px 9px; border-radius: 999px; white-space: nowrap; margin-left: 10px; }
+.ok .pill { background: var(--ok-soft); color: var(--ok); }
+.warn .pill { background: var(--warn-soft); color: var(--warn); }
+.bad .pill { background: var(--bad-soft); color: var(--bad); }
+@media (max-width: 720px) {
+  .circuit { grid-template-columns: minmax(0,1fr); gap: 10px; }
+  .arrow { justify-self: start; width: 2px; height: 18px; margin-left: 10px; }
+  .arrow::after { right: -4px; top: auto; bottom: -2px; border: 5px solid transparent; border-top: 7px solid var(--wire); border-bottom: 0; }
+  .circuit.bad .arrow.cut { background: repeating-linear-gradient(180deg, var(--bad) 0 4px, transparent 4px 8px); }
+  .circuit.bad .arrow.cut::after { border-top-color: var(--bad); border-left-color: transparent; }
+  .pill { grid-row: 1; justify-self: start; margin: 0; }
+}
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .88rem; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; background: var(--c); vertical-align: -1px; }
+
+/* table */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .93rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 .75rem/1.2 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td.n { font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: .86rem; white-space: nowrap; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c); margin-right: 6px; }
+
+/* findings */
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.finding { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.finding .tag { font: 600 .72rem/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--c); }
+.finding ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+
+/* coverage */
+.bar { display: flex; height: 14px; border-radius: 3px; overflow: hidden; background: var(--line); }
+.bar i { display: block; background: var(--wire); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: .78rem var(--mono); padding: 3px 7px; border-radius: 4px; background: var(--panel); border: 1px dashed var(--line); color: var(--muted); }
+
+/* next */
+ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 10px; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 12px; align-items: start;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; }
+ol.steps li::before { content: counter(s); font: 700 1.1rem/34px var(--display); text-align: center; width: 34px; height: 34px;
+  border-radius: 50%; border: 2px solid var(--wire); color: var(--wire); }
+ol.steps .who { font-size: .85rem; color: var(--muted); }
+footer { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Google Ads Tracking [Lead Gen] · AC #8 (379056) · comment #49</div>
+    <h1>Where every L&amp;F Electrical CTA ends up</h1>
+    <p class="muted">Every button that leads to a phone call, the contact form or email, traced through Google Tag Manager to the Google Ads conversion it counts as. Built from a crawl of lfelectricalservice.com and the published GTM container.</p>
+    <div class="meta">
+      <span>Checked <b>Oct 15, 2026</b></span>
+      <span>Pages crawled <b>54 of 112</b></span>
+      <span>Main number <b class="mono">(781) 952-9012</b></span>
+    </div>
+    <div class="ids">
+      <span class="id">GTM-K7HHTRLB · v4</span><span class="id">GA4 G-5MKK20E3T2</span><span class="id">AW-16652557963</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="eyebrow">Circuit map</div>
+    <h2>CTA → trigger → conversion</h2>
+    <div class="legend">
+      <span style="--c: var(--ok)">Tracked in Google Ads</span>
+      <span style="--c: var(--warn)">Needs confirming</span>
+      <span style="--c: var(--bad)">Not tracked as a conversion</span>
+    </div>
+    <div class="circuits">
+      <div class="circuit ok">
+        <div class="node"><span class="lbl">CTA</span><span class="v">Phone (781) 952-9012</span><span class="s">"Call Now", "Let's Talk", "Get My Discount Now", header / footer numbers · 256 links on 53 pages</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Trigger</span><span class="v">Number swap on every page</span><span class="s">Google forwarding number replaces 952-9012 for ad visitors. GA4 <code>click_to_call</code> also fires on any <code>tel:</code> click</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Conversion</span><span class="v">SS - Calls From Website</span><span class="s mono">uZCMCKPKxIkbEIu9x4Q-</span></div>
+        <span class="pill">Tracked</span>
+      </div>
+
+      <div class="circuit ok">
+        <div class="node"><span class="lbl">CTA</span><span class="v">Links to /contact/</span><span class="s">"Request More Info", "Contact Us", "Schedule a Free Estimate", "Talk To An Expert" · 290 links on 52 pages</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Trigger</span><span class="v">Form sent on /contact/</span><span class="s">CF7 form <b>170</b> → <code>cf7submission</code>. The button click itself is not a conversion</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Conversion</span><span class="v">SS - Contact Us Form Submission</span><span class="s mono">O7cfCO2exYkbEIu9x4Q-</span></div>
+        <span class="pill">Tracked</span>
+      </div>
+
+      <div class="circuit ok">
+        <div class="node"><span class="lbl">CTA</span><span class="v">Homepage quote form</span><span class="s">"Request A Quote 15%" on /</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Trigger</span><span class="v">CF7 form 1281 sent</span><span class="s">Includes enhanced conversion user data</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Conversion</span><span class="v">SS - Request A Quote 15% Front Page</span><span class="s mono">4lCxCJGo0IkbEIu9x4Q-</span></div>
+        <span class="pill">Tracked</span>
+      </div>
+
+      <div class="circuit ok">
+        <div class="node"><span class="lbl">CTA</span><span class="v">HVAC promo form</span><span class="s">/hvac-services-ma/</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Trigger</span><span class="v">CF7 form 1210 sent</span><span class="s">Includes enhanced conversion user data</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Conversion</span><span class="v">SS - Save 15% Generator &amp; Heat Pump</span><span class="s mono">-OV_CPqmgeccEIu9x4Q-</span></div>
+        <span class="pill">Tracked</span>
+      </div>
+
+      <div class="circuit warn">
+        <div class="node"><span class="lbl">CTA</span><span class="v">Forms on location &amp; service pages</span><span class="s">One CF7 form per page on about 50 location pages</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Trigger</span><span class="v">CF7 form ID not yet confirmed</span><span class="s">Ads fires only for IDs 170, 1281, 1210. Any other ID reaches GA4 <code>form_submission</code> only</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Conversion</span><span class="v">Contact Us, if the form is 170</span><span class="s">Otherwise none in Google Ads</span></div>
+        <span class="pill">Confirm</span>
+      </div>
+
+      <div class="circuit ok">
+        <div class="node"><span class="lbl">CTA</span><span class="v">Email link</span><span class="s">lfelectricalservice@gmail.com in the top bar, page body, footer and a <b>floating button</b> · 159 links on 52 pages</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Trigger</span><span class="v">Click on mailto: link</span><span class="s">Every click counts, from every page</span></div>
+        <div class="arrow"></div>
+        <div class="node"><span class="lbl">Conversion</span><span class="v">SS - Email Contact (secondary)</span><span class="s mono">uBWhCJbNxYkbEIu9x4Q-</span></div>
+        <span class="pill">Tracked</span>
+      </div>
+
+      <div class="circuit bad">
+        <div class="node"><span class="lbl">CTA</span><span class="v">Phone (781) 819-2201</span><span class="s">/heat-pump/ only: "Get Your 15% Discount!", "I need a Quote", "Claim Your Discount Now", "Unlock 15% Off Installs", nav number</span></div>
+        <div class="arrow cut"></div>
+        <div class="node"><span class="lbl">Trigger</span><span class="v">No number swap</span><span class="s">The swap only replaces 952-9012. GA4 <code>click_to_call</code> still records the click</span></div>
+        <div class="arrow cut"></div>
+        <div class="node"><span class="lbl">Conversion</span><span class="v">None in Google Ads</span><span class="s">Calls to this number are not counted</span></div>
+        <span class="pill">Not tracked</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Inventory</div>
+    <h2>CTAs found on the 54 crawled pages</h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Target</th><th>Links</th><th>Pages</th><th>Where</th><th>Button text seen</th></tr></thead>
+        <tbody>
+          <tr><td><span class="dot" style="--c: var(--ok)"></span><code>tel:7819529012</code></td><td class="n">256</td><td class="n">53</td><td>Header, nav, body, footer</td><td>(781) 952-9012 · Call Now · Let's Talk · Work With Us · Get My Discount Now · I need a Quote</td></tr>
+          <tr><td><span class="dot" style="--c: var(--ok)"></span><code>/contact/</code></td><td class="n">290</td><td class="n">52</td><td>Header, nav, body</td><td>Request More Info · Contact Us · Schedule a Free Estimate · Talk To An Expert · Get Electrical Help Today · Reach Out</td></tr>
+          <tr><td><span class="dot" style="--c: var(--ok)"></span><code>mailto:</code></td><td class="n">159</td><td class="n">52</td><td>Top bar, body, footer, floating button</td><td>lfelectricalservice@gmail.com</td></tr>
+          <tr><td><span class="dot" style="--c: var(--warn)"></span>Contact form (CF7)</td><td class="n">52</td><td class="n">52</td><td>Body</td><td>None on /services/ or /faqs/</td></tr>
+          <tr><td><span class="dot" style="--c: var(--bad)"></span><code>tel:+17818192201</code></td><td class="n">5</td><td class="n">1</td><td>/heat-pump/ nav and body</td><td>Get Your 15% Discount! · I need a Quote · Claim Your Discount Now · Unlock 15% Off Installs</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Findings</div>
+    <h2>What this means for comment #49</h2>
+    <div class="findings">
+      <div class="finding" style="--c: var(--bad)">
+        <span class="tag">Untracked calls</span>
+        <h3>/heat-pump/ uses a different number</h3>
+        <p>Five buttons dial (781) 819-2201. Google Ads does not count those calls. Two fixes:</p>
+        <ul><li>Change the page to (781) 952-9012, or</li><li>Create a new call conversion for 819-2201.</li></ul>
+        <p class="muted">First confirm the page is still used in a campaign.</p>
+      </div>
+      <div class="finding" style="--c: var(--warn)">
+        <span class="tag">Email uptick</span>
+        <h3>A floating email button on every page</h3>
+        <p>The email address shows about three times per page, including a button that follows the visitor down the page. Each click is counted as Email Contact. That probably explains the rise more than a form error does. The forms still need a test.</p>
+      </div>
+      <div class="finding" style="--c: var(--warn)">
+        <span class="tag">To confirm</span>
+        <h3>Location page form IDs</h3>
+        <p>If the location pages use a form other than 170, their submissions reach GA4 but never Google Ads. This is the biggest open question.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Coverage</div>
+    <h2>54 of 112 pages crawled</h2>
+    <div class="bar" role="img" aria-label="54 of 112 pages crawled"><i style="width: 48.2%"></i></div>
+    <p class="muted">The site's firewall blocked further requests partway through. Still to check:</p>
+    <div class="chips">
+      <span class="chip">/about/</span><span class="chip">/services/* (17 pages)</span><span class="chip">/our-work/* (13)</span><span class="chip">/gallery/</span><span class="chip">/gallery-222/</span><span class="chip">/areas-we-serve/</span>
+      <span class="chip">avon</span><span class="chip">bellingham</span><span class="chip">brookline</span><span class="chip">canton</span><span class="chip">chelsea</span><span class="chip">cohasset</span><span class="chip">dedham</span><span class="chip">dover</span><span class="chip">foxborough</span><span class="chip">franklin</span><span class="chip">holbrook</span><span class="chip">medfield</span><span class="chip">medway</span><span class="chip">millis</span><span class="chip">milton</span><span class="chip">norfolk</span><span class="chip">norwood</span><span class="chip">plainville</span><span class="chip">revere</span><span class="chip">scituate</span><span class="chip">wareham</span><span class="chip">west-bridgewater</span><span class="chip">whitman</span><span class="chip">winthrop</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Next</div>
+    <h2>Remaining steps</h2>
+    <ol class="steps">
+      <li><div><b>Confirm the CF7 form ID on location and service pages</b><div class="who">FED · WP admin › Contact, or the <code>wpcf7-f&lt;ID&gt;</code> wrapper on the page</div></div></li>
+      <li><div><b>Re-crawl the missing pages slowly</b><div class="who">FED · once the firewall block lifts</div></div></li>
+      <li><div><b>Test-send the contact form and one location form</b><div class="who">FED · check for errors and the thank-you message</div></div></li>
+      <li><div><b>Decide on the /heat-pump/ number</b><div class="who">PPC PM · update the page or create a new call conversion</div></div></li>
+    </ol>
+  </section>
+
+  <footer>Sources: sitemap crawl of lfelectricalservice.com and the published GTM container GTM-K7HHTRLB (version 4), Oct 15, 2026.</footer>
+</div>

@@ -1,0 +1,22 @@
+As per comment #13,
+
+For the site: https://www.lynkmortgage.com/
+
+Thank you for checking with the client again.
+
+We checked web@smartsites.com today:
+
+- GA4 (lynkmortgage.com property): Admin access is working, thank you.
+Reference screenshot: https://drive.google.com/file/d/124EO0TrmDZj7xhoqYCgr6bzFNvEhXlD4/view?usp=sharing
+
+- Google Tag Manager (GTM-PN6CZP5): still Read access only. We can view the container but can't add tags or publish.
+Reference screenshot: https://drive.google.com/file/d/1lBlFaxWxwvxetWXIscY9WJboU3ZbrY9t/view?usp=sharing
+
+In Google Tag Manager, Admin access on the account and access to the container are set separately. The client have made us user on the account while the container itself is still set to Read.
+Screenshot: https://drive.google.com/file/d/11GeZTmwWES93D612Ynuv8KhUXcwkHnor/view?usp=sharing
+
+Could you please ask the client to go to Admin > User Management > web@smartsites.com, open the GTM-PN6CZP5 container, set it to "Publish", and save?
+
+As soon as this is done, we'll get started and share an updated due date.
+
+Thanks!
