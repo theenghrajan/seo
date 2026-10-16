@@ -1,0 +1,28 @@
+As per comments #7 and #8,
+
+For the site: https://mountainviewgaragedoorrepairs.com/
+
+Thank you for the update.
+
+1. GA4
+We have confirmed that web@smartsites.com now has Admin access to the GA4 property. Thank you!
+Screenshot:
+
+2. Google Tag Manager (GTM-WMMRM3TC)
+We have checked again, and the GTM container is still not showing under web@smartsites.com, so we don't have access yet.
+Reference screenshot: 
+
+To give us access, the client (or whoever manages the container) can follow these steps:
+- Log in to https://tagmanager.google.com/ and open the account that has the container GTM-WMMRM3TC.
+- Go to Admin > User Management (at the account level).
+- Click the "+" button > Add users.
+- Enter web@smartsites.com.
+- Under Account permissions, select "Administrator".
+- Under Container permissions, select the container GTM-WMMRM3TC and set it to "Publish".
+- Click Invite.
+
+Please make sure the email is exactly web@smartsites.com, and that the container permission is set as well (account access alone does not show the container).
+
+Once we have the GTM access, we'll proceed with the next steps.
+
+Thanks!

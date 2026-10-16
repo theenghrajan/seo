@@ -1,0 +1,410 @@
+<title>Sunset Cliffs Call Tracking</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single reading column; a two-lane landing-page timeline up top, then one card per AC point */
+:root{
+  --bg:#f5f7f9; --surface:#ffffff; --fg:#17212b; --muted:#5a6876; --line:#d9e0e6;
+  --accent:#0f6c8c; --accent-soft:#e2f0f5;
+  --bad:#b4232c; --bad-soft:#fbe9ea; --warn:#9a6200; --warn-soft:#fbf1dc; --ok:#1f7a45; --ok-soft:#e3f3e9;
+  --code-bg:#eef2f5;
+  --display:"Archivo",system-ui,sans-serif; --body:"Atkinson Hyperlegible",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11171d; --surface:#18212a; --fg:#e4eaef; --muted:#9aa8b5; --line:#2b3742;
+  --accent:#5cb8d6; --accent-soft:#16313c;
+  --bad:#f0787e; --bad-soft:#3a1b1e; --warn:#e8b65a; --warn-soft:#352812; --ok:#6fcf97; --ok-soft:#163023;
+  --code-bg:#0d1318; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11171d; --surface:#18212a; --fg:#e4eaef; --muted:#9aa8b5; --line:#2b3742;
+  --accent:#5cb8d6; --accent-soft:#16313c;
+  --bad:#f0787e; --bad-soft:#3a1b1e; --warn:#e8b65a; --warn-soft:#352812; --ok:#6fcf97; --ok-soft:#163023;
+  --code-bg:#0d1318; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:2rem;font-weight:800}
+h2{font-size:1.35rem;font-weight:700;margin-bottom:12px}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0;max-width:68ch}
+section{display:flex;flex-direction:column;gap:14px}
+.meta{color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:6px 18px}
+.num{font-family:var(--mono);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+code,pre{font-family:var(--mono);font-size:.85rem}
+code{background:var(--code-bg);padding:1px 5px;border-radius:4px}
+pre{background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto;margin:0;line-height:1.5}
+.pill{display:inline-block;font:700 .72rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.bad{color:var(--bad);background:var(--bad-soft)} .warn{color:var(--warn);background:var(--warn-soft)} .ok{color:var(--ok);background:var(--ok-soft)} .info{color:var(--accent);background:var(--accent-soft)}
+.lead{font-size:1.08rem}
+
+/* timeline */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.lanes{grid-template-columns:1fr}}
+.lane{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.lane ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;counter-reset:s}
+.lane li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:8px;font-size:.93rem}
+.lane li::before{content:counter(s);font:700 .8rem/26px var(--display);text-align:center;border-radius:50%;background:var(--code-bg);color:var(--muted);height:26px}
+.lane li.x::before{background:var(--bad-soft);color:var(--bad)}
+.lane li.v::before{background:var(--ok-soft);color:var(--ok)}
+.result{border-top:1px solid var(--line);padding-top:10px;font-size:.93rem}
+
+/* number table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 .75rem var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+
+/* points */
+.points{display:flex;flex-direction:column;gap:14px}
+.point{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:10px}
+.point header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.tag{font:700 .8rem var(--mono);color:var(--muted)}
+.rows{display:grid;grid-template-columns:110px 1fr;gap:6px 14px;font-size:.93rem}
+.rows dt{color:var(--muted);font-weight:700}
+.rows dd{margin:0;min-width:0}
+@media (max-width:520px){.rows{grid-template-columns:1fr}.rows dt{margin-top:6px}}
+ol.steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px;max-width:72ch}
+.note{border-left:3px solid var(--warn);padding:8px 12px;background:var(--warn-soft);border-radius:0 6px 6px 0;font-size:.93rem}
+</style>
+
+<main>
+<header style="display:flex;flex-direction:column;gap:10px">
+  <span class="pill info" style="align-self:flex-start">AC #8 · task 444566 · reply to #80 &amp; #81</span>
+  <h1>Sunset Cliffs Call Tracking</h1>
+  <div class="meta"><span>GTM-5QCBD62B (live v27)</span><span>AW-11295225464</span><span>Due Fri Oct 16</span><span>Comment: <code>10-16-2026-444566-comment.txt</code></span></div>
+  <p class="lead">PPC calls go missing or land in the wrong action, and only on the <strong>first page</strong> a visitor sees after clicking an ad. Direct tests with <code>?id=ppc</code> skip that case, so everything looked fine.</p>
+</header>
+
+<section>
+  <h2>What happens on the landing page</h2>
+  <div class="lanes">
+    <div class="lane">
+      <h3>First page from an ad</h3>
+      <ol>
+        <li>Visitor clicks ad → arrives from <code>google.com</code> with <code>?id=ppc</code>. No <code>query_string</code> cookie yet.</li>
+        <li class="x">GTM rule "block 858/416 for PPC" checks the cookie → empty → <strong>858 and 416 call tags fire</strong>.</li>
+        <li class="x">Google swaps 858-299-2878 / 416-7071 with its forwarding numbers before our script loads.</li>
+        <li class="x">Swap script shows <span class="num">619-786-2032</span> in the text, but the header <strong>phone icon</strong> links to the SEO number <span class="num">619-786-2031</span>. Its first pass runs before the PPC cookie exists, so "search engine" wins.</li>
+        <li class="x">PPC call tag (cleanup of LeadTracker tag) fired already, before any swap. Nothing to replace.</li>
+      </ol>
+      <div class="result"><span class="pill bad">Result</span> Calls count under the 858/416 actions, or reach 2031 via the icon. Measured: 858 tag at 1.6s, 416 at 1.8s, PPC tag at 2.0s, swap script at 2.7s.</div>
+    </div>
+    <div class="lane">
+      <h3>Second page onwards</h3>
+      <ol>
+        <li>Cookie <code>query_string</code> now contains <code>ppc</code> (set by the swap script on page 1).</li>
+        <li class="v">GTM blocks the 858 and 416 call tags.</li>
+        <li class="v">Swap script shows <span class="num">619-786-2032</span>.</li>
+        <li class="v">PPC call tag fires; Google can replace 2032 with its forwarding number.</li>
+      </ol>
+      <div class="result"><span class="pill ok">Result</span> Tracked correctly. This is the case FED tested.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Numbers on the site</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Number</th><th>Role (per Dafne #81)</th><th>GTM</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="num">619-786-2032</td><td>PPC trackable</td><td>Call tag, PPC visitors only</td><td><span class="pill bad">Missed on page 1</span></td></tr>
+      <tr><td class="num">619-786-2031</td><td>SEO trackable</td><td>None</td><td><span class="pill warn">Header phone icon, page 1 from Google</span></td></tr>
+      <tr><td class="num">858-299-2878</td><td>"Not ours, ask John"</td><td>Call tag, all pages</td><td><span class="pill bad">Grabs PPC calls</span> ~45 pages</td></tr>
+      <tr><td class="num">(619) 416-7071</td><td>Main line (GBP)</td><td>Call tag, all pages</td><td><span class="pill bad">Grabs PPC calls</span></td></tr>
+      <tr><td class="num">619-874-7900</td><td>—</td><td>None</td><td><span class="pill warn">Homepage text, never swapped</span></td></tr>
+      <tr><td class="num">(619) 555-0123</td><td>Fake</td><td>None</td><td><span class="pill bad">Homepage "Call Now" button</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Point by point</h2>
+  <div class="points">
+
+    <article class="point">
+      <header><span class="tag">#80.1</span><h3>Number shown with ?id=ppc&amp;gclid=test</h3><span class="pill bad">Bug</span></header>
+      <dl class="rows">
+        <dt>Finding</dt><dd>The number text shows 2032 both directly and from Google. Only the header phone icon (<code>a.elementor-icon</code>, originally <code>(619) 416-7071</code>) links to <code>tel:6197862031</code> when the visitor arrives from Google. The 416 placeholder is swapped first, before the <code>query_string</code> cookie exists, so SEARCH_ENGINE wins for that pass. The later passes see the cookie and use 2032. Same on mobile.</dd>
+        <dt>Screenshot</dt><dd>Landing page opened from google.com, with DevTools Elements on the header phone icon showing <code>href="tel:6197862031"</code>, boxed in red.</dd>
+      </dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.2</span><h3>PPC call tag after LeadTracker tag</h3><span class="pill bad">Bug</span></header>
+      <dl class="rows">
+        <dt>Finding</dt><dd>Already a cleanup tag of "SS - LeadTracker &amp; Conditional Replacer". That tag finishes as soon as it injects the loader. The swap scripts load async, so the call tag still fires before 2032 is on the page. Matches what Google Support said in Sep (#70).</dd>
+        <dt>Screenshot</dt><dd>GTM → LeadTracker tag → Advanced settings → Tag sequencing, box the cleanup tag.</dd>
+      </dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.3</span><h3>Google forwarding number replaces 2032</h3><span class="pill warn">Test after fix</span></header>
+      <dl class="rows">
+        <dt>Finding</dt><dd><code>#google-wcc-debug</code> opens Google's debug panel. On its own, Google returns no number (<code>errorCode 2</code>: not a real click, outside the US). <strong>Force</strong> replaces only the header and footer number text, using the test number 999-999-9999. The 10 buttons and icon boxes that link <code>tel:6197862032</code> without showing it are <strong>not replaced</strong>, so calls from them can't count as Calls From Website.</dd>
+        <dt>Screenshot</dt><dd><code>10-16-2026-444566-80-3-forwarding-number.jpg</code></dd>
+      </dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.4</span><h3>GTM version history Jul 25 – Aug 15</h3><span class="pill warn">You check</span></header>
+      <dl class="rows">
+        <dt>Do</dt><dd>GTM → Versions. List each version published in that range with the changed tags/triggers, then fill the <code>[pending]</code> line in the comment. Live is v27.</dd>
+      </dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.5</span><h3>Duplicate Conversion Linker</h3><span class="pill ok">Confirmed</span></header>
+      <dl class="rows">
+        <dt>Finding</dt><dd>Two identical <code>__gclidw</code> tags, both on All Pages. Harmless, but remove "Conversion Linker" and keep "SS - Conversion Linker".</dd>
+        <dt>Screenshot</dt><dd>GTM Tags list with both linkers boxed.</dd>
+      </dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.6</span><h3>Invoca offline import</h3><span class="pill info">Needs PM</span></header>
+      <dl class="rows">
+        <dt>Finding</dt><dd>No Invoca on the site or in GTM. Calls run through LeadTracker plus Google website call tracking; phones are ServiceTitan (IBM team). Only possible if 2032 is an Invoca number. Asked Dafne for access.</dd>
+      </dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#81.1</span><h3>HP - Plumbing Problems Form "Misconfigured"</h3><span class="pill warn">Fix trigger</span></header>
+      <dl class="rows">
+        <dt>Finding</dt><dd>The tag fires (ping Oct 13). Flag = no conversions in 7 days + enhanced conversions recommendation. Its trigger is every <code>gform_submission</code>, so it counts all forms. A Claim Offer submission (form 11) counts twice. The Plumbing Problems form is form 7. A user-provided-data tag exists, but enhanced conversions is off on the conversion tags.</dd>
+        <dt>Screenshot</dt><dd>GTM trigger of the HP Plumbing Problems tag, box "gform_submission" with no form ID filter.</dd>
+      </dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#81.2</span><h3>Calls to 858-299-2878</h3><span class="pill bad">Wrong action</span></header>
+      <dl class="rows">
+        <dt>Finding</dt><dd>Yes, tracked. Website call conversions only count ad visitors, so these are PPC calls under the wrong action. See lane 1, steps 2–3. Same for 416-7071. FED's #77 said "Why Us page only". It's actually on ~45 pages.</dd>
+        <dt>Screenshot</dt><dd>Homepage header/button with <span class="num">858-299-2878</span> boxed.</dd>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="test80">
+  <h2>Testing each #80 point now</h2>
+  <p>These checks confirm what the comment says before you post it. None of them change GTM or the site. Use a fresh incognito window for each one (see Setup below).</p>
+  <div class="points">
+
+    <article class="point">
+      <header><span class="tag">#80.1</span><h3>Number shown with ?id=ppc&amp;gclid=test</h3></header>
+      <ol class="steps">
+        <li>Incognito → paste <code>https://www.sunsetcliffsplumbing.com/?id=ppc&amp;gclid=test</code>. Header, Call buttons and footer show <span class="num">619-786-2032</span>. This is the direct test Dafne asked for.</li>
+        <li>Close all incognito windows, then open a new one. Go to <code>https://www.google.com/</code>, open Console and run <code>location.href = "https://www.sunsetcliffsplumbing.com/?id=ppc&amp;gclid=test"</code>.</li>
+        <li>On the landing page, run <code>document.referrer</code> → it should print <code>https://www.google.com/</code>. The header text shows <span class="num">619-786-2032</span>. That's correct.</li>
+        <li>Now check the phone <strong>icon</strong> left of the header number: right-click → Inspect, or hover it and read the link in the bottom-left status bar. It shows <code>tel:6197862031</code>. Or run in Console: <code>[...document.querySelectorAll('a[href^="tel:"]')].filter(a =&gt; !a.href.includes('2032')).map(a =&gt; a.outerHTML)</code>. One result is expected: the icon.</li>
+        <li>DevTools → Application → Cookies → www.sunsetcliffsplumbing.com: note the values of <code>referrer_site</code> and <code>query_string</code>.</li>
+        <li>Click any menu link and re-run the Console line → <code>[]</code>. The icon is now 2032 too.</li>
+      </ol>
+      <dl class="rows"><dt>Pass if</dt><dd>The text is 2032 everywhere, only the icon is 2031 on page 1 from Google, and on page 2 everything is 2032. Your direct-open test (text 2032) is correct and expected.</dd>
+      <dt>Screenshot</dt><dd>Step 4: the Elements panel with the icon's <code>href="tel:6197862031"</code> and the address bar, boxed in red.</dd></dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.2</span><h3>PPC call tag fires after the LeadTracker tag</h3></header>
+      <ol class="steps">
+        <li>GTM → Tags → "SS - LeadTracker &amp; Conditional Replacer" → Advanced Settings → Tag Sequencing. "Fire a tag after…" is "SS - GA Conversion (Calls From Website #(619-786-2032 PPC))". <span class="pill warn">Screenshot</span></li>
+        <li>Incognito, Network tab (Disable cache, Preserve log), filter empty. Load <code>https://www.sunsetcliffsplumbing.com/?id=ppc</code>.</li>
+        <li>Filter by <code>iNPBCKvolpMcEPjs_Ykq</code> and note the request's start time in the Waterfall column. Then filter by <code>conditional-replacer</code> and note when that file finished loading.</li>
+        <li>In Console, run <code>dataLayer.map(e =&gt; e.event)</code>. There's no event after the swap, only the page-load events.</li>
+      </ol>
+      <dl class="rows"><dt>Pass if</dt><dd>Sequencing is set, but the PPC label request starts before <code>conditional-replacer-3.js</code> has loaded. Our headless run from google.com: PPC tag at 2.0s, swap script requested at 2.7s.</dd><dt>Note</dt><dd> In other words, sequencing exists and doesn't help. If the label request comes <em>after</em> the script, tell me before posting, and point 2 needs rewording.</dd>
+      <dt>Screenshot</dt><dd>The Tag Sequencing panel, with the cleanup tag boxed.</dd></dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.3</span><h3>Google forwarding number replaces 619-786-2032</h3></header>
+      <ol class="steps">
+        <li>Incognito → from google.com, run <code>location.href = "https://www.sunsetcliffsplumbing.com/?id=ppc#google-wcc-debug"</code>.</li>
+        <li>A grey "Google AdWords Website Call Conversions" panel opens at the bottom left. It shows "Attempting to auto-replace" once per call tag. From outside the US, nothing changes at this point.</li>
+        <li>Click <strong>Force</strong>. The log shows "Updated 3 element(s) with 999-999-9999". Header and footer now show 999-999-9999.</li>
+        <li>Hover "Call Now" / "Call Us Now" / "Call To Schedule". They still link to <code>tel:6197862032</code>. That's the gap.</li>
+        <li>Paste <code>https://www.sunsetcliffsplumbing.com/?id=ppc&amp;gclid=test</code> directly. Expected: no Google number. <code>gclid=test</code> isn't a real click, so Google doesn't swap.</li>
+      </ol>
+      <dl class="rows"><dt>Pass if</dt><dd>Force swaps the header and footer, and the buttons keep 2032. Only a US visitor (Dafne) can see a real forwarding number without Force.</dd></dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.4</span><h3>GTM version history, Jul 25 – Aug 15</h3></header>
+      <ol class="steps">
+        <li>GTM → container GTM-5QCBD62B → <strong>Versions</strong> tab. Each row shows the version number, name, created date and who published it.</li>
+        <li>For each version dated Jul 25 – Aug 15, open it and compare it with the previous version. Note every tag, trigger and variable that was added, changed or deleted.</li>
+        <li>Look for anything touching "SS - LeadTracker &amp; Conditional Replacer", the three call tags, the PPC exception trigger or the <code>query_string</code> variable. That's the most likely reason calls broke. FED's Aug 11 Claim Offer tag (#59) should be in this range.</li>
+        <li>Also check the Admin → Activity history for that range, if versions don't explain it.</li>
+      </ol>
+      <dl class="rows"><dt>Fill in</dt><dd>The <code>[pending]</code> line in comment point 4: "Versions X–Y were published between Jul 25 and Aug 15: …", or "No changes were published in that range."</dd>
+      <dt>Screenshot</dt><dd>The Versions list showing that date range (optional, but useful).</dd></dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.5</span><h3>Duplicate Conversion Linker</h3></header>
+      <ol class="steps">
+        <li>GTM → Tags → search <code>linker</code>. Two tags appear: "Conversion Linker" and "SS - Conversion Linker".</li>
+        <li>Open each. Both are type Conversion Linker, with no cross-domain or URL passthrough settings, triggered on All Pages.</li>
+        <li>Optional: in GTM Preview, load the site and check the Container Loaded event. Both appear under "Tags Fired".</li>
+      </ol>
+      <dl class="rows"><dt>Pass if</dt><dd>Both have the same settings and trigger.</dd>
+      <dt>Screenshot</dt><dd>The Tags list with both linkers boxed.</dd></dl>
+    </article>
+
+    <article class="point">
+      <header><span class="tag">#80.6</span><h3>Invoca offline conversion import</h3></header>
+      <ol class="steps">
+        <li>On any page, run in the Console: <code>[...document.scripts].map(s =&gt; s.src).filter(s =&gt; /invoca/i.test(s))</code>. Expected: <code>[]</code>.</li>
+        <li>Network tab, filter <code>invoca</code>, then reload. Expected: no requests.</li>
+        <li>GTM → Tags → search <code>invoca</code>. Expected: no results.</li>
+        <li>If you have Google Ads access: Tools → Data manager → look for an Invoca connection. If not, leave this to Dafne. The comment already asks her.</li>
+      </ol>
+      <dl class="rows"><dt>Pass if</dt><dd>Steps 1–3 find nothing. That's all the comment says ("we do not see Invoca on the website").</dd></dl>
+    </article>
+  </div>
+</section>
+
+<section id="testing">
+  <h2>Testing, step by step</h2>
+  <p>Run part A–C now, before any fix, to prove the problem and take the screenshots. Run part E after the fixes are in the GTM workspace, before publishing.</p>
+
+  <article class="point">
+    <header><span class="tag">0</span><h3>Setup (every run)</h3></header>
+    <ol class="steps">
+      <li>Use a <strong>new incognito window</strong> for each scenario. The swap script remembers you in the <code>query_string</code> and <code>referrer_site</code> cookies, and a leftover cookie makes the next test lie. Closing every incognito window clears them.</li>
+      <li>Open DevTools (F12). In Network, tick <strong>Disable cache</strong> and <strong>Preserve log</strong>.</li>
+      <li>Keep these conversion labels handy to search the Network tab:
+        <div class="tablewrap" style="margin-top:8px"><table>
+          <thead><tr><th>Call tag</th><th>Label</th></tr></thead>
+          <tbody>
+            <tr><td class="num">619-786-2032 (PPC)</td><td><code>iNPBCKvolpMcEPjs_Ykq</code></td></tr>
+            <tr><td class="num">858-299-2878</td><td><code>mwipCN2TytkZEPjs_Ykq</code></td></tr>
+            <tr><td class="num">(619) 416-7071</td><td><code>LCA3COr6uY8cEPjs_Ykq</code></td></tr>
+          </tbody>
+        </table></div>
+      </li>
+    </ol>
+  </article>
+
+  <article class="point">
+    <header><span class="tag">A</span><h3>Which number each visitor sees</h3></header>
+    <p>Run each row in its own fresh incognito window. Check the header number, a "Call" button and the footer.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Scenario</th><th>How to open it</th><th>Expected today</th><th>Expected after fix</th></tr></thead>
+      <tbody>
+        <tr><td>A1 Direct PPC</td><td>Paste <code>https://www.sunsetcliffsplumbing.com/?id=ppc</code> in the address bar</td><td class="num">619-786-2032</td><td class="num">619-786-2032</td></tr>
+        <tr><td>A2 Ad click (page 1)</td><td>Go to <code>https://www.google.com/</code>, then in Console run the line below</td><td>Text 2032, header icon <span class="num">2031</span> <span class="pill bad">bug</span></td><td class="num">619-786-2032</td></tr>
+        <tr><td>A3 Ad click (page 2)</td><td>After A2, click any menu link (e.g. Services)</td><td class="num">619-786-2032</td><td class="num">619-786-2032</td></tr>
+        <tr><td>A4 Organic</td><td>Go to google.com, run the line below without <code>?id=ppc</code></td><td class="num">619-786-2031</td><td class="num">619-786-2031</td></tr>
+        <tr><td>A5 Direct, no params</td><td>Paste <code>https://www.sunsetcliffsplumbing.com/</code></td><td>Original numbers</td><td>Original numbers</td></tr>
+      </tbody>
+    </table></div>
+<pre>// A2 – run in the Console on google.com
+location.href = "https://www.sunsetcliffsplumbing.com/?id=ppc&amp;gclid=test"
+
+// A4
+location.href = "https://www.sunsetcliffsplumbing.com/"</pre>
+    <p>Navigating from google.com makes the site see a Google referrer, just like a real ad click. To confirm, run <code>document.referrer</code> in the Console on the landing page. It should print <code>https://www.google.com/</code>.</p>
+    <p class="note"><strong>Screenshot #80.1:</strong> A2. Right-click the header phone icon → Inspect, then box <code>href="tel:6197862031"</code> and the address bar.</p>
+  </article>
+
+  <article class="point">
+    <header><span class="tag">B</span><h3>Which call tags fire, and in what order</h3></header>
+    <ol class="steps">
+      <li>Repeat A2 in a fresh incognito window with the Network tab open and filtered by <code>11295225464</code> (the Ads account ID).</li>
+      <li>Search the requests for the three labels above. <strong>Today</strong> you should see the 858 and 416 labels on the landing page. That's the #81.2 problem.</li>
+      <li>In Console, run <code>dataLayer.map(e =&gt; e.event)</code> to see the event order. Today there is no swap event, so the PPC call tag runs on the page-load events, before the number changes.</li>
+      <li>Repeat A3 (second page). The 858 and 416 labels should now be missing, because the cookie blocks them.</li>
+      <li><strong>Optional, GTM Preview:</strong> GTM → Preview → enter <code>https://www.sunsetcliffsplumbing.com/?id=ppc&amp;gclid=test</code>. In Tag Assistant, open the first event (Container Loaded) and check the "Tags Fired" list. Preview opens the site from tagassistant.google.com, so check <code>document.referrer</code> first, because it may not behave exactly like a Google click.</li>
+    </ol>
+    <p class="note"><strong>Screenshot #80.2:</strong> GTM → "SS - LeadTracker &amp; Conditional Replacer" → Advanced Settings → Tag Sequencing, with the cleanup tag boxed. <strong>#80.5:</strong> GTM Tags list filtered "linker", with both tags boxed. <strong>#81.2:</strong> homepage (A5), with 858-299-2878 boxed.</p>
+  </article>
+
+  <article class="point">
+    <header><span class="tag">C</span><h3>Google forwarding number</h3></header>
+    <ol class="steps">
+      <li>Fresh incognito. From google.com run:
+<pre>location.href = "https://www.sunsetcliffsplumbing.com/?id=ppc#google-wcc-debug"</pre></li>
+      <li><code>#google-wcc-debug</code> asks Google to show its forwarding number without a real ad click. <code>gclid=test</code> alone never does.</li>
+      <li><strong>Expected today:</strong> the number Google replaces is 858-299-2878 or 416-7071, not 619-786-2032. <strong>After fix:</strong> the PPC 619-786-2032 spots change to a Google number on page 1.</li>
+      <li>If no number changes at all, note it. Google can withhold forwarding numbers (for example, outside call reporting hours), and then this test can't prove anything either way.</li>
+    </ol>
+  </article>
+
+  <article class="point">
+    <header><span class="tag">D</span><h3>Forms (HP Plumbing Problems, Claim Offer)</h3></header>
+    <ol class="steps">
+      <li><strong>No live test submissions without telling Dafne first.</strong> They go to the client's inbox and ServiceTitan. If she OKs it, use the name "TEST – SmartSites, please ignore".</li>
+      <li>Without submitting: GTM → the "SS: HP - Plumbing Problems Form" tag → Triggering. It shows <code>gform_submission</code> with no form ID filter. <span class="pill warn">Screenshot #81.1</span></li>
+      <li>With approval, in GTM Preview: submit the "Plumbing Problems? We Can Help!" form (form 7). On the <code>gform_submission</code> event, check the Variables tab for <code>entry.form_id</code> = 7, and check that <code>entry.3</code> is the phone and <code>entry.4</code> the email.</li>
+      <li>Then submit a Claim Offer (form 11). <strong>Today</strong> both "HP - Plumbing Problems" and "Claim Offer" fire. <strong>After fix</strong> only "Claim Offer" fires.</li>
+    </ol>
+  </article>
+
+  <article class="point">
+    <header><span class="tag">E</span><h3>After the fixes (workspace, before publish)</h3></header>
+    <ol class="steps">
+      <li>Apply fixes 1–5 below in the GTM workspace. Don't publish.</li>
+      <li>GTM Preview, then re-run A1–A5. Every PPC row must show 619-786-2032, including A2.</li>
+      <li>In Tag Assistant, on the A2 page: the <code>ss_number_swapped</code> event appears, the PPC call tag fires <strong>on that event</strong>, and the 858 and 416 call tags show under "Tags Not Fired".</li>
+      <li>On A4/A5 (non-PPC): the PPC call tag does not fire. The 858 and 416 call tags fire as before.</li>
+      <li>Re-run C. On page 1, the 2032 spots should get the Google number.</li>
+      <li>Check there's one Conversion Linker, and that the HP Plumbing Problems tag fires only for form 7 (D3–D4, if approved).</li>
+      <li>Send the results and screenshots to the user for review, then publish with a version name such as "PPC swap timing + 858/416 block + form 7 trigger".</li>
+    </ol>
+  </article>
+
+  <article class="point">
+    <header><span class="tag">F</span><h3>After publish: monitor 3–5 business days</h3></header>
+    <ol class="steps">
+      <li>Repeat A2 on the live site (no Preview) once, right after publishing.</li>
+      <li>Google Ads → Goals → Conversions: daily, check that "Calls From Website #(619-786-2032)" starts recording, and that the 858 and 416 actions drop for PPC traffic.</li>
+      <li>Check "SS: HP - Plumbing Problems Form". The "Misconfigured" flag only clears after a new conversion comes in, so it may stay for a few days.</li>
+      <li>Note the counts per action in the task log for the follow-up comment.</li>
+    </ol>
+  </article>
+</section>
+
+<section>
+  <h2>Fixes once Dafne confirms</h2>
+  <p>Make these in the GTM workspace and test them in Preview. Publish only after you've reviewed them.</p>
+  <div class="points">
+    <article class="point">
+      <header><span class="tag">1 + 2</span><h3>LeadTracker &amp; Conditional Replacer tag</h3></header>
+      <p>Force PPC conditions when id=ppc is in the URL or cookie, and tell GTM when the swap is done. Replace the <code>conditional-replacer-3.js</code> callback body with:</p>
+<pre>d("//leadtracker.smartsites.com/conditional-replacer-3.js",function(){
+  a("[href^='tel:']").each(function(){a(this).attr("href","tel:"+a(this).attr("href").replace(/\D/g,""))});
+  var ppc=/[?&amp;]id=ppc(&amp;|$)/.test(location.search)||/query_string=[^;]*ppc/.test(document.cookie);
+  var cond={BY_PARAMS:{text:"619-786-2032",params:{id:"ppc"}}};
+  if(!ppc)cond.SEARCH_ENGINE={text:"619-786-2031"};
+  a.each("(619) 416-7071;6194167071;858-299-2878;8582992878;(858) 299-2878;+1 (619) 874-7900;6198747900;619-416-7071;(619) 555-0123;6195550123".split(";"),function(c,b){
+    ConditionalReplacer({rootSelector:a('a[href^="tel:"],.elementor-icon-list-text,.elementor-icon-box-title,.elementor-icon-box-description,.elementor-button-text'),
+      placeholder:b,conditions:cond}).run(a)});
+  window.dataLayer.push({event:"ss_number_swapped"});
+});</pre>
+      <ol class="steps">
+        <li>New trigger: Custom Event <code>ss_number_swapped</code>, plus a condition that the <code>query_string</code> cookie contains <code>ppc</code>.</li>
+        <li>PPC call tag: set that trigger, remove the old gtm.js trigger, and remove it as the cleanup tag of the LeadTracker tag.</li>
+      </ol>
+      <p class="note">Event name is a suggestion. Rename it if you have a convention. Check in Preview that <code>.run()</code> swaps synchronously, meaning the number has already changed when the event appears.</p>
+    </article>
+    <article class="point">
+      <header><span class="tag">3</span><h3>858 / 416 call tags</h3></header>
+      <p>Add an exception trigger on gtm.js with Page URL contains <code>id=ppc</code>, so they're also blocked on page 1. Or pause both if Dafne wants only 2032 counted.</p>
+    </article>
+    <article class="point">
+      <header><span class="tag">4</span><h3>Conversion Linker</h3></header>
+      <p>Delete "Conversion Linker". Keep "SS - Conversion Linker".</p>
+    </article>
+    <article class="point">
+      <header><span class="tag">5</span><h3>HP - Plumbing Problems Form</h3></header>
+      <p>Trigger: <code>gform_submission</code> AND <code>entry.form_id</code> equals <code>7</code>. Tick "Include user-provided data" and use the existing user-provided-data variable. That variable reads <code>entry.3</code> (phone) / <code>entry.4</code> (email), so check those field IDs on form 7 in Preview.</p>
+    </article>
+    <article class="point">
+      <header><span class="tag">6</span><h3>Site fixes (WordPress)</h3></header>
+      <p>/services/ "REQUEST A QUOTE" <code>tel:6197862031</code> → main placeholder number. Homepage "Call Now" <code>tel:6195550123</code> → real number. Add <code>a[href^="sms:"]</code> and <code>.elementor-text-editor</code> to rootSelector. Remove the hard-coded gtag G-R5GK7EV9M6, since GTM already loads it. Clear WP Rocket cache.</p>
+    </article>
+  </div>
+</section>
+</main>

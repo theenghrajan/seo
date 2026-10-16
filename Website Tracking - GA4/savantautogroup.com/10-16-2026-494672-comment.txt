@@ -1,0 +1,15 @@
+Maria Joseph
+
+As per comment #18,
+
+For the site: https://www.savantautogroup.com/
+
+We have created a new Google Tag Manager container under web@smartsites.com and added LeadTracker to it.
+GTM ID: GTM-KKSHM5KQ
+
+Please share the code linked below with the client so they can install it on their site:
+https://drive.google.com/file/d/1IRasgl90kLHdd7k5eTxVNe7VZNMOhaUO/view?usp=sharing
+
+Once GTM is installed, please let us know and we will proceed with the next steps.
+
+Thanks!

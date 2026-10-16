@@ -1,0 +1,67 @@
+As per comment #80 and #81,
+
+For the site: https://www.sunsetcliffsplumbing.com/
+
+Comment #80
+
+1. Number shown with ?id=ppc&gclid=test
+...
+The header number, buttons and call links show 619-786-2032 as expected. This is true when the URL is opened directly and also when the visitor comes from Google, as a real ad click does.
+Reference screenshot:https://drive.google.com/file/d/1nPu5w8MypM5urRo-nvrMN78YMuLUyUrY/view?usp=sharing
+
+2. PPC call tag firing after the LeadTracker & Conditional Replacer tag
+...
+Tag sequencing is already set up: "SS - GA Conversion (Calls From Website #(619-786-2032 PPC))" runs as a cleanup tag after "SS - LeadTracker & Conditional Replacer".
+Reference screenshot: https://drive.google.com/file/d/12Q14Sv0NqMlmff3DkGq9wU2pMLCqefiY/view?usp=sharing
+
+3. Google forwarding number replacing 619-786-2032
+...
+Reference screenshot: https://drive.google.com/file/d/1oqQIcei6XeIVSNBDUQpykRSG1dzBkiPo/view?usp=sharing
+
+4. GTM version history (Jul 25 - Aug 15)
+...
+Only one GTM version was published in this period: version 25 on 08/11/2026 at 5:38 PM ("SS: Claim Offer Forms (HomePage) Implemented"). Compared with the previous version 24 (07/20/2026), it only added the "SS - Claim Offer Forms (HomePage)" trigger and the "SS - GA Conversion (Claim Offer Forms (HomePage))" tag, as requested in comment #58. No call tracking tags, the LeadTracker tag or the PPC number setup were changed in this period, so the drop in call conversions was not caused by a GTM change.
+Reference screenshot: https://drive.google.com/file/d/1ZfCqcOQBh0bRNKuDGAh1j3jxStSyGu3R/view?usp=sharing
+Referebce screebshot: https://drive.google.com/file/d/1FJrStefVrqTSVVDua8IqQ7TuRjvwB0uk/view?usp=sharing
+
+5. Duplicate Conversion Linker
+...
+Confirmed. "Conversion Linker" and "SS - Conversion Linker" are identical and both fire on all pages. This does not break tracking, but one is not needed. We will remove "Conversion Linker" and keep "SS - Conversion Linker".
+Reference screenshot: https://drive.google.com/file/d/1uHBeRNe8dv5hPihosMW1MtRMhAnvNArc/view?usp=sharing
+
+6. Invoca offline conversion import
+...
+Please reach out IBM team for further details on this.
+
+Comment #81
+
+1. SS: HP - Plumbing Problems Form "Misconfigured"
+...
+The tag is still firing (last ping Oct 13). Google shows "Misconfigured" because there have been no conversions in the last 7 days (last one Oct 4), and it is also recommending enhanced conversions.
+SS: HP - Plumbing Problems Form (Conversion ID: 11295225464, Conversion Label: cRDiCPWQvI8cEPjs_Ykq)
+Reference screenshot: https://drive.google.com/file/d/1I5log9kBzpaqGjGwCsk0Dg4Ci4Eud5XY/view?usp=sharing
+
+2. Calls to 858-299-2878
+...
+Yes, these are being tracked under "SS: Calls From Website # (858) 299-2878".
+SS: Calls From Website # (858) 299-2878 (Conversion ID: 11295225464, Conversion Label: mwipCN2TytkZEPjs_Ykq)
+Reference screenshot: https://drive.google.com/file/d/1qvdtEBrSh3UWvQD4GKY5LUhf5bCfw7AT/view?usp=sharing
+
+Thanks!
+
+<!-- Event snippet for SS: HP - Plumbing Problems Form conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-11295225464/cRDiCPWQvI8cEPjs_Ykq',
+      'value': 1.0,
+      'currency': 'USD'
+  });
+</script>
+
+<script>
+  gtag('config', 'AW-11295225464/mwipCN2TytkZEPjs_Ykq', {
+    'phone_conversion_number': '(858) 299-2878'
+  });
+</script>
+
+
