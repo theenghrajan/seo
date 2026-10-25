@@ -1,0 +1,29 @@
+Richard Gedeon
+For the site: https://www.qcny.com/
+As per comment #1,
+
+We reviewed the request. We plan to add the ChatGPT pixel through Google Tag Manager (GTM), as we don't have code/CMS access to the site. The pixel will load on all pages of www.qcny.com and booking.qcny.com. We will then add a "Booking" goal that sends the booking value to ChatGPT Ads, firing at the same point as the current Google Ads BOOK conversion.
+
+To proceed, we need the following:
+
+1. GTM publish access
+Our access to the GTM container used on www.qcny.com and booking.qcny.com is limited (we can edit but not publish). Please ask the client to give web@smartsites.com "Publish" permission on that container. Alternatively, we can prepare the changes and the client can publish them from their end.
+
+2. Approval to edit GTM
+In the previous tracking task we were asked not to make any changes to GA4/the site, and the client's developer is also working in the same GTM container. Please confirm that we are OK to add the new ChatGPT tags and publish them now.
+
+3. ChatGPT Ads Manager access (recommended)
+Please ask the client to add web@smartsites.com as a user on their ChatGPT/OpenAI Ads account (ads.openai.com). This lets us confirm the pixel and the booking value are being received. If that's not possible, we will share screenshots from the site and you can confirm from the Ads Manager.
+
+4. Test booking
+To confirm the booking goal and value, we need to make one test booking on booking.qcny.com, as done before. Please confirm, and ask the client to cancel it afterwards.
+
+5. Scope
+Should the goal track bookings only (booking.qcny.com), or also gift/product purchases on shop.qcny.com?
+
+6. Cookie banner
+Should the ChatGPT pixel respect the client's cookie consent banner? If yes, please ask the client's developer which cookie consent tool they use.
+
+Note: if the client's developer prefers to add the pixel code directly to the site instead, please let us know, so we don't add it twice. We will then only set up the booking goal in GTM.
+
+Thanks!

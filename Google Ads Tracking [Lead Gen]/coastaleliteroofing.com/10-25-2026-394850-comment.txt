@@ -1,0 +1,18 @@
+Dafne Nazar Antonelli
+
+https://login.smartsites.com/projects/7499/tasks/394850
+
+As per comment #35,
+
+For the site: https://coastaleliteroofing.com/
+
+Re: We havent seen any conversion coming in from the Contact Page with ppc parameter. Please check this is firing correctly and test it.
+==> We tested the form on the Contact Us page (https://coastaleliteroofing.com/contact-us/) and found the conversion is firing properly. After a successful submission, the user is taken to the thank you page (/contact-us/thank-you/) and the conversion is recorded.
+
+SS: Contact Us
+Conversion ID: 11191235592, Conversion label: etg9CMrls6AbEIjostgp
+Reference screenshot: https://drive.google.com/file/d/19soUrLCCQ-0puQQkzNnLCYYWE5kPHVFN/view?usp=sharing
+
+Please check and let us know.
+
+Thanks!

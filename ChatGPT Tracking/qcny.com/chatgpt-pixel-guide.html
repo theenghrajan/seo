@@ -1,0 +1,300 @@
+<title>QCNY ChatGPT Pixel Setup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column, a flow strip up top, numbered steps (real sequence), mock GTM panels beside code */
+:root{
+  --bg:#f6f7f6; --surface:#ffffff; --fg:#17201d; --muted:#5b6762; --line:#dfe4e1;
+  --accent:#0d7a5f; --accent-soft:#e3f2ec; --code-bg:#101a17; --code-fg:#d8ece4;
+  --warn:#a15c00; --warn-soft:#fbf0dc; --bad:#b3261e; --bad-soft:#fbe4e2; --ok:#0d7a5f;
+  --mark:#d93025;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1513; --surface:#161e1b; --fg:#e4ece8; --muted:#97a59f; --line:#2a3531;
+  --accent:#4cc79f; --accent-soft:#16322a; --code-bg:#0a0f0d; --code-fg:#cfe7dd;
+  --warn:#f0b35a; --warn-soft:#33270f; --bad:#f2867d; --bad-soft:#3a1a18; --ok:#4cc79f; --mark:#ff6b5f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1513; --surface:#161e1b; --fg:#e4ece8; --muted:#97a59f; --line:#2a3531;
+  --accent:#4cc79f; --accent-soft:#16322a; --code-bg:#0a0f0d; --code-fg:#cfe7dd;
+  --warn:#f0b35a; --warn-soft:#33270f; --bad:#f2867d; --bad-soft:#3a1a18; --ok:#4cc79f; --mark:#ff6b5f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--f-body)}
+.wrap{max-width:920px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+h1{font-size:30px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:21px;font-weight:700}
+h3{font-size:16px;font-weight:600}
+p{margin:0;max-width:68ch}
+a{color:var(--accent)}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--accent-soft);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13.5px;color:var(--muted)}
+.meta b{color:var(--fg);font-weight:600}
+
+/* request quote */
+.quote{border-left:3px solid var(--accent);padding:4px 0 4px 16px;color:var(--fg)}
+.quote p+p{margin-top:6px}
+.quote .who{font-size:13px;color:var(--muted)}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;overflow-x:auto}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0;position:relative}
+.node .n{font-family:var(--f-mono);font-size:11.5px;color:var(--accent)}
+.node b{font-size:14px}
+.node span{font-size:12.5px;color:var(--muted);line-height:1.45}
+.node.key{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+@media (max-width:760px){.flow{grid-template-columns:1fr}}
+
+/* access table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;white-space:nowrap}
+.pill.ok{background:var(--accent-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;gap:28px;counter-reset:s}
+.step{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px}
+.step::before{counter-increment:s;content:counter(s);width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--bg);font-weight:700;display:grid;place-items:center;font-size:14px}
+.step>div{display:flex;flex-direction:column;gap:12px;min-width:0}
+ul.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.note{font-size:13.5px;padding:10px 14px;border-radius:6px;background:var(--warn-soft);color:var(--fg);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent)}
+.note b{color:var(--warn)}
+.tip{font-size:13.5px;padding:10px 14px;border-radius:6px;background:var(--accent-soft)}
+
+/* choice cards */
+.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.choice>div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.choice .tag{align-self:flex-start}
+@media (max-width:640px){.choice{grid-template-columns:1fr}}
+
+/* code */
+.code{position:relative;background:var(--code-bg);color:var(--code-fg);border-radius:8px;overflow:hidden}
+.code .bar{display:flex;justify-content:space-between;align-items:center;padding:6px 10px 6px 14px;font-size:12px;color:color-mix(in srgb,var(--code-fg) 65%,transparent);border-bottom:1px solid color-mix(in srgb,var(--code-fg) 12%,transparent)}
+.code pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.55 var(--f-mono);white-space:pre}
+.copy{font:600 12px var(--f-body);background:transparent;color:var(--code-fg);border:1px solid color-mix(in srgb,var(--code-fg) 30%,transparent);border-radius:5px;padding:3px 10px;cursor:pointer}
+.copy:hover{background:color-mix(in srgb,var(--code-fg) 12%,transparent)}
+.copy:focus-visible,.check input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* GTM mock */
+.gtm{background:var(--surface);border:1px solid var(--line);border-radius:8px;font-size:13.5px;overflow:hidden}
+.gtm .hd{padding:10px 14px;border-bottom:1px solid var(--line);font-weight:600;display:flex;gap:8px;align-items:center}
+.gtm .hd i{font-style:normal;font-size:11px;color:var(--muted);font-weight:500;border:1px solid var(--line);border-radius:4px;padding:0 6px}
+.gtm dl{margin:0;display:grid;grid-template-columns:170px minmax(0,1fr)}
+.gtm dt,.gtm dd{margin:0;padding:8px 14px;border-bottom:1px solid var(--line)}
+.gtm dt{color:var(--muted)}
+.gtm dd{font-family:var(--f-mono);font-size:12.5px;overflow-wrap:anywhere}
+.gtm dl>*:nth-last-child(-n+2){border-bottom:0}
+.gtm .hl{outline:2px solid var(--mark);outline-offset:-2px;border-radius:3px}
+@media (max-width:560px){.gtm dl{grid-template-columns:1fr}.gtm dt{border-bottom:0;padding-bottom:0}}
+
+/* checklist */
+.checks{display:flex;flex-direction:column;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:6px;cursor:pointer}
+.check:hover{background:var(--accent-soft)}
+.check input{margin-top:4px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+.check span{min-width:0}
+.check input:checked+span{color:var(--muted);text-decoration:line-through}
+.progress{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="stack">
+  <div class="eyebrow">QCNY (PPC) · Task #35 ChatGPT Tracking · 508304</div>
+  <h1>QCNY ChatGPT Pixel Setup</h1>
+  <p>How to install the ChatGPT (OpenAI Ads) pixel on qcny.com and send each booking, with its value, as a conversion. This follows Richard's comment #1.</p>
+  <div class="meta">
+    <span>Pixel ID <b><code>2qa8ZcibFQrtXMEEdZRh5D</code></b></span>
+    <span>Goal event <b><code>order_created</code></b></span>
+    <span>Sites <b>www.qcny.com · booking.qcny.com</b></span>
+    <span><a href="https://login.smartsites.com/projects/6927/tasks/508304">Open AC task</a></span>
+  </div>
+</header>
+
+<section class="stack">
+  <h2>The request</h2>
+  <div class="quote">
+    <p>"Install this script in your website's HTML head, preferably near the top. Add only one Pixel setup script per page."</p>
+    <p>"Once done, please create a goal with value for bookings."</p>
+    <p class="who">Richard Gedeon, comment #1, Oct 23</p>
+  </div>
+  <p>That's two jobs. <b>Job 1</b> is the base pixel on every page. <b>Job 2</b> is a booking event that carries the booking amount. In ChatGPT Ads Manager you don't build the goal by hand: the event shows up under Conversions once the pixel sends it, and Richard selects it as the campaign goal.</p>
+</section>
+
+<section class="stack">
+  <h2>How a booking gets credited</h2>
+  <div class="flow" role="list">
+    <div class="node" role="listitem"><span class="n">CLICK</span><b>Ad in ChatGPT</b><span>Landing URL carries an <code>oppref</code> click ID</span></div>
+    <div class="node key" role="listitem"><span class="n">www.qcny.com</span><b>Base pixel loads</b><span>Saves <code>oppref</code> in the <code>__oppref</code> cookie (30 days)</span></div>
+    <div class="node key" role="listitem"><span class="n">booking.qcny.com</span><b>Base pixel loads</b><span>Separate domain, so it needs the pixel too</span></div>
+    <div class="node" role="listitem"><span class="n">dataLayer</span><b><code>purchase</code> event</b><span>Same event the Google Ads BOOK goal uses, with the value</span></div>
+    <div class="node key" role="listitem"><span class="n">oaiq measure</span><b><code>order_created</code></b><span>amount in cents + USD, then on to Ads Manager</span></div>
+  </div>
+</section>
+
+<section class="stack">
+  <h2>Access check</h2>
+  <p>Based on the earlier QCNY tracking tasks (#8 Google Ads Tracking, #11 Facebook Ads Tracking).</p>
+  <div class="tbl"><table>
+    <thead><tr><th>What</th><th>Status</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td>Site code / CMS (to edit <code>&lt;head&gt;</code>)</td><td><span class="pill bad">None</span></td><td>None in Passbolt or AC. The booking site is a Vue.js app run by the client's developer, so either they add the snippet or we use GTM.</td></tr>
+      <tr><td>GTM on www + booking</td><td><span class="pill warn">Edit only</span></td><td>We can build tags and preview, but the client publishes. Check that web@smartsites.com still has access.</td></tr>
+      <tr><td>Approval to change GTM</td><td><span class="pill warn">Confirm</span></td><td>On Oct 15 Richard said not to change GA4 or the site. The client's developer (vegans.it) also edits this container.</td></tr>
+      <tr><td>ChatGPT Ads Manager (ads.openai.com)</td><td><span class="pill warn">Nice to have</span></td><td>Lets us see the event and its value arrive. Otherwise Richard checks.</td></tr>
+      <tr><td>Test booking</td><td><span class="pill ok">Allowed before</span></td><td>The card is only a guarantee. Richard OK'd real test bookings on Sep 22, and the client cancels them.</td></tr>
+      <tr><td>Booking value in dataLayer</td><td><span class="pill ok">Available</span></td><td>The GA4 purchase tag already receives the revenue value from the <code>purchase</code> push.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="stack">
+  <h2>Steps</h2>
+  <div class="steps">
+
+    <div class="step"><div>
+      <h3>Confirm the container and the data</h3>
+      <ul class="plain">
+        <li>Open www.qcny.com and booking.qcny.com in Chrome with Tag Assistant. Note the GTM ID on each. Shop uses <code>GTM-WQPLWSW</code>. Richard also mentioned <code>GTM-M6ZKNX22</code>.</li>
+        <li>View page source on both and search <code>oaiq</code>. If the client already added the pixel, skip step 2.</li>
+        <li>In GTM, open the trigger on the <b>Google Ads – Conversion – Purchase</b> (BOOK) tag. It's Custom Event <code>purchase</code>. In Preview, click the <code>purchase</code> event and note the exact keys for value and transaction ID, e.g. <code>ecommerce.value</code> and <code>ecommerce.transaction_id</code>.</li>
+      </ul>
+      <div class="note"><b>Before any edit:</b> get Richard's OK to work in this container, because of the Oct 15 "no changes" instruction.</div>
+    </div></div>
+
+    <div class="step"><div>
+      <h3>Install the base pixel</h3>
+      <p>Richard asked for the snippet in <code>&lt;head&gt;</code>. Pick the route that matches the access you have.</p>
+      <div class="choice">
+        <div><span class="pill ok tag">Preferred</span><b>Client's developer adds it to the code</b><span>Paste right after <code>&lt;head&gt;</code> on every page of www.qcny.com and the booking app's <code>index.html</code>. This is exactly what the request asks for.</span></div>
+        <div><span class="pill warn tag">Fallback</span><b>GTM Custom HTML tag</b><span>No code access needed. Use the Initialization trigger so it runs before other page-view tags.</span></div>
+      </div>
+      <div class="code"><div class="bar"><span>Base snippet (as sent, debug on for testing)</span><button class="copy" type="button" data-for="c-base">Copy</button></div>
+<pre id="c-base">&lt;script&gt;!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"2qa8ZcibFQrtXMEEdZRh5D",debug:true});&lt;/script&gt;</pre></div>
+      <div class="gtm">
+        <div class="hd">SS - ChatGPT Pixel - Base <i>GTM route</i></div>
+        <dl>
+          <dt>Tag type</dt><dd>Custom HTML</dd>
+          <dt>HTML</dt><dd>base snippet above</dd>
+          <dt>Firing trigger</dt><dd class="hl">Initialization - All Pages</dd>
+          <dt>Tag firing options</dt><dd class="hl">Once per page</dd>
+          <dt>Container(s)</dt><dd>the one on www.qcny.com and the one on booking.qcny.com</dd>
+        </dl>
+      </div>
+    </div></div>
+
+    <div class="step"><div>
+      <h3>Add the value variable</h3>
+      <p>ChatGPT wants <code>amount</code> as a whole number in cents, so $129.99 becomes <code>12999</code>. Use the real value key from step 1.</p>
+      <div class="gtm">
+        <div class="hd">cjs - oaiq amount (cents)</div>
+        <dl><dt>Variable type</dt><dd>Custom JavaScript</dd></dl>
+      </div>
+      <div class="code"><div class="bar"><span>Custom JavaScript</span><button class="copy" type="button" data-for="c-var">Copy</button></div>
+<pre id="c-var">function () {
+  var v = parseFloat({{dlv - ecommerce.value}});
+  return isNaN(v) ? undefined : Math.round(v * 100);
+}</pre></div>
+    </div></div>
+
+    <div class="step"><div>
+      <h3>Add the booking goal tag</h3>
+      <div class="code"><div class="bar"><span>Custom HTML</span><button class="copy" type="button" data-for="c-goal">Copy</button></div>
+<pre id="c-goal">&lt;script&gt;
+(function () {
+  var data = { type: "contents", currency: "USD" };
+  var amount = {{cjs - oaiq amount (cents)}};
+  if (amount) data.amount = amount; else delete data.currency;
+  var opts = {};
+  var tid = {{dlv - ecommerce.transaction_id}};
+  if (tid) opts.event_id = String(tid);
+  oaiq("measure", "order_created", data, opts);
+})();
+&lt;/script&gt;</pre></div>
+      <div class="gtm">
+        <div class="hd">SS - ChatGPT Pixel - Booking</div>
+        <dl>
+          <dt>Tag type</dt><dd>Custom HTML</dd>
+          <dt>Firing trigger</dt><dd class="hl">same trigger as the BOOK tag (Custom Event: purchase)</dd>
+          <dt>Tag sequencing</dt><dd class="hl">Fire before: SS - ChatGPT Pixel - Base (GTM route only)</dd>
+          <dt>Tag firing options</dt><dd>Once per event</dd>
+        </dl>
+      </div>
+      <div class="tip"><b>Why <code>order_created</code>:</b> QCNY bookings are paid tickets, and OpenAI defines <code>order_created</code> as a completed purchase. It's a standard event, so it can be the campaign's optimization goal. Custom events can't. Use <code>appointment_scheduled</code> instead only if Richard wants bookings reported as appointments.</div>
+    </div></div>
+
+    <div class="step"><div>
+      <h3>Test in Preview</h3>
+      <p>Tick these off as you go. They stay checked in this browser only.</p>
+      <div class="checks" id="checks">
+        <label class="check"><input type="checkbox" id="t1"><span>Base tag <b>Fired</b> on www.qcny.com (Tag Assistant)</span></label>
+        <label class="check"><input type="checkbox" id="t2"><span>Base tag <b>Fired</b> on booking.qcny.com</span></label>
+        <label class="check"><input type="checkbox" id="t3"><span>Console shows oaiq debug logs. Network tab filtered to <code>bzr.openai.com</code> shows requests.</span></label>
+        <label class="check"><input type="checkbox" id="t4"><span>Only one <code>oaiq.min.js</code> load per page (no double install)</span></label>
+        <label class="check"><input type="checkbox" id="t5"><span>Test booking made, and the Booking tag <b>Fired once</b> on the confirmation step</span></label>
+        <label class="check"><input type="checkbox" id="t6"><span>Request shows <code>order_created</code> with amount in cents and <code>USD</code></span></label>
+        <label class="check"><input type="checkbox" id="t7"><span>Google Ads BOOK and the GA4 purchase still fire as before (nothing else changed)</span></label>
+        <label class="check"><input type="checkbox" id="t8"><span>Screenshots taken with red boxes: tags, trigger, Preview, network request</span></label>
+      </div>
+      <div class="progress" id="prog">0 of 8 done</div>
+    </div></div>
+
+    <div class="step"><div>
+      <h3>Go live</h3>
+      <ul class="plain">
+        <li>Change <code>debug:true</code> to <code>debug:false</code> in the base tag.</li>
+        <li>Submit with the version name <code>SS - ChatGPT pixel + booking goal (order_created)</code>. Publish, or create the version and ask the client to publish it.</li>
+        <li>Ask the client to cancel the test booking.</li>
+        <li>In Ads Manager → Conversions, check that the pixel shows activity and <code>order_created</code> shows with value. It can take a while to appear. Richard then selects it as the goal.</li>
+        <li>Log the GTM version, the screenshot links and the test booking details in the task log.</li>
+      </ul>
+    </div></div>
+
+  </div>
+</section>
+
+<section class="stack">
+  <h2>Watch for</h2>
+  <ul class="plain">
+    <li><b>Cookie banner.</b> The pixel counts consent as given unless told otherwise. QCNY has a regional banner we couldn't see from our IP. If Richard wants the pixel to respect it, the base tag needs the same consent condition as the other marketing tags.</li>
+    <li><b>Content Security Policy.</b> If the client's server sends one, it must allow <code>bzrcdn.openai.com</code> (scripts) and <code>bzr.openai.com</code> (requests and images). Otherwise the pixel loads in Preview but is blocked.</li>
+    <li><b>Shop purchases.</b> shop.qcny.com runs a different container (<code>GTM-WQPLWSW</code>). It's out of scope unless Richard asks for gift purchases too.</li>
+    <li><b>One snippet per page.</b> If the client's developer later adds the code to the site, pause the GTM base tag.</li>
+  </ul>
+</section>
+
+<footer>
+  <span>Sources: <a href="https://developers.openai.com/ads/measurement-pixel">OpenAI JavaScript Pixel</a> · <a href="https://developers.openai.com/ads/supported-events">Supported events</a></span>
+  <span>Reusable version: seo/guides/tracking/install-chatgpt-pixel.md</span>
+</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=document.getElementById(b.dataset.for), txt=el.textContent;
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)};
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected, press Ctrl+C'};
+    try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+  });
+});
+(function(){
+  var boxes=[].slice.call(document.querySelectorAll('#checks input')), key='qcny-oaiq-checks', saved={};
+  try{saved=JSON.parse(localStorage.getItem(key))||{}}catch(e){}
+  var upd=function(){var n=boxes.filter(function(b){return b.checked}).length;document.getElementById('prog').textContent=n+' of '+boxes.length+' done'};
+  boxes.forEach(function(b){b.checked=!!saved[b.id];b.addEventListener('change',function(){saved[b.id]=b.checked;try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}upd()})});
+  upd();
+})();
+</script>
