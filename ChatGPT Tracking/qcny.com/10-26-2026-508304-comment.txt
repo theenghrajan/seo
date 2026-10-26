@@ -1,0 +1,26 @@
+Richard Gedeon
+
+https://login.smartsites.com/projects/6927/tasks/508304
+
+For the site: https://www.qcny.com/
+
+As per comment #1,
+
+Re: Install ChatGPT pixel
+...
+We installed the ChatGPT pixel (ID: 2qa8ZcibFQrtXMEEdZRh5D) through Google Tag Manager under web@smartsites.com. It now loads on all pages of the site, including the booking pages (booking.qcny.com).
+Reference screenshot: https://drive.google.com/file/d/1-UfkdWjGznz5jExWju19bXiM-Rb67AgJ/view?usp=sharing
+
+Re: Goal with value for bookings
+...
+We created the booking goal "appointment_scheduled" in the ChatGPT pixel. It fires when a booking is completed (booking confirmation page) and sends the booking value in USD.
+We completed a test booking and confirmed the goal fired with the booking value ($65 USD).
+Reference screenshot: https://drive.google.com/file/d/1dgQ_O_pr8axKmy85VNGeyWyMKAabCqIC/view?usp=sharing
+
+The changes are published and live.
+
+Note:
+- Please ask the client to cancel our test booking (reservation number: NYY202612602008941, name: Fed Dev).
+- The "appointment_scheduled" goal should show under Conversions in ChatGPT Ads Manager once bookings start coming in (it may take some time to appear). You can then select it as the conversion goal for the campaigns.
+
+Thanks!

@@ -1,0 +1,15 @@
+As per comment #4,
+
+We reviewed IBM's suggested fixes in comment #3. Here is where things stand on the front-end side:
+
+- Item 1 (filter on the Hub GA4 tab): no front-end work is needed. This filter cleans both the past spikes and any future ones in what the client sees, so the GA4 tab can be turned back on once IBM applies it.
+
+- Item 2 (label bot visits in GA4 going forward): this can't be done the way it is described. On this site, GA4 page views and visits are sent by Shopify's Google & YouTube app, not by Google Tag Manager. Shopify runs that app in a locked area that our code can't change, so we can't add a "bot" label to those visits. Also, the "product pages from outside the US" part of the rule can't be checked on the website itself, because the site doesn't know the visitor's country.
+
+- The only way to make item 2 work is to remove GA4 from the Google & YouTube app and rebuild all GA4 tracking (page views and purchase events) in Google Tag Manager. That is a much bigger change and could break purchase tracking, so we don't recommend it unless the raw GA4 numbers (outside the Hub) also need to be clean.
+
+- Item 3 (blocking bots on the site): Shopify doesn't let us add our own Cloudflare or rate-limiting rules. Shopify already runs its own bot protection, so there is nothing more we can set up there.
+
+We need to review this further and will update here by {due_date}.
+
+Thanks!

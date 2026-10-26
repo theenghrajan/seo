@@ -1,0 +1,16 @@
+As per comment #5,
+
+Excluding this traffic inside GA4 itself is not possible:
+- GA4 filters can only exclude traffic by IP address (internal/developer traffic). There is no option to filter by country, and the bots keep changing IPs.
+- GA4 filters only apply going forward. Data that is already recorded (June, July, September) can't be removed from GA4.
+
+We checked the bot traffic in GA4 and found a better way to filter it. The bots don't come from one country; they use two fixed device setups, which real shoppers almost never use:
+- Screen resolution 1366x1366 (Mac, Chrome): about 126,600 sessions, 0 purchases. This is the late July and September spikes (mostly Singapore, also Vietnam, Brazil, etc.).
+- Screen resolution 1280x1200 (Windows, Chrome): about 27,000 sessions, 0 purchases. This is the June spike, spread across many countries including the US. This is why the Singapore/China filter still leaves June wrong.
+Reference screenshot: 
+
+Recommendation for the Data Studio report:
+- Replace the Singapore/China filter with a filter that excludes Screen resolution 1366x1366 and 1280x1200.
+- This removes all three bot spikes (June, July, September), fixes the June discrepancy, and keeps real visitors from Singapore and China in the report. No US-only section is needed.
+
+Thanks!

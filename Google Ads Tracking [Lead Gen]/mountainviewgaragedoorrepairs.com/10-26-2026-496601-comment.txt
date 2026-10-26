@@ -1,0 +1,44 @@
+As per comment #10,
+
+For the site: https://mountainviewgaragedoorrepairs.com/
+
+Yes, we can create a new GTM container under web@smartsites.com and move the tracking to it, so we don't need to wait on the old container.
+
+What the old container (GTM-WMMRM3TC) is doing today:
+- GA4 (G-WXC2X9K7TR) and the Google tag for Google Ads (AW-16450533503)
+- GA4 events: phone_clicks, contact_us_form_submission and servicetitan_booking_completed
+
+Our plan:
+1. Create the new container and rebuild the above with the same event names, so the GA4 reports and any Google Ads conversions that use these GA4 events keep working.
+2. Add the Google Ads conversions: both call conversions (OG #(720) 851-8094 and PPC #720-719-9268 with id=ppc), Request a Free Quote, Contact Us, Book Now and Chat With Us, plus LeadTracker.
+3. Replace the old GTM code on the website with the new one. Both can't stay on the site, or GA4 will count everything twice.
+4. Test every conversion, then share the screenshots.
+
+To proceed, could you please:
+- Confirm we can go ahead and replace the old container on the website.
+- Share WordPress admin access, if it's not shared already.
+- Add web@smartsites.com to the Google Ads account (AW-16450533503) with Admin access, so we can get the conversion IDs and labels.
+
+About the form conversions from comment #2: when Google Ads sends you to a GA4 event, choose "Website", enter the site URL, then at the bottom pick "Add a conversion action manually" instead of the GA4 option. Please create them that way (Request a Free Quote, Contact Us Form, Book Now Form, Chat With Us Request) and we'll connect them through GTM. Or, once we have the Google Ads access, we can create them for you.
+
+Note: the Book Now popup and the Chat both come from ServiceTitan, so we'll check what those tools let us track and let you know if anything is limited.
+
+Thanks!
+
+https://login.smartsites.com/projects/8893/tasks/496601
+
+As per comment #10,
+
+For the site: https://mountainviewgaragedoorrepairs.com/
+
+Yes, we can create a new GTM container under web@smartsites.com and move the tracking to it, so we don't need to wait on the old container.
+
+Our plan:
+1. Create the new container and proceed with tracking, so the GA4 reports and any Google Ads conversions that use these GA4 events keep working.
+2. Add the Google Ads conversions: both call conversions (OG #(720) 851-8094 and PPC #720-719-9268 with id=ppc), Request a Free Quote, Contact Us, Book Now and Chat With Us, plus LeadTracker.
+3. Replace the old GTM code on the website with the new one. Both can't stay on the site, or GA4 will count everything twice.
+4. Test every conversion, then share the screenshots.
+
+To proceed, could you please confirm we can go ahead and add/replace the old container on the website.
+
+Thanks!
