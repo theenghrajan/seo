@@ -1,0 +1,13 @@
+Joel Eisenschmidt
+
+As per comment #5,
+
+For the site: https://senior-lending.com/
+
+Re: we need to create our own pixel
+...
+Could you please create the new Facebook Pixel and share the new Pixel ID with us? Once we have it, we will switch the tracking over to the new pixel in GTM.
+
+AI SmartSites (comment #6) confirmed the current tracking is in place and listed the three GTM tags that use the old pixel, so the switch will be quick once we have the new ID.
+
+Thanks!
