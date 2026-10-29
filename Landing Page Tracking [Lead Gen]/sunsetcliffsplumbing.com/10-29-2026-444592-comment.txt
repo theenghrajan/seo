@@ -1,0 +1,26 @@
+As per comment #1,
+
+For the landing page: https://www.sunsetcliffsplumbing.com/lp/
+
+1. SS: Calls From LP - PPC #(619) 786-2032
+Conversion ID: 11295225464, Conversion Label: SSeGCN6SpqodEPjs_Ykq
+...
+Reference screenshot: https://drive.google.com/file/d/1AC-5mSGkgitUqrYSDpZvXbpT0XwPj2Ba/view?usp=sharing
+
+2. SS: Form Submission LP - Plumbing Problems? (Top of Pg)
+Conversion ID: 11295225464, Conversion Label: YL7FCLPNpqodEPjs_Ykq
+...
+Reference screenshot: https://drive.google.com/file/d/1zp4Pj8h1XQF19A-gdHe1p_5XjvthizTs/view?usp=sharing
+
+3. SS: Form Submission LP - Request A Quote (Pop Up)
+Conversion ID: 11295225464, Conversion Label: Ia4ECMWbq6odEPjs_Ykq
+...
+Reference screenshot: https://drive.google.com/file/d/1jK292r8pLVc631n8hsZtg_uqHKROZi9G/view?usp=sharing
+
+4. SS: Form Submission LP - Contact Us (Bottom of Pg)
+Conversion ID: 11295225464, Conversion Label: Pvh_CM29rqodEPjs_Ykq
+...
+The bottom form is renamed to "Contact Us", so there are no longer two "Request A Quote" forms.
+Reference screenshot: https://drive.google.com/file/d/1-vAUVR9bLwcG6hgYfrytxIa15GH3iPTR/view?usp=sharing
+
+Thanks!

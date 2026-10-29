@@ -1,0 +1,45 @@
+https://login.smartsites.com/projects/3805/tasks/151442
+
+As per comment #45, we have set up the website tracking.
+
+https://ohanasurfproject.com/
+
+Re: SS: Ohana Surf Project - GA4 (website) purchase
+...
+We have set up the tracking for "SS: Ohana Surf Project - GA4 (website) purchase" for bookings made through the booking window on the website, including the booking value.
+- Conversion ID: 11087899533
+- Conversion Label: 5LuYCJbSvaodEI3Xj6cp
+We have not tested a full purchase, as that would create a real paid booking.
+Please note: "SS: Ohana Surf Project - GA4 (LP) purchase" already counts all bookings recorded in Google Analytics, including bookings made on the website. As both conversion actions are set as Primary, website bookings may be counted twice. Please let us know if you would like to keep both, or set one of them as Secondary.
+
+Re: SS: Contact OSP Form - Website
+...
+We have set up the tracking for "SS: Contact OSP Form - Website" on the contact page form.
+- Conversion ID: 11087899533
+- Conversion Label: Df28CLWLvaodEI3Xj6cp
+However, while testing, the contact form is currently not submitting successfully, so we could not complete the test for this conversion. Please create a separate task to fix the contact form and will confirm this conversion once the form is working again.
+Reference screenshot: https://drive.google.com/file/d/18uncTtEpAZ_TmI411iaRlIy-dOC_cA14/view?usp=sharing
+
+Re: SS: Calls From Website #808-809-9854 *Make sure to set up the parameter id=ppc and for the number to switch to the PPC trackable if they click on the ad > lp > website.
+...
+We have set up and tested the call tracking for "SS: Calls From Website #808-809-9854" on the website. When a visitor goes from the landing page to the website, the id=ppc parameter is added and the website phone numbers (including the "Call Today" buttons) switch to the PPC trackable number for that visitor.
+- Conversion ID: 11087899533
+- Conversion Label: ri3BCKOpuaodEI3Xj6cp
+- Phone number: (808) 809-9854
+Reference screenshot: https://drive.google.com/file/d/1Jwo5Lfz9uLOLyDVWVzA-g2Op2aSnMdZu/view?usp=sharing
+
+Re: SS: Contact Email (Click) - Website / Secondary
+...
+We have set up and tested the tracking for clicks on the email links on the website under "SS: Contact Email (Click) - Website".
+- Conversion ID: 11087899533
+- Conversion Label: axU3COabuaodEI3Xj6cp
+Reference screenshot: https://drive.google.com/file/d/1eeP2oglTiP0FjeGqF3uBcqZ_Fiv_CwVM/view?usp=sharing
+
+Re: SS: Contact WhatsApp Click / Secondary
+...
+We have set up and tested the tracking for clicks on the WhatsApp link on the website under "SS: Contact WhatsApp Click".
+- Conversion ID: 11087899533
+- Conversion Label: NiK_COSuuaodEI3Xj6cp
+Reference screenshot: https://drive.google.com/file/d/1w935aAQ6KSRJoo-HoIWDL3ia3cscfnLS/view?usp=sharing
+
+Thanks!
