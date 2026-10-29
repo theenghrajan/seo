@@ -1,0 +1,40 @@
+As per comment #45, we have checked the conversion tracking on the landing page.
+
+https://ohanasurfproject.com/lp-2/
+
+Re: SS: Ohana Surf Project - GA4 (LP) purchase: should be tracking all the bookings happening on the landing page.
+...
+We have checked the booking flow from the landing page up to the FareHarbor booking page, and the visitor is passed through to FareHarbor correctly. We have not tested a full purchase, as that would create a real paid booking. Bookings made from the landing page are being recorded in Google Analytics and imported into this conversion.
+Reference screenshot: https://drive.google.com/file/d/1RbLWOo-crWX7dsq3rRrJsc1tTnubL0sa/view?usp=sharing
+
+Re: SS: Calls From LP #808-809-9854 : should be tracking all the calls coming from the landing page ( phone numbers + call today buttons)
+...
+We have confirmed that the call tracking for "SS: Calls From LP #808-809-9854" is set up correctly and working on the landing page.
+- Conversion ID: 11087899533
+- Conversion Label: 4fIGCID5gqcZEI3Xj6cp
+- Phone number: (808) 809-9854
+Reference screenshot: https://drive.google.com/file/d/1M_1GkUEMWoswzkxkxSmmgOFRDvHoREnr/view?usp=sharing
+
+Re: SS: Contact (Bottom LP Form): this conversion action was set up under the Contact conversion goal. Is it necessary to move to submission form goal? Or can we keep as is?
+...
+We have confirmed that "SS: Contact (Bottom LP Form)" is set up correctly and tracking the landing page form submissions.
+- Conversion ID: 11087899533
+- Conversion Label: 6zKzCPOMhKcZEI3Xj6cp
+Reference screenshot: https://drive.google.com/file/d/15axX19T2k9wtBm1UaaNiHSQSMIBjOmbM/view?usp=sharing
+
+Re: In addition, I would like to start trackign the clicks on the email link we have on the landing page under the conversion action: SS: Contact Email (Click) - LP / Secondary
+...
+We have set up and tested the tracking for clicks on the email links (top and bottom) on the landing page under "SS: Contact Email (Click) - LP".
+- Conversion ID: 11087899533
+- Conversion Label: QUHWCKSIvKodEI3Xj6cp
+Reference screenshot: https://drive.google.com/file/d/1exUrmqTUT_IIN5EASVaG4yy7lTLaBDsK/view?usp=sharing
+
+Re: Also, please let me know.. is there any conversion action in the account counting the clicks on the "Location" link we have at the top and bottom of the landing page?
+...
+No, currently there is no conversion action counting the clicks on the "Location" links on the landing page.
+
+Re: Website Tracking Set Up
+...
+We are currently reviewing the website tracking setup for the conversion actions you have created and will provide an update by Thursday, October 29th. Therefore we have shifted the due date accordingly.
+
+Thanks!

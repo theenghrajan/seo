@@ -1,0 +1,168 @@
+<title>Ohana Surf GTM Steps</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column, one block per tag, code blocks with copy */
+:root{
+  --bg:#f6f8f9; --fg:#1b2a33; --muted:#5b6b75; --line:#d5dee3; --card:#ffffff;
+  --accent:#0b6e8a; --code:#eef3f5; --warn:#8a5a00; --warnbg:#fff4dc;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f171c; --fg:#dbe5ea; --muted:#93a4ae; --line:#26343c; --card:#152027;
+  --accent:#5cc1dc; --code:#1b2830; --warn:#f0c46a; --warnbg:#2b2312; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171c; --fg:#dbe5ea; --muted:#93a4ae; --line:#26343c; --card:#152027;
+  --accent:#5cc1dc; --code:#1b2830; --warn:#f0c46a; --warnbg:#2b2312; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--sans);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
+main{max-width:760px;margin:0 auto;display:grid;gap:22px}
+h1{font-size:1.5rem;margin:0;text-wrap:balance}
+h2{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+h3{font-size:1.05rem;margin:0 0 6px;text-wrap:balance}
+p{margin:0}
+.sub{color:var(--muted)}
+.step{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:.92rem}
+.kv dt{color:var(--muted)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+code{font-family:var(--mono);font-size:.86em;background:var(--code);padding:1px 5px;border-radius:4px}
+.codewrap{position:relative;min-width:0}
+pre{margin:0;background:var(--code);border-radius:6px;padding:12px 14px;overflow-x:auto;font:13px/1.5 var(--mono)}
+.copy{position:absolute;top:6px;right:6px;font:500 12px var(--sans);border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:5px;padding:3px 9px;cursor:pointer}
+.copy:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.test{border-left:3px solid var(--accent);padding-left:10px;font-size:.92rem}
+.hold{background:var(--warnbg);color:var(--fg);border-radius:8px;padding:14px 18px}
+.hold strong{color:var(--warn)}
+ul,ol{margin:0;padding-left:20px;display:grid;gap:4px}
+</style>
+
+<main>
+<header style="display:grid;gap:6px">
+  <h1>Ohana Surf: GTM implementation</h1>
+  <p class="sub">AC #15 (151442) · Container <code>GTM-WC8M4DH</code> · Google Ads ID <code>11087899533</code> for every tag below</p>
+</header>
+
+<h2>Before you start</h2>
+<div class="step">
+  <ul>
+    <li>Open GTM-WC8M4DH with an account that has edit access. Create a new workspace.</li>
+    <li>Name new tags like the existing ones in the container.</li>
+    <li>For every link trigger: <b>Trigger type</b> Click - Just Links, <b>Wait for tags</b> on, <b>Check validation</b> off.</li>
+  </ul>
+</div>
+
+<h2>Landing page /lp-2/</h2>
+
+<section class="step">
+  <h3>1. LP email click conversion</h3>
+  <dl class="kv">
+    <dt>Trigger</dt><dd>Some Link Clicks: <code>Page Path</code> contains <code>/lp</code> AND <code>Click URL</code> starts with <code>mailto:</code></dd>
+    <dt>Tag</dt><dd>Google Ads Conversion Tracking</dd>
+    <dt>Label</dt><dd><code>QUHWCKSIvKodEI3Xj6cp</code></dd>
+  </dl>
+  <p class="test">Test: in Preview, click the email link on /lp-2/. The tag shows under that Link Click.</p>
+</section>
+
+<section class="step">
+  <h3>2. Make "Call Today" buttons use the tracking number</h3>
+  <p>The existing call tag only swaps the header and footer number. This makes all 9 call links dial Google's forwarding number.</p>
+  <dl class="kv">
+    <dt>Tag</dt><dd>Custom HTML (code below)</dd>
+    <dt>Trigger</dt><dd>Window Loaded, <code>Page Path</code> contains <code>/lp</code></dd>
+  </dl>
+  <div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>&lt;script&gt;
+(function () {
+  var tries = 0;
+  (function wait() {
+    if (typeof window._googWcmGet === 'function') {
+      window._googWcmGet(function (formatted, mobile) {
+        document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+          a.setAttribute('href', 'tel:' + mobile);
+        });
+      }, '808-809-9854');
+    } else if (tries++ &lt; 50) {
+      setTimeout(wait, 200);
+    }
+  })();
+})();
+&lt;/script&gt;</code></pre></div>
+  <p class="test">Test: open <code>https://ohanasurfproject.com/lp-2/#google-wcc-debug</code> in Preview, click <b>Force</b> in the grey box at the bottom left. Every call link, including all "Call Today" buttons, should change to <code>tel:+9999999999</code>.</p>
+</section>
+
+<h2>Main website</h2>
+
+<section class="step">
+  <h3>3. Website email click conversion</h3>
+  <dl class="kv">
+    <dt>Trigger</dt><dd>Some Link Clicks: <code>Click URL</code> starts with <code>mailto:</code> AND <code>Page Path</code> does not contain <code>/lp</code></dd>
+    <dt>Tag</dt><dd>Google Ads Conversion Tracking</dd>
+    <dt>Label</dt><dd><code>axU3COabuaodEI3Xj6cp</code></dd>
+  </dl>
+  <p class="test">Test: click the email link on the homepage or /contact-osp/.</p>
+</section>
+
+<section class="step">
+  <h3>4. WhatsApp click conversion</h3>
+  <dl class="kv">
+    <dt>Trigger</dt><dd>Some Link Clicks: <code>Click URL</code> contains <code>wa.me</code></dd>
+    <dt>Tag</dt><dd>Google Ads Conversion Tracking</dd>
+    <dt>Label</dt><dd><code>NiK_COSuuaodEI3Xj6cp</code></dd>
+  </dl>
+  <p class="test">Test: click the WhatsApp link on the homepage or /contact-osp/.</p>
+</section>
+
+<section class="step">
+  <h3>5. Contact form conversion (Gravity Form 3 on /contact-osp/)</h3>
+  <p><b>First check:</b> in Preview, submit a test on /contact-osp/ (message: "TEST – SmartSites tracking, please ignore"). If a <code>FormSubmission</code> event with <code>formId</code> 3 appears, skip 5a and use that event in 5b.</p>
+  <p><b>5a. Listener</b> (only if no event appeared): Custom HTML, trigger DOM Ready on All Pages.</p>
+  <div class="codewrap"><button class="copy" type="button">Copy</button><pre><code>&lt;script&gt;
+jQuery(document).on('gform_confirmation_loaded', function (e, formId) {
+  window.dataLayer.push({ event: 'gformConfirmation', gformId: String(formId) });
+});
+&lt;/script&gt;</code></pre></div>
+  <p><b>5b. Conversion</b></p>
+  <dl class="kv">
+    <dt>Variable</dt><dd>Data Layer Variable <code>gformId</code> (or the existing <code>formId</code> one)</dd>
+    <dt>Trigger</dt><dd>Custom Event <code>gformConfirmation</code> (or <code>FormSubmission</code>), fires when the form ID equals <code>3</code></dd>
+    <dt>Tag</dt><dd>Google Ads Conversion Tracking</dd>
+    <dt>Label</dt><dd><code>Df28CLWLvaodEI3Xj6cp</code></dd>
+  </dl>
+  <p class="test">Test: submit again. The event appears and the tag fires on it. If no event appears after submit, the form reloads the page instead. Stop and check before going further.</p>
+</section>
+
+<h2>Publish</h2>
+<div class="step">
+  <ol>
+    <li>Preview once more and confirm all 5 tags fire only on their own clicks or submissions.</li>
+    <li>Submit, version name: <code>151442 – LP email + call buttons, website email/WhatsApp/form</code>.</li>
+    <li>Capture one Awesome Screenshot per tag (Preview showing the tag fired, red box on it).</li>
+  </ol>
+</div>
+
+<div class="hold">
+  <p><strong>On hold, ask Dafne in the reply</strong></p>
+  <ul>
+    <li>Calls From Website + id=ppc: label found in Ads, <code>ri3BCKOpuaodEI3Xj6cp</code> (number 808-809-9854). Confirm when the website number should swap (only for visitors who came with id=ppc?).</li>
+    <li>GA4 (website) purchase <code>5LuY…</code>: in Ads this is a website tag, not a GA4 import. Bookings finish inside FareHarbor, so it can't fire from GTM without a FareHarbor setup. Ask Dafne whether the GA4 (LP) purchase import covers it.</li>
+    <li>Old Book Now tag for <code>AW-861377655</code> fires on landing page booking clicks: remove it?</li>
+    <li>Contact (Bottom LP Form) is under the Contacts goal, not Submit lead forms. Changing it is a Google Ads setting, her call.</li>
+  </ul>
+</div>
+</main>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var text = b.nextElementSibling.innerText;
+    var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); };
+    try {
+      navigator.clipboard.writeText(text).then(done, function () { select(b); });
+    } catch (e) { select(b); }
+  });
+});
+function select(b) {
+  var r = document.createRange(); r.selectNodeContents(b.nextElementSibling);
+  var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Press Ctrl+C';
+}
+</script>
