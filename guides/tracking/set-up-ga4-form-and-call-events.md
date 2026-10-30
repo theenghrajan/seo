@@ -56,3 +56,5 @@ Items (manual naming):
 
 ## Seen on
 - [catalystluxuryresidential.com #79 (504272)](../../Website%20Tracking%20-%20GA4/catalystluxuryresidential.com/10-29-2026-504272-log.md) — Fluent Forms #3 on /contact/, no phone numbers on site.
+
+Full task procedure (GTM + GA4 admin + LeadTracker + comment): skill `website-tracking-ga4` (`D:/work/claude/website-tracking-ga4/SKILL.md`).
