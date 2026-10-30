@@ -17,6 +17,7 @@ Topics: `tracking/` (GTM, GA4, Google Ads, Meta, Bing), `gsc/` (Search Console, 
 | cms | [make-wordpress-user-admin.md](cms/make-wordpress-user-admin.md) | Our WordPress login isn't an Administrator; steps for the client's developer (dashboard, WP-CLI or phpMyAdmin) |
 | tracking | [find-installed-tags.md](tracking/find-installed-tags.md) | Finding which GTM, GA4, Google Ads or Meta Pixel IDs a site loads, and where they were added |
 | tracking | [add-google-ads-call-tag.md](tracking/add-google-ads-call-tag.md) | Adding a new Google Ads "Calls from website" conversion tag in GTM (copy, test, publish, screenshots) |
+| tracking | [set-up-ga4-form-and-call-events.md](tracking/set-up-ga4-form-and-call-events.md) | GA4 Website Tracking: form_submission + click_to_call tags in GTM (method A/B/C, Fluent Forms listener, import JSON, Preview + DebugView testing) |
 | tracking | [install-chatgpt-pixel.md](tracking/install-chatgpt-pixel.md) | Installing the ChatGPT / OpenAI Ads pixel and a purchase or booking goal with value via GTM; access checklist |
 | tracking | [test-google-call-forwarding.md](tracking/test-google-call-forwarding.md) | Checking that the Google Ads forwarding number swaps on the site, and finding unswapped numbers |
 

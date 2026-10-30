@@ -1,0 +1,66 @@
+Joel Garcia
+
+As per the task descriptions and in addition to comment #4,
+
+For the site: https://catalystluxuryresidential.com/
+
+1. Create a new GTM Container under “GA4 Configuration” tag. Instructions here.
+....
+We have created the GTM ID (GTM-MQGMM4ZQ) and implemented it on the site.
+Screenshot: https://drive.google.com/file/d/1VjB0yd5pqnCrVXvOYgHGllOqUynwEWDe/view?usp=sharing
+
+2. Install LeadTracker on all contact forms OR Set up “Destination Goals” if unavailable.
+....
+We have implemented LeadTracker on the site and successfully tested the contact form.
+Screenshot: https://drive.google.com/file/d/10OZ4yTNwtxGXoSnB9tzaYwXdfbATgnt7/view?usp=sharing
+
+3. Create GA4 Property.  If hosted on a CMS platform use the following link and follow instructions for the specific CMS platform
+....
+The existing GA4 property (G-15H8C1EGGZ) has been connected to the site through GTM.
+Screenshot: https://drive.google.com/file/d/1fYXPX0_Ng6aoj01_VANLL3gI6lCi8ajU/view?usp=sharing
+
+  3.1 Goals
+  ....
+  We have configured the Form Submission (form_submission) key event for the contact form.
+  The site currently has no phone number, so there are no phone clicks to track.
+  Form Screenshot: https://drive.google.com/file/d/1V19bGDysT-9l2BiXaIEUiD3lhlAdj6ed/view?usp=sharing
+  GA4 key events screenshot: https://drive.google.com/file/d/1iakCrC7FvBVJPpTZjTJChP9oDF9a79qA/view?usp=sharing
+
+  3.2 Ensure the dev site, AC, and the client’s website are not being tracked as referral traffic in GA4.
+  ....
+  We have excluded traffic from the dev site, ActiveCollab, and their website.
+  Screenshot: https://drive.google.com/file/d/1vCtFpt7crB137ZQKBvW5h7Lv6-LhzOZH/view?usp=sharing
+
+  3.3 Exclude bot traffic
+  ....
+  N/A (GA4 automatically filters bot traffic).
+
+  3.4 Enable Demographics and Interest Targeting in Analytics
+  ....
+  We have enabled Demographics & Interest Targeting (Google signals).
+  Screenshot: https://drive.google.com/file/d/1T-6T8YWfjxlWIbXvAj4UOGyIJktE4Pcz/view?usp=sharing
+
+  3.5 Exclude the IP address of the Project Manager
+  ....
+  We have excluded the Project Manager's IP address.
+  Screenshot: https://drive.google.com/file/d/1s8jIuC-G3zBSCNmeu8xqmIbsvJ_SHN3H/view?usp=sharing
+
+4. Turn on “Enhanced Event Measurement”
+....
+We verified that Enhanced Event Measurement is already turned on.
+Screenshot: https://drive.google.com/file/d/1U5uMkXc3uiFiqhVj8BOMPL2EJ-cqUf3_/view?usp=sharing
+
+5. If eCommerce, please use this Guide to set up eCommerce events
+....
+N/A
+
+6. Setup GA4 Alerts
+  6.1 By default, create only “Daily Visits - 0 traffic” and disable all other standard alerts.
+  6.2 *O* Custom Alerts: Add additional alerts as indicated by PM
+....
+We have set up the default “Daily Visits - 0 traffic” alert with the default SS email (web@smartsites.com). No custom alerts were requested.
+Screenshot: https://drive.google.com/file/d/1j547Cx87Kn4wqRgVE4rZMtwgq-ZniEPN/view?usp=sharing
+
+Please review and let us know.
+
+Thanks!
