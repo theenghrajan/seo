@@ -1,0 +1,14 @@
+Will Cooley
+As per comment #4,
+
+For the site: https://www.nexigen.com/
+
+We have now added the Google Ads tag to the website through Google Tag Manager, and it loads on all pages.
+Before screenshot: https://drive.google.com/file/d/1276Pxx0AweiAZ6qEDId_YsZz-rKLxmJJ/view?usp=sharing
+After screenshot: https://drive.google.com/file/d/1J51RWAHeR2Hm3ouCWewNdZkHvDvoNDTW/view?usp=sharing
+
+Notes: Google Ads can take up to 24-48 hours to update the tag status.
+
+Please check and let us know.
+
+Thanks!

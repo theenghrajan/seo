@@ -1,0 +1,18 @@
+Connor O'Hanlon
+
+https://login.smartsites.com/projects/7490/tasks/507845
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+As per comment #1,
+
+We checked the tracking on https://la-decks.com/la-deck-builder/. Both the Google Ads conversion and LeadTracker are working correctly.
+Form submission test screenshot: https://drive.google.com/file/d/1xPezhyAqxRR38UZoDnu_e1CMjg72M5Zc/view?usp=sharing
+Enhanced conversion screenshot: https://drive.google.com/file/d/1t3ry9wVHGpM6nIkWStZQUF4H8CdqKEeU/view?usp=sharing
+LeadTracker report screenshot: https://drive.google.com/file/d/1sR9EBMwPYxeA_DMFjl5cQrDjgZm2fU21/view?usp=sharing
+
+Only 2 of the 4 Google Ads form submissions came from this landing page (10/4 and 10/5), and both are in LeadTracker. The other 2 (10/16 and 10/20) came from ad clicks that landed on the Residential Decks page (https://la-decks.com/services/residential-decks/), not this landing page.
+Google Ads landing pages screenshot: https://drive.google.com/file/d/1qMtnXf_7omYWXyXVbRWAiuvBDx5zVCHN/view?usp=sharing
+
+Please review and let us know.
+
+Thanks!

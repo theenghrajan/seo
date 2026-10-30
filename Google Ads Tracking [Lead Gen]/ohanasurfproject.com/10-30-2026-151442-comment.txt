@@ -1,0 +1,11 @@
+As per comment #49,
+
+Re: SS: Ohana Surf Project - GA4 (website) purchase set as SECONDARY.
+==> Noted, thank you. With this set as Secondary, website bookings will no longer be counted twice. "SS: Ohana Surf Project - GA4 (LP) purchase" stays as the Primary conversion for all bookings.
+
+Re: Starting this task: Contact Form Not Submitting Correctly
+==> The contact form on the website is now fixed and submitting successfully. We tested a form submission on the contact page and confirmed that the "SS: Contact OSP Form - Website" conversion is now tracking properly.
+Conversion ID: 11087899533, Conversion Label: Df28CLWLvaodEI3Xj6cp
+Reference screenshot: https://drive.google.com/file/d/1_7Tv9PgWGk0XyOrZT81vaxIvZICp-J2-/view?usp=sharing
+
+Thanks!

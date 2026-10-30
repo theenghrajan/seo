@@ -1,0 +1,15 @@
+Connor O'Hanlon
+
+As per comment #1,
+
+We checked both landing pages for the LeadTracker setup:
+https://la-decks.com/decks-builders/
+https://la-decks.com/la-decks-timbertech/
+
+LeadTracker cannot capture the leads from these two pages. The "Get Free Estimate" form on both pages is an iframe embedded.
+Reference screenshot (Deck Builders page): https://drive.google.com/file/d/1eNbqHemAQ9YAZmY8RUhjsm3rMKgOa39b/view?usp=sharing
+Reference screenshot (TimberTech page): https://drive.google.com/file/d/15hgbv_lEBt-ejYNGJGAOraPHm9uNeqAG/view?usp=sharing
+
+Thanks!
+
+
