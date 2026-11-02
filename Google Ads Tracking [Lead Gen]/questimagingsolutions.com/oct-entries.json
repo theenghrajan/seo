@@ -1,0 +1,136 @@
+{
+ "total": 15,
+ "rows": [
+  {
+   "id": "1578",
+   "form": "3",
+   "date": "2026-10-01 21:54:52",
+   "url": "/medical-equipment-rentals/c-arms/",
+   "f26": "CjwKCAjwifjVBhBKEiwAYx4K9",
+   "f27": "google",
+   "f28": "cpc",
+   "f29": "PMAX"
+  },
+  {
+   "id": "1579",
+   "form": "25",
+   "date": "2026-10-01 21:56:23",
+   "url": "/medical-equipment-rentals/c-arms/",
+   "f23": "google",
+   "f24": "cpc",
+   "f25": "PMAX"
+  },
+  {
+   "id": "1580",
+   "form": "24",
+   "date": "2026-10-04 00:21:01",
+   "url": "/medical-equipment-rentals/c-arms/",
+   "f25": "referral",
+   "f26": "(not set)"
+  },
+  {
+   "id": "1581",
+   "form": "3",
+   "date": "2026-10-09 17:30:29",
+   "url": "/contact/",
+   "f15": "google",
+   "f26": "CjwKCAjwoaLWBhAWEiwAnyitu",
+   "f27": "google",
+   "f28": "cpc",
+   "f29": "PMAX"
+  },
+  {
+   "id": "1582",
+   "form": "69",
+   "date": "2026-10-16 12:47:24",
+   "url": "/product/ge-oec-elite-cfd-c-arm/",
+   "f22": "undefined",
+   "f25": "(not set)"
+  },
+  {
+   "id": "1583",
+   "form": "3",
+   "date": "2026-10-19 14:25:50",
+   "url": "/contact/",
+   "f26": "undefined",
+   "f28": "referral",
+   "f29": "(not set)"
+  },
+  {
+   "id": "1584",
+   "form": "3",
+   "date": "2026-10-19 14:29:39",
+   "url": "/contact/",
+   "f26": "undefined",
+   "f28": "referral",
+   "f29": "(not set)"
+  },
+  {
+   "id": "1585",
+   "form": "3",
+   "date": "2026-10-19 14:41:47",
+   "url": "/c-arm-repair-maintenance-service/",
+   "f26": "undefined",
+   "f28": "referral",
+   "f29": "(not set)"
+  },
+  {
+   "id": "1586",
+   "form": "53",
+   "date": "2026-10-22 01:54:40",
+   "url": "/product/ziehm-solo-c-arm-system/"
+  },
+  {
+   "id": "1587",
+   "form": "1",
+   "date": "2026-10-22 16:35:49",
+   "url": "/contact/",
+   "f17": "google",
+   "f18": "organic",
+   "f19": "(not set)"
+  },
+  {
+   "id": "1588",
+   "form": "76",
+   "date": "2026-10-27 00:18:11",
+   "url": "/product/ge-logiq-e-portable-ultrasound/",
+   "f22": "undefined",
+   "f23": "google",
+   "f24": "organic",
+   "f25": "(not set)"
+  },
+  {
+   "id": "1589",
+   "form": "2",
+   "date": "2026-10-27 18:30:06",
+   "url": "/contact/",
+   "f22": "(not set)"
+  },
+  {
+   "id": "1590",
+   "form": "1",
+   "date": "2026-10-28 15:39:52",
+   "url": "/contact/",
+   "f17": "google",
+   "f18": "cpc",
+   "f19": "CArmsPhrase"
+  },
+  {
+   "id": "1591",
+   "form": "24",
+   "date": "2026-10-28 22:46:54",
+   "url": "/product/ge-oec-9800-c-arm-system/",
+   "f23": "CjwKCAjwuobXBhBXEiwAYUaIl",
+   "f24": "google",
+   "f25": "cpc",
+   "f26": "PMAX"
+  },
+  {
+   "id": "1592",
+   "form": "24",
+   "date": "2026-10-28 23:40:48",
+   "url": "/medical-equipment-rentals/c-arms/",
+   "f26": "(not set)"
+  }
+ ]
+}

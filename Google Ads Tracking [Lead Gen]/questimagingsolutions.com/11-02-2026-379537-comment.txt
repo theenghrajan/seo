@@ -1,0 +1,30 @@
+Richard Gedeon
+
+As per comment #36,
+
+Site: https://questimagingsolutions.com/
+
+Re: In October so far, LeadTracker records 15 forms from Google Ads, but Google Ads only shows 3. Can you ensure the 2025 lead form goal and SS quote request goal are firing correctly?
+...
+2025 Lead Form Submit-SA: Conversion ID: 1069824987 | Conversion Label: 9_X8CInyn7MaENv3kP4D
+This goal is firing correctly. It is recorded on the thank you page that almost all forms on the site lead to (contact page, quote forms and product page forms).
+Reference screenshot: https://drive.google.com/file/d/1GgTaq_d6KrsEVTKG_CcXy8ruMTD2wMOP/view?usp=sharing
+
+The site received 15 form submissions in total in October, and LeadTracker is showing all 15 of them, not only the ones from Google Ads. Here is where they came from:
+- 5 from Google Ads
+- 3 were our internal test submissions
+- 2 from Google organic search
+- 5 from other sources (referral or direct visits)
+Reference screenshot: https://drive.google.com/file/d/1aiiK4mEO52BJVocat1QFtFd81dY0_k9h/view?usp=sharing
+Reference screenshot: https://drive.google.com/file/d/1UT0Kk5S3V8DzEzubUprPwQV5ey3aoBjN/view?usp=sharing
+Reference screenshot: https://drive.google.com/file/d/1pQ5wMEJ9I-Pr5GWslmuH1zjwDhR8kkUP/view?usp=sharing
+Reference screenshot: https://drive.google.com/file/d/1UZiPAXE6PckJd-WFMRbL1hpGBEGtdzu7/view?usp=sharing
+
+Of the 5 Google Ads leads, 2 were sent within 2 minutes of each other from the same page, most likely by the same visitor, and Google Ads counts these as one conversion. So Google Ads should show 4 leads for October. A difference of 1 is normal, as Google Ads can't record every lead (for example, when the visitor uses an ad blocker or comes back on a different device).
+Reference screenshot: https://drive.google.com/file/d/11CJHWyIza5iS6mhv92S4ErRKH__btKOZ/view?usp=sharing
+
+SS: Request A Quote - Conversion ID: 1069824987 | Conversion Label: faoYCMvojPIaENv3kP4D
+This conversion is not connected to any form on the site, which is why it shows 0 conversions and "Inactive". It is also a secondary action under the "Request quote" goal, which is not used by any campaign (0 of 52), so even once connected it would only show under "All conv." (where each quote lead would then appear twice, once under each conversion) and would not change the campaign conversion numbers. The quote form leads are already counted as primary conversions under 2025 Lead Form Submit-SA. Please let us know if you would still like it connected.
+
+Thanks!
+
