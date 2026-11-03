@@ -1,0 +1,30 @@
+As per comment #2,
+
+The landing pages now use the same Google Tag Manager and Google Analytics as the main site:
+- Saint Paul: https://autohaildent.com/lp/
+- Salon: https://autohaildent.com/lp/?location=salon
+Reference screenshot: https://drive.google.com/file/d/1Dt5JzvP4IxY2zw7cnQIF4X_jBT6yVrGb/view?usp=sharing
+
+1. Landing Page Form Submission (Request Your Free Evaluation form)
+Conversion ID: 17614089684, Conversion Label: kRIiCOStiK8dENTbhs9B
+Counts a conversion when the form is sent successfully, on both landing pages.
+Reference screenshot: https://drive.google.com/file/d/1X6wcdCd2OoInU23kekGapfSzsUVTFb31/view?usp=sharing
+
+2. Call (651-420-5089) - Saint Paul landing page
+Conversion ID: 17614089684, Conversion Label: MkVuCOetiK8dENTbhs9B
+Reference screenshot: https://drive.google.com/file/d/1CS7I5V0JAz0i7vMUwb9gYf9cKTy99j3Q/view?usp=sharing
+
+3. Call (440-799-5563) - Salon landing page
+Conversion ID: 17614089684, Conversion Label: 7yB6COqtiK8dENTbhs9B
+Reference screenshot: https://drive.google.com/file/d/1Jgtlw6VbF5lPMq4TUEp3Y_rR1TuNs-m8/view?usp=sharing
+
+4. Facebook Pixel 1625966939157028
+The pixel is on both landing pages, and the form submission is tracked as a Lead.
+Reference screenshot: https://drive.google.com/file/d/18QeZQ49CkfdvmooIpGiz2PY2SKI5yF_N/view?usp=sharing
+
+5. Google Analytics
+Landing page visits and form submissions are tracked in the same Google Analytics property as the main site, and LeadTracker is active on both landing pages.
+Reference screenshot: https://drive.google.com/file/d/1CRsOsDk4AawAepE7X9KGlQsuYcMUnFWb/view?usp=sharing
+LeadTracker reference screenshot: https://drive.google.com/file/d/1whRO3vTHEOgpK4a2kWXJf43i2vg0aNzD/view?usp=sharing
+
+Thanks!
