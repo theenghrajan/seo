@@ -1,0 +1,16 @@
+Dafne Nazar Antonelli
+
+As per comment #21,
+
+Re: Can we check on enhanced conversions for this account?
+...
+We checked and found the warning was valid. Form submissions on the 3 Wesley Chapel landing pages were being counted, but the customer details used for enhanced conversions (email and phone) were not being sent to this Google Ads account.
+
+We have now set this up for the "SS: Book Your Consultation - LP #Wesley Chapel" conversion on all 3 landing pages and tested it with a form submission. The email and phone are now passed to the Wesley Chapel Google Ads account with the conversion.
+Reference screenshot: https://drive.google.com/file/d/1cxp-C8im-OapXvXTBsHltncM1-sWunpf/view?usp=sharing
+
+The warning in Google Ads should clear on its own within a few days once new form submissions come in.
+
+Please review and let us know.
+
+Thanks!

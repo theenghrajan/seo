@@ -1,0 +1,75 @@
+As per comment #90, #92 and #93,
+
+For the site: https://www.sunsetcliffsplumbing.com/
+
+Comment #90
+
+Re: 1. SS: Plumbing Problems? Form (HomePage) - last recorded conversion was Oct 4
+...
+The form tracking is working. The home page and location page top form ("Plumbing Problems? We can Help!") and the service page top form ("Submit a quote") all count under this same conversion action, so no separate actions are needed.
+
+The form received 11 submissions after Oct 4 (Oct 16 x7, Oct 18, Oct 23, Nov 1, Nov 4), and GA4 recorded the form submission for them (12 form submissions between Oct 8 and Nov 4, 0 from Paid Search). None of these visitors came from an ad: they came from Google organic search, the Google Business Profile listing or direct visits. Google Ads only counts a form conversion when the visitor clicked an ad first. Oct 4 was the last submission from an ad click (campaign "SS: Plumbing"), which is why it is the last conversion in Google Ads.
+Reference screenshot: https://drive.google.com/file/d/1c-o1EJGMdTVGYseBDGN_yUq9AGL-SRDN/view?usp=sharing
+
+Re: 2. SS: Outbound Click - Book Now (ServiceTitan) - track the clicks
+...
+The ServiceTitan "Book Now" button is on the Contact page (https://www.sunsetcliffsplumbing.com/contact/). It is a button that opens the ServiceTitan booking window, not a link. We have set up a click trigger on this button in GTM that sends the "SS: Outbound Click - Book Now (ServiceTitan)" conversion (11295225464 / bFnrCMC8z7EdEPjs_Ykq), so every click on "Book Now" is now counted as a secondary conversion.
+Reference screenshots:
+https://drive.google.com/file/d/1QQA-rHUgQoQyE0Dc4oaka0b3McLm0V-v/view?usp=sharing
+https://drive.google.com/file/d/1aK08ahbEbx_tkDu2QMAnTiK__XeYUpyg/view?usp=sharing
+
+Comment #92
+
+Re: 1. Calls in Invoca not counting in Google Ads under SS: Calls From Website PPC #(619-786-2032)
+...
+Most of these calls are counted in Google Ads, under a different conversion action. The ads have a call button (call asset) with the number 619-786-2032. When someone taps it, Google connects the call to 619-786-2032, so Invoca shows it as a call to that number, and Google Ads records it under "Calls from ads", not under "Calls From Website". In the last 30 days "Calls from ads" recorded 6 conversions, which matches the 6 PPC calls in the Invoca report. The 2 Invoca calls marked SEO on Oct 31 were 25 and 36 seconds long; Google Ads only counts calls of 60 seconds or more.
+
+"SS: Calls From Website - PPC #619-786-2032" only counts calls made from the website to the Google forwarding number that replaces 619-786-2032 on the page for ad visitors. Its last conversion was Jul 20. Google only replaces the number text (header and footer), not the call buttons on the page, so visitors who tap a "Call Now" type button dial 619-786-2032 directly and cannot be counted as website calls.
+Reference screenshot: https://drive.google.com/file/d/1P5Ks52Oz1-pE3ZiGp2CS2M-PF6rQVDgn/view?usp=sharing
+Reference screenshot: https://drive.google.com/file/d/1W5ACwSzvAxMcPm8fNRWtL5OGA4RdiPs5/view?usp=sharing
+
+Re: 2. GTM needs to be fixed too (there's a double hyphen on the phone number)
+...
+We checked both places for the "(619) 786--2032" typo from your screenshot:
+- Google Ads: the conversion action "SS: Calls From LP - PPC #619-786-2032" now has the phone number 619-786-2032 (your fix is in place).
+- GTM: the tag "SS - GA Conversion (Calls From LP - PPC #(619) 786-2032)" has the phone number (619) 786-2032 with a single hyphen. It was set up this way when the tag was created, and it is the same in the live GTM version.
+The landing page (https://www.sunsetcliffsplumbing.com/lp/) has no separate Google Ads snippet; the call tracking runs only through this GTM tag, and the number on the page is 619-786-2032. So no change is needed in GTM, and the number in Google Ads and GTM now match.
+Reference screenshots:
+https://drive.google.com/file/d/1qoAfYpEv1MbWdWXqrua7AVyLIyJ81P89/view?usp=sharing
+https://drive.google.com/file/d/1btfpG9f0Dp-121QKHpDWCwN_TfiuMF3z/view?usp=sharing
+
+Re: 3. Can we connect Invoca to Google Ads?
+...
+The Invoca integration is set up from the Invoca account, so please check with the IBM team.
+
+Comment #93
+
+Re: Hardcoded numbers in page content that don't swap
+...
+The number swap only changes numbers in buttons, call links, icon boxes and icon lists. Numbers typed inside paragraph text and inside the form consent text are not changed. We opened every page of the site with ?id=ppc and found these numbers still showing:
+
+a) Paragraph text:
+- (619) 416-7071: Point Loma, Coronado, Del Mar and Rancho Santa Fe pages ("Ready to schedule? Call (619) 416-7071...")
+https://www.sunsetcliffsplumbing.com/point-loma-plumber/
+https://www.sunsetcliffsplumbing.com/coronado-plumber/
+https://www.sunsetcliffsplumbing.com/del-mar-plumber-for-homes/
+https://www.sunsetcliffsplumbing.com/rancho-santa-fe-plumber/
+- 858-299-2878: Drain Cleaning and Pipe Repair service pages
+https://www.sunsetcliffsplumbing.com/services/drain-cleaning/
+https://www.sunsetcliffsplumbing.com/services/pipe-repair/
+- 619-416-7071: Privacy Policy and Terms pages (we recommend leaving these as they are, since they are legal pages)
+Reference screenshot: https://drive.google.com/file/d/1H5wBI-DHkzf9P7rmS4lt1CVazJuE-W2P/view?usp=sharing
+
+b) SMS consent checkbox on the forms: 858-299-2878, on 33 pages (all service pages, the FAQs page and the city pages such as La Jolla, Pacific Beach, Carlsbad and Encinitas).
+Reference screenshot: https://drive.google.com/file/d/1MpyGkczuyLBTCZOptVuUnOUNqiW0L-Vp/view?usp=sharing
+
+The Leak Detection, Mission Beach and Mission Valley pages. These links are normally swapped, so we will check why they are missed here.
+https://www.sunsetcliffsplumbing.com/services/leak-detection/
+https://www.sunsetcliffsplumbing.com/mission-beach-ca/
+https://www.sunsetcliffsplumbing.com/plumber-in-mission-valley-ca/
+
+Proposed fix: we can extend the number swap in GTM to also cover paragraph text on all pages except the Privacy Policy and Terms pages (point a), so these numbers change to 619-786-2032 for PPC visitors without editing each page. For the SMS consent checkbox, we recommend keeping 858-299-2878, because this text tells customers which number will send them text messages, and the consent text saved with each form entry would still show 858-299-2878. Please confirm with the client whether 619-786-2032 can send and receive text messages before we change it there.
+
+Please confirm and we will proceed.
+
+Thanks!

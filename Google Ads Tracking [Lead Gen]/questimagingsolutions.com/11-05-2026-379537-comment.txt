@@ -1,0 +1,17 @@
+Richard Gedeon
+
+As per comment #41,
+
+Site: https://questimagingsolutions.com/
+
+Re: For SS: quote request, have it fire for all forms on the site
+...
+SS: Request A Quote - Conversion ID: 1069824987 | Conversion Label: faoYCMvojPIaENv3kP4D
+This goal is now set up for all forms on the site, including the contact page, the quote forms, the product page forms, the popup form, the sell your equipment form and the landing page forms. It is recorded when the visitor reaches the thank you page after submitting a form. We have tested it and it is firing correctly.
+Reference screenshot: https://drive.google.com/file/d/1U9pmJEdjxIQ-_RMg2meeiRP4Y3FewFem/view?usp=sharing
+
+As this goal is a secondary conversion, its leads will show under "All conv." in Google Ads, while the same leads continue to be counted under "Conversions" by 2025 Lead Form Submit-SA.
+
+Also, as mentioned in our previous comment, 7 Google Ads leads in October were blocked by the forms' spam filter and 2 could not submit because of the second phone number field. Please confirm if we can go ahead with turning off the spam filter setting that is blocking real leads (reCAPTCHA stays on to block spam) and making the second phone number optional, so these leads are saved and counted by both goals.
+
+Thanks!

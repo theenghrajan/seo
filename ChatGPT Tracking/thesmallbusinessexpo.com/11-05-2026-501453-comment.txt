@@ -1,0 +1,21 @@
+As per comment #11,
+
+We reviewed the ChatGPT tracking and the Diagnostics screen you shared.
+
+1. ChatGPT Pixel
+The pixel is installed on every page of the site and OpenAI is receiving data from it (64.1K events in the last 7 days on your screenshot), so the base setup is working.
+
+2. Main warning: "No active campaigns use conversion events"
+This is the high-priority warning. The setup checklist on that screen shows step 4, "Link event to a campaign", is still open. In Ads Manager, the live campaigns need the conversion event attached: "lead_created" for the Exhibit campaign and "registration_completed" for the city page campaigns. This is set in the campaign settings in Ads Manager. Once it's linked, conversions will show against the campaigns.
+
+3. Other warnings
+"No recent server-to-server events" and the two "Limited ... information" warnings are optional improvements to match quality. They don't stop the pixel or the conversions from being tracked.
+
+4. Two conversion events need an update on our side
+While checking, we found that both conversion events count the wrong action:
+- Exhibit leads ("lead_created"): it currently counts only people who book a meeting after the form, because only they reach the /thank-you-b2b/ page. The Exhibit form itself shows a thank-you message on the same page, so plain form submissions are not counted.
+- City registrations ("registration_completed"): it currently counts the "Find Service Providers" form (/service-seeker/), not the event registration. City page registrations end on the /thanks-for-registering/ page.
+
+We'd like to update both so that "lead_created" counts every Exhibit form submission and "registration_completed" counts every completed city page registration. Please confirm and we'll make the change. Also let us know if booked meetings from the Exhibit page should still be counted as well.
+
+Thanks!

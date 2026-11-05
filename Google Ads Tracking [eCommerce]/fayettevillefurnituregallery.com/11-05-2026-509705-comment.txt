@@ -1,0 +1,20 @@
+As per comment #5, thanks for confirming the website.
+
+Re: One note: the account already has a purchase conversion action showing "No recent conversions." Please review the existing purchase setup, including any Shopify Google & YouTube app connection, so we end up with a single purchase event and no double counting.
+...
+We reviewed it. The account has one website purchase conversion, added by the Shopify app "Simprosys Google Shopping Feed". It is active and working: it recorded 4 purchases worth $7,463.84 in the last 30 days (none in the last 7 days). The Shopify Google & YouTube app is not sending purchases to Google Ads, so there is no double counting right now. We'll keep this as the single purchase event.
+
+Reference screenshot: https://drive.google.com/file/d/1S0m2iHDgI6OJPhXwQJK0tu7sIh_1fiMP/view?usp=sharing
+
+Noted on Capital Furniture, we won't make any changes there.
+
+Before we continue with the setup, we need the following:
+
+1. Google Analytics 4 access: The website sends data to the GA4 property with measurement ID G-SGY34WRFLK, but this property is not in the access given to web@smartsites.com. Could you please ask the client to give web@smartsites.com Administrator access to this property?
+
+2. Google Tag Manager: The GTM container for this site (GTM-NVG3ZTHS) is not installed on the website, and our access to it is read-only. If you'd like the tracking set up through GTM, please ask the client to give web@smartsites.com Publish access to the container.
+
+Reference screenshot: https://drive.google.com/file/d/1Dtpe4yoyDVEMRIrI3AxZ_TsylBeeQY1F/view?usp=sharing
+Reference screenshot: https://drive.google.com/file/d/1nwlZlJnJQr6EcEzK4wI5lfcS2lRL1EAM/view?usp=sharing
+
+Thanks!
