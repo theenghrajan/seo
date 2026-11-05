@@ -1,0 +1,82 @@
+{
+  "exportFormatVersion": 2,
+  "containerVersion": {
+    "accountId": "6308737497",
+    "containerId": "267088344",
+    "container": { "accountId": "6308737497", "containerId": "267088344", "name": "veteranssteamheat.com", "publicId": "GTM-K9GH332M", "usageContext": ["WEB"] },
+    "tag": [
+      {
+        "accountId": "6308737497", "containerId": "267088344", "tagId": "901",
+        "name": "SS - Google Tag - Google Ads (AW-11500823614)",
+        "type": "googtag",
+        "parameter": [ { "type": "TEMPLATE", "key": "tagId", "value": "AW-11500823614" } ],
+        "firingTriggerId": ["2147479573"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6308737497", "containerId": "267088344", "tagId": "902",
+        "name": "SS - Conversion Linker",
+        "type": "gclidw",
+        "parameter": [],
+        "firingTriggerId": ["2147479553"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6308737497", "containerId": "267088344", "tagId": "903",
+        "name": "SS - Google Ads - Service Quick Form",
+        "type": "awct",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "conversionId", "value": "11500823614" },
+          { "type": "TEMPLATE", "key": "conversionLabel", "value": "ggVSCI7I3bAdEL7Iguwq" }
+        ],
+        "firingTriggerId": ["911"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6308737497", "containerId": "267088344", "tagId": "904",
+        "name": "SS - Google Ads - Request Service Page Form",
+        "type": "awct",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "conversionId", "value": "11500823614" },
+          { "type": "TEMPLATE", "key": "conversionLabel", "value": "mWUgCOrT3LAdEL7Iguwq" }
+        ],
+        "firingTriggerId": ["912"],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "6308737497", "containerId": "267088344", "triggerId": "911",
+        "name": "SS - Form Submit - Service Quick Form (Home)",
+        "type": "FORM_SUBMISSION",
+        "filter": [ { "type": "EQUALS", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{Page Path}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": "/" } ] } ],
+        "autoEventFilter": [ { "type": "MATCH_REGEX", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{Page URL}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": ".*" } ] } ],
+        "waitForTags": { "type": "BOOLEAN", "value": "true" },
+        "checkValidation": { "type": "BOOLEAN", "value": "true" },
+        "waitForTagsTimeout": { "type": "TEMPLATE", "value": "2000" }
+      },
+      {
+        "accountId": "6308737497", "containerId": "267088344", "triggerId": "912",
+        "name": "SS - Form Submit - Request Service Page Form",
+        "type": "FORM_SUBMISSION",
+        "filter": [ { "type": "EQUALS", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{Page Path}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": "/request-service" } ] } ],
+        "autoEventFilter": [ { "type": "MATCH_REGEX", "parameter": [
+          { "type": "TEMPLATE", "key": "arg0", "value": "{{Page URL}}" },
+          { "type": "TEMPLATE", "key": "arg1", "value": ".*" } ] } ],
+        "waitForTags": { "type": "BOOLEAN", "value": "true" },
+        "checkValidation": { "type": "BOOLEAN", "value": "true" },
+        "waitForTagsTimeout": { "type": "TEMPLATE", "value": "2000" }
+      }
+    ],
+    "builtInVariable": [
+      { "accountId": "6308737497", "containerId": "267088344", "type": "PAGE_PATH", "name": "Page Path" },
+      { "accountId": "6308737497", "containerId": "267088344", "type": "PAGE_URL", "name": "Page URL" }
+    ]
+  }
+}

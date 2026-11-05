@@ -1,0 +1,21 @@
+As per comment #64,
+
+For the website: https://grovedentalaz.com/
+
+Re: SS - Contact Form - https://grovedentalaz.com/contact/?id=ppc
+...
+We submitted a test form and the "SS - Contact Form" conversion is tracking properly.
+Conversion ID = 17513636784
+Conversion Label = k3FlCJuAt5AbELDHk59B
+Reference screenshot: https://drive.google.com/file/d/1MInvXbSMlmVaNgb2vfMqs_WWxdW4kSJN/view?usp=sharing
+
+Re: SS - Make An Appointment Form Submission - https://grovedentalaz.com/make-an-appointment/?id=ppc
+...
+We made a test booking through the booking form (Flexbook) and the "SS - Make An Appointment" conversion is tracking properly.
+Conversion ID = 17513636784
+Conversion Label = gBosCMirp5AbELDHk59B
+Reference screenshot: https://drive.google.com/file/d/1kEJYjSYU8HuXACaDP3Xvthebi-Tx_D0M/view?usp=sharing
+
+Note: As this was a real booking, could you please ask the client to cancel the test appointment booked with the phone number (201) 690-7361?
+
+Thanks!

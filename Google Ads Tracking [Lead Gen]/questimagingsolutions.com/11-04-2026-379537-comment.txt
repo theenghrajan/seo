@@ -1,0 +1,32 @@
+Richard Gedeon
+
+As per comment #38,
+
+Site: https://questimagingsolutions.com/
+
+Re: if you look for all leads in october, there are way more than 15 in leadtracker, please re count
+...
+You are right, sorry about the earlier count. We re-counted from the LeadTracker October report. After removing site searches, test submissions and repeat submissions by the same person, there were 21 real leads in October, 14 of them from Google Ads.
+Reference screenshot: https://drive.google.com/file/d/1mYLW8O9kSCNEkpfj8ExZvLj9dVl8xtAL/view?usp=sharing
+
+Of those 14 Google Ads leads, only 5 were saved by the website forms. The other 9 were lost before reaching the thank you page, which is why Google Ads shows so few:
+- 7 were blocked by the forms' built-in spam filter by mistake. The visitor saw a "thank you" message, but the lead was not saved, no email was sent and the thank you page did not load, so Google Ads could not count it.
+- 2 got an error because the form asks for both a phone and a mobile number, and they left one empty and did not complete the form.
+Reference screenshot: https://drive.google.com/file/d/1j67sQ6TcNIDTZ5QZpxWvk-hozt9STncP/view?usp=sharing
+
+Re: please check again and ensure the 2025 goal is installed
+...
+2025 Lead Form Submit-SA: Conversion ID: 1069824987 | Conversion Label: 9_X8CInyn7MaENv3kP4D
+The goal is installed and fires for every lead that reaches the thank you page. The 5 saved Google Ads leads match the 3 conversions shown in Google Ads, within the normal difference. Once the spam filter issue above is fixed, the missing leads will reach the thank you page and be counted.
+Reference screenshot: https://drive.google.com/file/d/1GgTaq_d6KrsEVTKG_CcXy8ruMTD2wMOP/view?usp=sharing
+
+To fix this, we recommend turning off the spam filter setting that is blocking real leads (reCAPTCHA stays on to block spam) and making the second phone number optional (and allowing extensions, e.g. "EXT 1234"). As this is a change on the live site, please confirm and we will go ahead.
+
+Re: please also correct the ss: quote request goal
+...
+SS: Request A Quote - Conversion ID: 1069824987 | Conversion Label: faoYCMvojPIaENv3kP4D
+We can connect this goal. Please confirm, Which forms should count as a quote request (all forms, only the Request A Quote form on the contact page, or also the product page forms)? As we've already mentioned in comment #37, the quote form on the contact page leads are already counted as primary conversions under 2025 Lead Form Submit-SA, so this goal can stay as a secondary conversion.
+
+Please review and let us know.
+
+Thanks!

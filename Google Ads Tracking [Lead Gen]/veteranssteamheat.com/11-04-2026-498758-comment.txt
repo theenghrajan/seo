@@ -1,0 +1,23 @@
+Will Cooley
+
+As per comment #8,
+
+For the Website URL: https://veteranssteamheat.com/
+
+Re: Google Ads Conversion Actions
+...
+We have set up both Google Ads conversions from comment #8 and tested them with a test submission on each form. Both are firing correctly.
+
+Service Quick Form (homepage, below the hero section)
+Conversion ID: 11500823614
+Conversion Label: ggVSCI7I3bAdEL7Iguwq
+Reference screenshot: https://drive.google.com/file/d/1r-bLyEH2eJQjW9APLL5c4sQsSjOvbPSN/view?usp=sharing
+
+Request Service Page Form (https://veteranssteamheat.com/request-service)
+Conversion ID: 11500823614
+Conversion Label: mWUgCOrT3LAdEL7Iguwq
+Reference screenshot: https://drive.google.com/file/d/1YalDtdR17N9xNEKasjEXqGC068DvpyzV/view?usp=sharing
+
+Note: The Service Quick Form beneath the hero section on the homepage doesn't have any required fields, so the form can be submitted blank. We recommend making some of the fields required, or at least one of them.
+
+Thanks!

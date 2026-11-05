@@ -1,0 +1,19 @@
+Will Cooley
+
+As per comment #22,
+
+For the site: https://liceclinicsnearmeusa.com/
+
+Re: Please implement the following conversion action. Click to call (Raleigh Only)
+...
+We have implemented the conversion action. It records a conversion when a visitor clicks the Raleigh phone number (984) 401-2324 anywhere on the site (header and the "Call" button on the homepage). Clicks on the Virginia number (703) 253-9013 are not counted. We tested it and the conversion fires correctly.
+
+Click to call (Raleigh Only)
+Conversion ID: 840033919, Conversion label: TOMDCKnW-KwdEP_Mx5AD
+Reference screenshot: https://drive.google.com/file/d/1ZTjDwJuBQkXG2YEu1aGZluhYOteCM-eW/view?usp=sharing
+
+Note: The conversion status in Google Ads will change from "Inactive" once real visitors from the ads click the number, which can take a few days.
+
+Please review.
+
+Thanks!

@@ -1,0 +1,33 @@
+As per comment #31,
+
+For the LP: https://beyond-lumber.com/tropical-hardwood-west-coast-ipe-cumaru/lp/
+
+Re: 1. GA4, GTM, Google Ads Form tracking
+...
+Verified GTM (GTM-5HQFN5WG) / GA4 (G-9CB71L7DJS)
+Reference screenshot: https://drive.google.com/file/d/1JyqbWE1VRTKJXG25rW2TsN8bHFHMH4ZP/view?usp=sharing
+
+Google Ads Form Tracking (Verified)
+This page uses the same form as https://beyond-lumber.com/newtechwood-composite-decking-siding/, so the existing form tracking already covers it.
+Conversion ID: 10970629074, Conversion label: Lc2aCOS5gscaENKHmu8o
+Reference screenshot: https://drive.google.com/file/d/1HGFXDobZ5r8nNGaPzTLikO5uIT2lY18_/view?usp=sharing
+
+The form on this page is iframe-embedded, so we are unable to configure enhanced conversion for it.
+Reference screenshot: https://drive.google.com/file/d/1IZrcSLJqFX7AYRLmxhVnvVuChlFXuXbZ/view?usp=sharing
+
+Re: 2. CallRail
+...
+CallRail (Verified -> Configured through WordPress Plugin)
+The CallRail plugin on the site already loads the same CallRail tracking as the script provided, so no separate script was added.
+Reference screenshot: https://drive.google.com/file/d/1RDOfta824drED5zlY-hWQ7rzhncox66k/view?usp=sharing
+
+Re: 3. Please update the phone number on the page so the number shows as 877-892-4655
+...
+We have updated the phone number on the page to (877) 892-4655 (header, Call button and footer).
+
+Note: CallRail replaces this number with a tracking number for visitors, so the screenshots below were captured with the CallRail script blocked.
+Reference screenshots:
+https://drive.google.com/file/d/1YvXs0TE8T16s6OXB3ub6DwgVJSFFKQtk/view?usp=sharing
+https://drive.google.com/file/d/1DCC5IAlRsPfzJZSd3UVTqZVdkUOr6PMb/view?usp=sharing
+
+Thanks!
