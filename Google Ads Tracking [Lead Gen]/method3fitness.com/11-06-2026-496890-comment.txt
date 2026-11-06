@@ -1,0 +1,18 @@
+Leroy Griffith
+
+As per comment #10,
+
+For the website: https://method3fitness.com/
+
+Re: "the client added a callrail account and wants numbers from their google ads callrail number displayed on their website."
+....
+We have set up the "CallRail Website Call" conversion on the website.
+Reference screenshot: https://drive.google.com/file/d/1J4PvgclImr9srehaQj7_Pu7Lv2we_KIh/view?usp=sharing
+
+As per the conversion settings in Google Ads, the website will keep showing the main number (408-371-1212). Visitors who come from Google Ads will see a Google forwarding number in its place (header and footer), and calls to that number will go to the CallRail number (408-478-9405) and be counted as a "CallRail Website Call" conversion.
+
+Note: The conversion may take up to 48 hours to show as active in Google Ads.
+
+Please review and do let us know.
+
+Thanks!

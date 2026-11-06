@@ -1,0 +1,15 @@
+As per comment #95,
+
+For the site: https://www.sunsetcliffsplumbing.com/
+
+Re: Can you have GTM cover paragraph text on all pages except for: Privacy Policy and also the SMS (we can skip and leave the 2878)?
+...
+Done. The PPC number swap now also covers phone numbers in paragraph text on all pages, so PPC visitors (?id=ppc) see 619-786-2032 there as well. For example, the paragraph on the Drain Cleaning page now shows 619-786-2032.
+Reference screenshot: https://drive.google.com/file/d/18GtR889Z5qo6wJEe24K6iGmyeuwOnUGJ/view?usp=sharing
+
+As requested, the Privacy Policy page and the SMS consent checkbox on the forms are left as they are. We also left the SMS Terms page (https://www.sunsetcliffsplumbing.com/terms/) unchanged, because it is the SMS program terms page that tells customers how to reach the business about text messages, the same as the consent checkbox.
+Reference screenshot: https://drive.google.com/file/d/19_yUbjxaWFg4T8s9EQtC_3GhM0dFZkIW/view?usp=sharing
+Reference screenshot: https://drive.google.com/file/d/1yXAR1VWHHzTYHj2yWsmNcdLLiSAuNZtj/view?usp=sharing
+Reference screenshot: https://drive.google.com/file/d/1-_FX8qqgVIhPTDP9ouh9UGgFEIoPtCsh/view?usp=sharing
+
+Thanks!
