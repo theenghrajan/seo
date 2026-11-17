@@ -1,0 +1,25 @@
+As per comment #87,
+
+Re: 1. Please make sure we add in leadtracker to the landing pages
+...
+iconjds.com: LeadTracker is already in place.
+Reference screenshot: https://drive.google.com/file/d/1MMQysVn9-NOVaHT43OpYHcNgcji1ki4w/view
+
+https://iconjds.com/lp/: We have checked LeadTracker for the form submissions on the landing page and verified it on a test submission.
+Reference screenshot: https://drive.google.com/file/d/1VuVHBMj_LfJ8p6Pz4FFoiQXCjFMuCQG8/view?usp=sharing
+
+Also, the main address https://aluminumtrenchboxes.iconjds.com/ shows a 404 Page Not Found error. Please let us know in more details on this or create separate task for further insights.
+Reference screenshot: https://drive.google.com/file/d/1sLtBma62WMl4MJlJxOqaDm372MHtobsT/view?usp=sharing
+
+Re: 2. Please fix the form submission in the landing page as I just tried to select between Rent/Buy and it's not working. It auto selects to "Rent"
+...
+We have fixed the Rent/Buy selection on https://iconjds.com/lp/. The footer form and the Request A Quote pop-up form now keep their own selection.
+Reference screenshot: https://drive.google.com/file/d/1J-lZUAdejAOkaSinfZtTC1aIXnwMQfDs/view?usp=sharing
+Reference screenshot: https://drive.google.com/file/d/15LfYVzuaiiotUHYyMzFBnxaIa3sQTtGf/view?usp=sharing
+
+Re: Test these forms as no conversions have been recorded this month.
+...
+We have tested the landing page and main site forms and the Google Ads conversion is firing on submission.
+Reference screenshot: 
+
+Thanks!

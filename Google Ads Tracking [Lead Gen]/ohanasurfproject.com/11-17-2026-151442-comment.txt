@@ -1,0 +1,21 @@
+As per comment #51,
+
+Re: 1. SS - Transactions (All Web Site Data)
+...
+This is a conversion imported from Universal Analytics (UA). It no longer records anything because Google has officially stopped processing data for Universal Analytics, so it is safe to remove.
+
+Re: 2. SS: Ohana Surf Project - GA4 (LP) purchase and SS: Ohana Surf Project - GA4 (website) purchase
+...
+- SS: Ohana Surf Project - GA4 (LP) purchase: This is the purchase key event imported from GA4. It counts FareHarbor bookings from ad visitors on both the landing page and the website.
+- SS: Ohana Surf Project - GA4 (website) purchase: This is a website-based conversion action set up through GTM/Code-level as per the requirement.
+- Both are active, and a website booking from an ad is counted by both. "SS: Ohana Surf Project - GA4 (website) purchase" is still showing as Primary in the account, so please set it to Secondary (or remove it) to avoid counting bookings twice.
+
+Re: I want to track the submission from the booking iframe FareHarbor which I believe one of these conversions does.
+...
+FareHarbor offers a GA4 integration, which the team set up as per comment #23 on this task. FareHarbor doesn't offer a way to set up a website-based Google Ads conversion directly, so bookings are recorded under "SS: Ohana Surf Project - GA4 (LP) purchase", the conversion imported from the GA4 purchase key event. The setup is correct. The number is low because only bookings from ad visitors are counted. In October, GA4 recorded about 55 bookings in total, and only 4 of them came from Google Ads.
+
+Re: 3. SS: Book Now (Click) = 146 for OCT. but yet the purchase conversion actions have been down to 2.62
+...
+"SS: Book Now (Click)" counts every click on the booking buttons, not completed bookings. Many visitors click to check dates and prices and leave without booking, so this number will always be much higher than purchases. Google Ads also splits the credit for each booking between ad clicks, which is why the purchase count shows 2.62 instead of a whole number.
+
+Thanks!
