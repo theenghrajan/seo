@@ -1,0 +1,21 @@
+As per comment #14,
+
+For the site: https://www.thesmallbusinessexpo.com/
+
+We have updated both ChatGPT conversion events as you confirmed.
+
+1. Exhibit leads ("lead_created")
+It now counts every Exhibit form submission on the /exhibit/ page. Meetings booked from the Exhibit page (the /thank-you-b2b/ page) are still counted as well. A visitor who submits the form and then books a meeting will be counted twice.
+Reference screenshot: https://drive.google.com/file/d/1Oo5LS2wls4XgRqyetbY7FgERUxbVrpEw/view?usp=sharing
+
+2. City registrations ("registration_completed")
+It now counts every completed city page registration, when the visitor reaches the /thanks-for-registering/ page. It no longer counts the "Find Service Providers" form.
+Reference screenshot: https://drive.google.com/file/d/1YGZTCXthmy0-dQFbruZj_E4ggthcZwl5/view?usp=sharing
+
+3. Reminder
+As mentioned in comment #13, please link "lead_created" and "registration_completed" to the live campaigns in Ads Manager so conversions show against them.
+
+4. Second ChatGPT pixel on the site
+While checking, we noticed that a second ChatGPT pixel (ID XNbAidNtf34thJkEk1M7t5) was added to the site around November 8, alongside the one in your account (QbTZyMKisM3ZuLbEZxoT8T). It sends its own "form_exhibitor" and "form_attendee" events. Could you confirm whether this belongs to another ad account you use?
+
+Thanks!

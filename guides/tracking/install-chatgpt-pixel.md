@@ -83,7 +83,26 @@ Keep `debug:true` while testing. Before publishing, change it to `debug:false` (
 3. In Ads Manager → Conversions, the pixel should show activity and `order_created` should show with value. It can take some time to appear. The PM sets it as the campaign goal.
 4. Log the GTM version number and the screenshot links in the task log.
 
+## Audit an existing setup ("is tracking set up properly?")
+1. **Ads Manager → Conversions → Diagnostics** (the PM's screenshot):
+   - Events in the last 7 days mean the pixel works.
+   - The high warning "No active campaigns use conversion events" (setup checklist step 4, "Link event to a campaign") is on the PM's side. They attach the event to each live campaign in Ads Manager.
+   - "No recent server-to-server events" (Conversions API) and "Limited email/customer ID / additional matching info" are optional match-quality improvements, not breakages.
+2. **Read the live tags.** Parse the live `gtm.js` or open GTM. For each `measure` event, check that the trigger matches the real conversion, not just a page that sounds like it:
+   - **Inline-thank-you forms** (e.g. HubSpot with `redirectUrl: ""`) never reach a thank-you page. Trigger on the form-submit event instead. On HubSpot, reuse an existing listener that pushes a dataLayer event on `onFormSubmitted` / `hsFormCallback`; don't add a second one.
+   - **Thank-you URL**: confirm which form actually redirects there. Check the form's confirmation settings or submit the form. Similar pages (e.g. `/service-seeker/thank-you` vs `/thanks-for-registering/`) belong to different forms.
+   - If a page-based trigger (e.g. a booked-meeting page) is kept alongside the form trigger, one person can count twice. Ask the PM before keeping both.
+3. **Look for other OpenAI pixels.** Search GTM for `oaiq` / `openai` and check the live page's requests to `bzr.openai.com`. A second pixel ID (often added by another agency or tool) sends its own events. Don't touch it; ask the PM whose it is.
+4. Propose the fixes in the reply and wait for the PM's OK before changing GTM.
+
+### Fix and test in GTM
+- Edit the existing `measure` tags' triggers. Reuse existing triggers where they match. No new pixel tag is needed.
+- **Preview a workspace**: if Tag Assistant opens on "Live", the URL is missing `gtm_auth` / `gtm_preview`. Start Preview from the GTM workspace button so the full URL is used.
+- **Test without real leads**: on HubSpot, simulate the form callback (`window.postMessage({type:"hsFormCallback", eventName:"onFormSubmitted", id:"<formId>", data:{}}, "*")`) instead of submitting. For a thank-you page trigger, just visit the page. Each test sends a real event to OpenAI, but with no ad click it isn't attributed. Note it in the log.
+- Publish with the PM's OK, then confirm the new triggers in the live `gtm.js`.
+
 ## Notes
+- **Stape template**: some containers use the "OpenAI Ads Pixel by Stape" template (`__cvt_…`, pixel ID in a constant variable) instead of Custom HTML. Edit those tags in place. Don't add a Custom HTML base on top, because that loads the pixel twice.
 - **Consent**: the pixel assumes consent unless `oaiq("consent", false)` runs before init. If the site's CMP blocks marketing tags, add the same consent condition to the Base tag trigger. You can also call `oaiq("consent", true|false)` from the CMP callback. Ask the PM/client first.
 - **CSP**: allow `script-src https://bzrcdn.openai.com`, `connect-src https://bzr.openai.com https://bzrcdn.openai.com`, `img-src https://bzr.openai.com`.
 - `app_installed` / `app_opened` aren't supported by the pixel (they're server-only).
@@ -97,3 +116,4 @@ Keep `debug:true` while testing. Before publishing, change it to `debug:false` (
 
 ## Seen on
 - [qcny.com — ChatGPT Tracking #35 (508304)](../../ChatGPT%20Tracking/qcny.com/10-25-2026-508304-log.md)
+- [thesmallbusinessexpo.com — ChatGPT Pixel #614 (501453)](../../ChatGPT%20Tracking/thesmallbusinessexpo.com/11-05-2026-501453-log.md): audit, HubSpot inline form → form-submit trigger, wrong thank-you page, second pixel (GTM v162)

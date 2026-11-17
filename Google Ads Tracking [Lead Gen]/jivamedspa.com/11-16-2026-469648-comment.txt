@@ -1,0 +1,58 @@
+Dafne Nazar Antonelli
+
+As per comment #24,
+
+Re: We need to make sure all the tracking has stayed in place. Please check and test.
+...
+We checked and tested the tracking on all 3 landing pages on the new domain and found it working properly:
+https://jivamedspafl.com/wesley-chapel/
+https://jivamedspafl.com/wesley-chapel-service-morpheus/
+https://jivamedspafl.com/wesley-chapel-service-hair-reduction/
+
+SS: Calls From LP #Wesley Chapel (813-603-1561)
+Conversion ID: 17915954984, Conversion Label: svRmCPfx0bAcEKiO_95C
+Reference screenshot: 
+
+
+For the LP: https://jivamedspafl.com/wesley-chapel/ 
+ 
+SS: Email LP - Wesley Chapel Conversion (Conversion ID: 17915954984, label: VQLTCLq70bAcEKiO_95C)
+Screenshot: https://drive.google.com/file/d/1MoGcvw6W32j7BQhtTlYX9VIgrYw4DArq/view?usp=sharing
+ 
+SS: Book Your Consultation - LP #Wesley Chapel (Conversion ID: 17915954984, Conversion label: PlbuCNiR0rAcEKiO_95C)
+Screenshot: 
+ 
+EC Data: 
+ 
+SS: Calls From LP #Wesley Chapel (813-603-1561) (Conversion ID: 17915954984, Conversion Label: svRmCPfx0bAcEKiO_95C)
+Screenshot: https://drive.google.com/file/d/1wxeSVQF2XYiU7EW3hdnc5rOK10n2Szjm/view?usp=sharing
+ 
+For the LP: https://jivamedspafl.com/wesley-chapel-service-morpheus/ 
+ 
+SS: Email LP - Wesley Chapel Conversion (Conversion ID: 17915954984, label: VQLTCLq70bAcEKiO_95C)
+Screenshot: 
+ 
+SS: Book Your Consultation - LP #Wesley Chapel (Conversion ID: 17915954984, Conversion label: PlbuCNiR0rAcEKiO_95C)
+Screenshot:  
+ 
+EC Data:  
+ 
+SS: Calls From LP #Wesley Chapel (813-603-1561) (Conversion ID: 17915954984, Conversion Label: svRmCPfx0bAcEKiO_95C)
+Screenshot: 
+ 
+For the LP: https://jivamedspafl.com/wesley-chapel-service-hair-reduction/
+ 
+SS: Email LP - Wesley Chapel Conversion (Conversion ID: 17915954984, label: VQLTCLq70bAcEKiO_95C)
+Screenshot: 
+ 
+SS: Book Your Consultation - LP #Wesley Chapel (Conversion ID: 17915954984, Conversion label: PlbuCNiR0rAcEKiO_95C)
+Screenshot: 
+ 
+EC Data: 
+ 
+SS: Calls From LP #Wesley Chapel (813-603-1561) (Conversion ID: 17915954984, Conversion Label: svRmCPfx0bAcEKiO_95C)
+Screenshot:  
+
+Please review and let us know.
+
+Thanks!
