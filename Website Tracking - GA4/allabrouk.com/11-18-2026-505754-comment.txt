@@ -1,0 +1,27 @@
+Joel Garcia
+
+https://login.smartsites.com/projects/9003/tasks/505754
+
+As per comments #11 and #12,
+
+For the site: https://allabrouk.com/
+
+3.5 Exclude the IP address of the Project Manager
+
+Re: 12. please finish item 3.5 (internal traffic exclusion) directly in the Google tag
+...
+We checked the Google tag (G-4T6K7HEXW0 / GT-P35NGLD8). The access the client gave web@smartsites.com is "Read" only, so the tag is still read-only for us and we can't add your IP address there.
+Screenshot: https://drive.google.com/file/d/12iSZFGq9BrR6R8N64dgpHqv1pXPb_dK-/view?usp=sharing
+
+Re: 11. please check whether 3.5 can be done without Google tag admin, for example by sending GA4 through our GTM container with a traffic_type parameter plus a GA4 data filter
+...
+Yes, this is already in place and working. GA4 on the site now runs through our GTM container (GTM-K73GJKJC), which marks our team's visits as internal, and the "Internal Traffic" filter in GA4 is active, so those visits are left out of the reports. We tested it today: a visit opened from an ActiveCollab link was marked as internal, and so were the pages viewed after it.
+Screenshot: https://drive.google.com/file/d/1pjG6OM70IPOUfT8Xzl4HpWfcp7UueSQ0/view?usp=sharing
+
+Please note: this works by recognizing visits that come from our ActiveCollab, reports and dev links, not by your IP address. Visits you make to the site from your own bookmark or by typing the address, without opening it from one of our links first, may still be counted. If you need exclusion by IP address, the client would need to change web@smartsites.com to "Publish" access on the Google tag.
+
+The Google Ads tag (AW-865136518) and its conversions were not changed.
+
+With this, all items on the task are complete. Please check and let us know.
+
+Thanks!

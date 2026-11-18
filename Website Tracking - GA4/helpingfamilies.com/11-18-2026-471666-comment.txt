@@ -1,0 +1,43 @@
+Alexander Morgan
+
+https://login.smartsites.com/projects/8588/tasks/471666
+
+As per comment #3, we have rechecked the tracking on the new helpingfamilies.com site and fixed what changed with the rebuild.
+
+1. LeadTracker
+....
+LeadTracker is now installed on the live contact form (https://helpingfamilies.com/contact/) and we tested it with one test submission named "John Doe". It shows in the LeadTracker report.
+Screenshot: https://drive.google.com/file/d/1Vjk06us0zn56xj8lvad856fPws2ELInu/view?usp=sharing
+
+2. Form submission tracking
+....
+The new contact form is a different form than before, so form submissions were no longer being tracked. We have updated Google Tag Manager for the new form and tested it. Form submissions are now sent to GA4 again as a key event.
+Screenshot: https://drive.google.com/file/d/1N5HJK0BjBsrzeuFsaE1A_EmfNFbwXHsu/view?usp=sharing
+
+Please note: the form numbers in GA4 for July and August are higher than the real number of submissions, because the old setup also counted some page loads. From now on, only real submissions are counted.
+
+3. Click to call tracking
+....
+Call tracking still works on the new site. We tested the phone links and the call event is sent to GA4. There are no call events since August because GA4 received almost no data from mid-August to early November (see point 4), and no one has clicked a phone link since then.
+Screenshot: https://drive.google.com/file/d/1wksAXbqB6DLCbpBLGgvC1QJdNzEdd-AA/view?usp=sharing
+
+4. GA4 data
+....
+GA4 received almost no visits from about 12 August to 2 November, which matches the time the site was being rebuilt. Data has been coming in normally again since 3 November.
+Screenshot: https://drive.google.com/file/d/1tqOTxEgjdIuxqOeq_2NM6WdZVz7zYrPw/view?usp=sharing
+
+5. GA4 settings
+....
+We verified the following are still in place: referral exclusions for the site, the dev site and ActiveCollab; Demographics & Interest Targeting; Enhanced Event Measurement; and the GA4 alert sent to the default SS email.
+Screenshots: 
+https://drive.google.com/file/d/1_WXjlsEF_GjdU73D8sN3PmVNtdWyF9WT/view?usp=sharing
+https://drive.google.com/file/d/1UP9gKwkC9nzzt8vq_lkx8vlKVLxdCZZ-/view?usp=sharing
+
+6. Project Manager IP exclusion
+....
+The IP exclusion only had the previous Project Manager's IP, and the filter was not switched on, so it was not removing anything from the reports. We have switched the filter on. Could you please send us your IP address so we can add it as well?
+Screenshot: https://drive.google.com/file/d/1EYhxidMpAtczI2Uv1cvxtA47mxPzbb4N/view?usp=sharing
+
+Please review and let us know.
+
+Thanks!

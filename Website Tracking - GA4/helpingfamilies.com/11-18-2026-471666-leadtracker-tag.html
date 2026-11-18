@@ -1,0 +1,37 @@
+<script>
+  (function () {
+    function loadScript(src, callback) {
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.defer = true;
+      script.onreadystatechange = callback;
+      script.onload = callback;
+      document.body.append(script);
+    }
+
+       loadScript("//leadtracker.smartsites.com/jquery-local-2.2.3.js", function () {
+    window.jqueryLocal.noConflict(true);
+
+  (function ($) {
+    /**
+     * Loading LeadTracker script only after the user interacts with the form
+     */
+    $(document).on('click mouseenter', 'form', function (event) {
+      if (typeof LeadTracker == 'undefined') {
+        loadScript("//leadtracker.smartsites.com/leadtracker-6.js", function () {
+          /**
+           * Standard LeadTracker code
+           */
+          LeadTracker($)
+            .setGa4Options({ sendTo: ['G-GSEVK4WJB2'], dimensionKey: 'form_data' })
+            .run();
+        });
+        $(this).off(event);
+      }
+    });
+
+           })(window.jqueryLocal);
+       });
+   })();
+</script>
